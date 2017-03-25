@@ -1,10 +1,9 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Role = sequelize.define('Role', {
+module.exports = (sequelize, DataTypes) => {
+  const Role = sequelize.define('Role', {
     type: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models) => {
         Role.hasMany(models.User);
       }
     }
