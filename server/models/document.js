@@ -1,6 +1,5 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Document = sequelize.define('Document', {
+module.exports = (sequelize, DataTypes) => {
+  const Document = sequelize.define('Document', {
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
     published_date: DataTypes.DATE,
@@ -8,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     user_id: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models) => {
         Document.belongsTo(models.User);
       }
     }
