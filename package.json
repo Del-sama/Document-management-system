@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start",
     "start": "node server/server.js"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
+    "karma-verbose-reporter": "0.0.6",
     "karma-webpack": "^2.0.3",
     "sequelize-cli": "^2.6.0",
     "webpack": "^2.3.2",
