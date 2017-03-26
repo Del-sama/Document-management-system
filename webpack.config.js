@@ -1,10 +1,22 @@
 module.exports = {
   context: `${__dirname} /server/app`,
 
-  entry: './js/app.js',
+  entry: '/js/app.js',
 
   output: {
-    filename: 'app.js',
+    filename: 'bundle.js',
     path: `${__dirname} /dist`,
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ["babel-loader"]
+      }
+    ]
   }
 };
