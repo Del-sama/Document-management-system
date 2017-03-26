@@ -2,7 +2,7 @@
 // Generated on Sun Mar 26 2017 13:46:22 GMT+0100 (WAT)
 const webpackConfig = require('./webpack.config.js');
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
