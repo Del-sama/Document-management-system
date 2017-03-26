@@ -16,8 +16,7 @@ module.exports = (config) => {
 
     // list of files / patterns to load in the browser
     files: [
-      'server/tests/**/*Spec.js',
-      'server/tests/**/*Spec.jsx'
+      'server/tests/**/*Spec.js'
     ],
 
 
@@ -29,15 +28,14 @@ module.exports = (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'server/tests/**/*Spec.js': ['webpack', 'coverage'],
-      'server/tests/**/*Spec.jsx': ['webpack', 'coverage']
+      'server/tests/**/*Spec.js': ['webpack', 'coverage']
     },
     webpack: webpackConfig,
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'verbose', 'coverage'],
+    reporters: ['verbose', 'progress', 'coverage'],
 
     coverageReporter: {
       reporters: [
