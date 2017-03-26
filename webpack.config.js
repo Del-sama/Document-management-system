@@ -1,10 +1,10 @@
 module.exports = {
-  context: `${__dirname} /server/app`,
+  context: `${__dirname}/client/app`,
 
   entry: './js/app.js',
 
   output: {
-    filename: 'app.js',
-    path: `${__dirname} /dist`,
+    filename: 'bundle.js',
+    path: `${__dirname}/dist`,
   }
 };
