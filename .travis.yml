@@ -1,6 +1,2 @@
-sudo: required
-dist: trusty
 language: node_js
 node_js: "stable"
-before_install:
- - export CHROME_BIN=/usr/bin/google-chrome
