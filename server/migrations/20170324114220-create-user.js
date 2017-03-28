@@ -6,16 +6,30 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    user_name: {
+      allowNull: false,
+      unique: true,
+      type: Sequelize.STRING
+    },
     first_name: {
+      allowNull: false,
       type: Sequelize.STRING
     },
     last_name: {
+      allowNull: false,
       type: Sequelize.STRING
     },
-    age: {
-      type: Sequelize.INTEGER
+    email: {
+      allowNull: false,
+      unique: true,
+      type: Sequelize.STRING
     },
-    role_id: {
+    password: {
+      allowNull: false,
+      type: Sequelize.STRING
+    },
+    RoleId: {
+      allowNull: false,
       type: Sequelize.INTEGER
     },
     createdAt: {
@@ -27,5 +41,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Users')
+  down: queryInterface => queryInterface.dropTable('Users')
 };
