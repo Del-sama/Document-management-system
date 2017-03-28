@@ -6,7 +6,8 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    type: {
+    title: {
+      allowNull: false,
       type: Sequelize.STRING
     },
     createdAt: {
@@ -18,7 +19,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Roles');
-  }
+  down: queryInterface => queryInterface.dropTable('Roles')
 };

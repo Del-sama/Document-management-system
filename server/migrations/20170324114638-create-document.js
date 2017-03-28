@@ -7,19 +7,24 @@ module.exports = {
       type: Sequelize.INTEGER
     },
     title: {
+      allowNull: false,
       type: Sequelize.STRING
     },
     content: {
+      allowNull: false,
       type: Sequelize.TEXT
     },
-    published_date: {
-      type: Sequelize.DATE
+    UserId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     },
     access: {
-      type: Sequelize.INTEGER
+      allowNull: false,
+      type: Sequelize.STRING
     },
-    user_id: {
-      type: Sequelize.INTEGER
+    published_date: {
+      allowNull: false,
+      type: Sequelize.DATE
     },
     createdAt: {
       allowNull: false,
@@ -30,5 +35,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Documents')
+  down: queryInterface => queryInterface.dropTable('Documents')
 };
