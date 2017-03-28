@@ -1,6 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Role = sequelize.define('Role', {
-    type: DataTypes.STRING
+    title: {
+      defaultValue: 'regular',
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        isIn: [['admin', 'regular']]
+      }
+    }
   }, {
     classMethods: {
       associate: (models) => {
