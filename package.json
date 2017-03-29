@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover mocha server/tests/**/*spec.js",
+    "test": "istanbul cover mocha server/tests/",
     "start": "node server/server.js"
   },
   "repository": {
