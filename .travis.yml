@@ -1,17 +1,5 @@
 dist: trusty
 sudo: false
 
-addons:
-  apt:
-    packages:
-      - google-chrome-stable
-      
 language: node_js
 node_js: "stable"
-
-before_script:
-  - export DISPLAY=:99.0
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - sh -e /etc/init.d/xvfb start &
-  - sleep 3
-
