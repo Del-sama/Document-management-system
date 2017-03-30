@@ -5,9 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha server/tests/**/*.spec.js",
-    "migrate:test": "NODE_ENV=test sequelize db:migrate",
-    "migrate:dev": "NODE_ENV=development sequelize db:migrate",
-    "migrate:prod": "NODE_ENV=production sequelize db:migrate",
     "start": "node server/server.js"
   },
   "repository": {
