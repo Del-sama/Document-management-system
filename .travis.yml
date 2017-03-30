@@ -9,7 +9,6 @@ services:
 
 before_script:
     - createdb dms-test
-    - npm run migrate:test
     - npm install
 
 script:
