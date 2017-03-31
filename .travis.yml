@@ -11,6 +11,6 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database doc-mgt-system-test;' -U postgres
+  - psql -c 'create database dms_test;' -U postgres
   - NODE_ENV=travis npm run db:migrate
 
