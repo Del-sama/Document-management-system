@@ -46,15 +46,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     instanceMethods: {
-      generateHash(password) {
-        this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-        console.log('password ---------------->', this.password, password);
-      },
       validPassword(password) {
-        // console.log('password comparism ---------------->', password, this.password, bcrypt.compareSync(password, this.password));
         return bcrypt.compareSync(password, this.password);
       },
+
+      generateHash() {
+        this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
+      }
     },
+
     hooks: {
       beforeCreate: (newUser) => {
         newUser.generateHash();
