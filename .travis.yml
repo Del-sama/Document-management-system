@@ -3,3 +3,17 @@ sudo: false
 
 language: node_js
 node_js: "stable"
+
+node_js:
+  - node
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database testdb;' -U postgres
+  - NODE_ENV=travis npm run db:migrate
+
+
+after_script:
+  - node node_modules/codeclimate-test-reporter/bin/codeclimate < coverage/lcov.info
