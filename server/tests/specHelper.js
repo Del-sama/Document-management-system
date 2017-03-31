@@ -15,7 +15,7 @@ module.exports = {
     first_name: faker.name.firstName(),
     last_name: faker.name.lastName(),
     email: faker.internet.email(),
-    password: 'deloresdiei'
+    password: faker.internet.password()
   },
 
   testUser2: {
@@ -36,7 +36,8 @@ module.exports = {
 
   testDocument: {
     title: faker.lorem.sentence(7),
-    content: faker.lorem.paragraphs()
+    content: faker.lorem.paragraphs(),
+    published_date: Date.now()
   },
 
   testDocument2: {
