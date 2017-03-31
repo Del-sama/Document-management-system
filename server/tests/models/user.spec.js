@@ -19,8 +19,6 @@ describe('User Model', () => {
         })
         .then((createdUser) => {
           user = createdUser;
-          console.log('created user ----------------------------------------------->', createdUser);
-          console.log('created user ----------------------------------------------->', createdUser.password);
           done();
         });
     });
@@ -92,7 +90,6 @@ describe('User Model', () => {
           user.save()
             .then((firstUser) => {
               userParams.RoleId = firstUser.RoleId;
-              // attempt to create another user with same parameters
               return model.User.build(userParams).save();
             })
             .catch((error) => {
@@ -115,21 +112,13 @@ describe('User Model', () => {
       });
     });
 
-    describe('', () => {
-      it('blah blah ', () => {
-        console.log(userParams.password, 'this is the sser');
-        user.save().then((createdUser) => {
-          console.log(user, '<--------------  createdUser')
-          expect(createdUser.validPassword('deloresdiei')).to.be.true;
-        });
+    describe('Password Validation', () => {
+      it.only('should be valid if compared', () => {
+        user.save()
+          .then((createdUser) => {
+            expect(createdUser.validPassword(userParams.password)).to.be.true;
+          });
       });
     });
-
-    // describe('Password Validation', () => {
-    //   it('should be valid if compared', () => user.save()
-    //       .then((createdUser) => {
-    //         expect(createdUser.validPassword(userParams.password)).to.be.true;
-    //       }));
-    // });
   });
 });
