@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha server/tests/**/*.spec.js",
-    "start": "node server/server.js"
+    "test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
+    "start": "node server/server.js",
+    "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
