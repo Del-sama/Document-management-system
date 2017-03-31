@@ -113,7 +113,7 @@ describe('User Model', () => {
     });
 
     describe('Password Validation', () => {
-      it.only('should be valid if compared', () => {
+      it('should be valid if compared', () => {
         user.save()
           .then((createdUser) => {
             expect(createdUser.validPassword(userParams.password)).to.be.true;
