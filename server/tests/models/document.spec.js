@@ -22,9 +22,6 @@ describe('Document Model', () => {
           user = createdUser;
           documentParams.UserId = user.id;
           done();
-        })
-        .catch((error) => {
-          console.log(error);
         });
     });
 
