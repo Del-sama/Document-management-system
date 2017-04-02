@@ -11,9 +11,9 @@ module.exports = {
   },
 
   testUser: {
-    user_name: faker.internet.userName(),
-    first_name: faker.name.firstName(),
-    last_name: faker.name.lastName(),
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
     email: faker.internet.email(),
     password: 'deloresdiei'
   },
@@ -37,7 +37,7 @@ module.exports = {
   testDocument: {
     title: faker.lorem.sentence(7),
     content: faker.lorem.paragraphs(),
-    published_date: Date.now()
+    publishedDate: Date.now()
   },
 
   testDocument2: {
@@ -58,7 +58,7 @@ module.exports = {
       documentsParams.push({
         title: faker.lorem.sentence(7),
         content: faker.lorem.paragraph(),
-        OwnerId: 1
+        UserId: 1
       });
     }
 

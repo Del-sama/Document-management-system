@@ -6,16 +6,16 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    user_name: {
+    userName: {
       allowNull: false,
       unique: true,
       type: Sequelize.STRING
     },
-    first_name: {
+    firstName: {
       allowNull: false,
       type: Sequelize.STRING
     },
-    last_name: {
+    lastName: {
       allowNull: false,
       type: Sequelize.STRING
     },
