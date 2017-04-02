@@ -5,7 +5,7 @@ const params = require('../specHelper.js');
 const documentParams = params.testDocument;
 const userParams = params.testUser;
 
-const requiredFields = ['title', 'content', 'OwnerId', 'access'];
+const requiredFields = ['title', 'content', 'UserId', 'access'];
 
 describe('Document Model', () => {
   describe('How Document Model Works', () => {
@@ -59,7 +59,7 @@ describe('Document Model', () => {
     it('should create a document with publish date', (done) => {
       document.save()
       .then((createdDocument) => {
-        expect(createdDocument.published_date).to.exist;
+        expect(createdDocument.publishedDate).to.exist;
         done();
       });
     });

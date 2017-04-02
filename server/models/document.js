@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['private', 'public', 'role']]
       }
     },
-    published_date: {
+    publishedDate: {
       allowNull: false,
       type: DataTypes.DATE
     }
