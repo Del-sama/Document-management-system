@@ -1,5 +1,4 @@
 const faker = require('faker');
-const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
   testRole: {
