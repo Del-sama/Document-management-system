@@ -52,9 +52,4 @@ describe('User Authentication', () => {
         done();
       });
   });
-  it('should not return users if the user is not admin', (done) => {
-    request.get('/users')
-      .set({ Authorization: regularToken })
-      .expect(403, done);
-  });
 });
