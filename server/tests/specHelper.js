@@ -1,5 +1,4 @@
 const faker = require('faker');
-const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
   testRole: {
@@ -15,7 +14,7 @@ module.exports = {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
-    password: 'deloresdiei'
+    password: faker.internet.password()
   },
 
   testUser2: {
@@ -43,12 +42,14 @@ module.exports = {
   testDocument2: {
     title: faker.finance.accountName(),
     content: faker.lorem.paragraph(),
-    access: 'private'
+    access: 'private',
+    publishedDate: Date.now()
   },
 
   testDocument3: {
     title: faker.commerce.department(),
-    content: faker.lorem.paragraph()
+    content: faker.lorem.paragraph(),
+    publishedDate: Date.now()
   },
 
   documentsCollection() {
