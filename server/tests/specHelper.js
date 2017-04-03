@@ -11,9 +11,9 @@ module.exports = {
   },
 
   testUser: {
-    user_name: faker.internet.userName(),
-    first_name: faker.name.firstName(),
-    last_name: faker.name.lastName(),
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
     email: faker.internet.email(),
     password: 'deloresdiei'
   },
