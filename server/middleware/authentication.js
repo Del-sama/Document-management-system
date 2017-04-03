@@ -16,11 +16,11 @@ const Auth = {
     }
     return response.status(401)
     .send({ message: 'Not authorized' });
-  }
+  },
   adminAccess(request, response, next) {
     model.Role.findById(request.decoded.RoleId)
-      .then((foundRole) => {
-        if (foundRole.title.toLowerCase() === 'admin') {
+      .then((Role) => {
+        if (Role.title.toLowerCase() === 'admin') {
           next();
         } else {
           return response.status(403)
@@ -30,3 +30,4 @@ const Auth = {
   }
 };
 
+module.exports = Auth;
