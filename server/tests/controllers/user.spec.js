@@ -28,7 +28,6 @@ describe('User API', () => {
     });
 
     it('should not create another user with same user name', (done) => {
-      console.log('user params  ------------->', userParams);
       request.post('/users')
         .send(userParams)
         .expect(409, done);
