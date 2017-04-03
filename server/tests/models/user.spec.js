@@ -5,8 +5,8 @@ const helper = require('../specHelper.js');
 const userParams = helper.testUser;
 const roleParams = helper.testRole;
 
-const requiredFields = ['user_name', 'first_name', 'last_name', 'email', 'password', 'RoleId'];
-const uniqueFields = ['user_name', 'email'];
+const requiredFields = ['userName', 'firstName', 'lastName', 'email', 'password', 'RoleId'];
+const uniqueFields = ['userName', 'email'];
 
 describe('User Model', () => {
   describe('How User Model Works', () => {
@@ -50,10 +50,10 @@ describe('User Model', () => {
     it('should be able to update a user', (done) => {
       model.User.findById(user.id)
         .then((foundUser) => {
-          return foundUser.update({ user_name: 'mogims' });
+          return foundUser.update({ userName: 'mogims' });
         })
         .then((updatedUser) => {
-          expect(updatedUser.user_name).to.equal('mogims');
+          expect(updatedUser.userName).to.equal('mogims');
           done();
         });
     });

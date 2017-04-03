@@ -37,7 +37,7 @@ module.exports = {
   testDocument: {
     title: faker.lorem.sentence(7),
     content: faker.lorem.paragraphs(),
-    published_date: Date.now()
+    publishedDate: Date.now()
   },
 
   testDocument2: {
@@ -58,7 +58,7 @@ module.exports = {
       documentsParams.push({
         title: faker.lorem.sentence(7),
         content: faker.lorem.paragraph(),
-        OwnerId: 1
+        UserId: 1
       });
     }
 
