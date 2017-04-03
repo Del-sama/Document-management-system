@@ -9,6 +9,7 @@ const roleParams = helper.testRole;
 
 describe('User API', () => {
   let user;
+  let token;
   before(() => model.Role.create(roleParams)
       .then((createdRole) => {
         userParams.RoleId = createdRole.id;
@@ -22,7 +23,9 @@ describe('User API', () => {
     beforeEach((done) => {
       request.post('/users')
         .send(userParams)
-        .end(() => {
+        .end((error, response) => {
+          user = response.body.newUser;
+          token = response.body.token;
           done();
         });
     });
