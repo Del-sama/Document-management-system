@@ -10,4 +10,7 @@ router.route('/users')
   .get(auth.verifyToken, auth.adminAccess, usersController.getUsers)
   .post(usersController.createUser);
 
+router.route('/users/:id')
+  .get(auth.verifyToken, usersController.getUser);
+
 module.exports = () => router;
