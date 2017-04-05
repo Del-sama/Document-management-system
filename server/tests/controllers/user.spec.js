@@ -1,9 +1,11 @@
-const app = require('../../server');
-const request = require('supertest')(app);
-const expect = require('chai').expect;
-const model = require('../../models');
-const helper = require('../specHelper');
+import supertest from 'supertest';
+import chai from 'chai';
+import app from '../../server';
+import model from '../../models';
+import helper from '../specHelper';
 
+const request = supertest(app);
+const expect = chai.expect;
 const userParams = helper.testUser;
 const roleParams = helper.testRole;
 

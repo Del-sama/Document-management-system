@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 import * as model from '../models';
 
-
-
 const secret = 'secret';
 
 const formattedUser = (user) => {
