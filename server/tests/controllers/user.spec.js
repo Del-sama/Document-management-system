@@ -35,5 +35,17 @@ describe('User API', () => {
         .send(userParams)
         .expect(409, done);
     });
+    it('should get all users when provided valid token & access', (done) => {
+      request.get('/users')
+        .set({ Authorization: token })
+        .end((error, response) => {
+          expect(response.status).to.equal(200);
+          // eslint-disable-next-line no-unused-expressions
+          expect(Array.isArray(response.body)).to.be.true;
+          expect(response.body.length).to.be.greaterThan(0);
+          done();
+        });
+    });
   });
 });
+
