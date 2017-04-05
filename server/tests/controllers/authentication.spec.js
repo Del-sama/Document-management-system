@@ -52,4 +52,22 @@ describe('User Authentication', () => {
         done();
       });
   });
+  it('should not return users if the user is not admin', (done) => {
+    request.get('/users')
+      .set({ Authorization: regularToken })
+      .expect(403, done);
+  });
+  it('should correctly return all users with valid token and access', (done) => {
+    request.get('/users')
+      .set({ Authorization: adminToken })
+      .end((error, response) => {
+        expect(response.status).to.equal(200);
+        // eslint-disable-next-line no-unused-expressions
+        expect(Array.isArray(response.body)).to.be.true;
+        expect(response.body.length).to.be.greaterThan(0);
+        expect(response.body[0].userName).to.equal(adminUserParams.userName);
+        done();
+      });
+  });
 });
+
