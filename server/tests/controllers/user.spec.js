@@ -47,5 +47,22 @@ describe('User API', () => {
         });
     });
   });
+
+  describe('GET: (/users/:id) - GET A USER', () => {
+    it('should not return a user id is invalid', (done) => {
+      request.get('/users/9999')
+        .set({ Authorization: token })
+        .expect(404, done);
+    });
+    it('should return the user with supplied id', (done) => {
+      request.get(`/users/${user.id}`)
+        .set({ Authorization: token })
+        .end((error, response) => {
+          expect(response.status).to.equal(200);
+          expect(user.userName).to.equal(userParams.userName);
+          done();
+        });
+    });
+  });
 });
 
