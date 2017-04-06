@@ -70,6 +70,23 @@ class UsersController {
             .send(error.errors));
      });
   }
+  /**
+   * Method getUsers to obtain all users
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {Object} response object
+   */
+  static getUser(request, response) {
+    model.User.findById(request.params.id)
+      .then((user) => {
+        if (!user) {
+          return response.status(404)
+          .send({ message: `user with id ${request.params.id} not found` });
+        }
+        user = formattedUser(user);
+        return response.send(user);
+      });
+  }
 }
 
 module.exports = UsersController;
