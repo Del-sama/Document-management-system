@@ -87,6 +87,28 @@ class UsersController {
         return response.send(user);
       });
   }
+  /**
+   * Method updateUser
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   */
+  static updateUser(request, response) {
+    model.User.findById(request.params.id)
+      .then((user) => {
+        if (!user) {
+          return response.status(404)
+          .send({ message: `No user with id: ${request.params.id}` });
+        }
+
+        user.update(request.body)
+          .then((updatedUser) => {
+            updatedUser = formattedUser(updatedUser);
+            return response.status(200)
+              .send(updatedUser);
+          });
+      });
+  }
 }
 
 module.exports = UsersController;
