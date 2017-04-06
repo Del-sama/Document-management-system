@@ -45,7 +45,8 @@ describe('User API', () => {
           expect(response.body.length).to.be.greaterThan(0);
           done();
         });
-    }); describe('GET: (/users/:id) - GET A USER', () => {
+    }); 
+    describe('GET: (/users/:id) - GET A USER', () => {
       it('should not return a user id is invalid', (done) => {
         request.get('/users/9999')
         .set({ Authorization: token })
@@ -59,6 +60,28 @@ describe('User API', () => {
           expect(user.userName).to.equal(userParams.userName);
           done();
         });
+      });
+    });
+    describe('PUT: (/users/:id) - UPDATE', () => {
+      it('should not perform update if supplied id is invalid', (done) => {
+        request.get('/users/9999')
+          .set({ Authorization: token })
+          .expect(404, done);
+      });
+      it('should update a user if supplied id is valid', (done) => {
+        const fieldsToUpdate = {
+          firstName: 'Delores',
+          lastName: 'Diei'
+        };
+
+        request.put(`/users/${user.id}`)
+          .set({ Authorization: token })
+          .send(fieldsToUpdate)
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.firstName).to.equal(fieldsToUpdate.firstName);
+            done();
+          });
       });
     });
   });
