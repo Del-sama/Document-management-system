@@ -11,6 +11,7 @@ router.route('/users')
   .post(usersController.createUser);
 
 router.route('/users/:id')
-  .get(auth.verifyToken, usersController.getUser);
+  .get(auth.verifyToken, usersController.getUser)
+  .put(auth.verifyToken, usersController.updateUser);
 
 module.exports = () => router;
