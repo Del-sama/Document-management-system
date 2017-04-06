@@ -52,11 +52,9 @@ describe('User API', () => {
         .expect(404, done);
       });
       it('should return the user with supplied id', (done) => {
-        console.log('user id -------------->', user.id);
         request.get(`/users/${user.id}`)
         .set({ Authorization: token })
         .end((error, response) => {
-          console.log('response -------------->', response.body);
           expect(response.status).to.equal(200);
           expect(user.userName).to.equal(userParams.userName);
           done();
