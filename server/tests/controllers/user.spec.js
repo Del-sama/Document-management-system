@@ -45,7 +45,7 @@ describe('User API', () => {
           expect(response.body.length).to.be.greaterThan(0);
           done();
         });
-    }); 
+    });
     describe('GET: (/users/:id) - GET A USER', () => {
       it('should not return a user id is invalid', (done) => {
         request.get('/users/9999')
