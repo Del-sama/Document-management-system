@@ -68,6 +68,20 @@ class RolesController {
           });
       });
   }
+  static deleteRole(request, response) {
+    console.log('--------I got callled--------');
+    model.Role.findById(request.params.id)
+      .then((role) => {
+        if (!role) {
+          return response.status(404)
+            .send({ message: `Role with id ${request.params.id} not found` });
+        }
+        console.log('Found role----------', role);
+        role.destroy()
+          .then(() => response.status(200)
+            .send({ message: 'Successfully deleted role' }));
+      });
+  }
 }
 
 module.exports = RolesController;
