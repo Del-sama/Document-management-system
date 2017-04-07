@@ -12,6 +12,7 @@ router.route('/roles')
 
 router.route('/roles/:id')
   .get(auth.verifyToken, auth.adminAccess, rolesController.getRole)
-  .put(auth.verifyToken, auth.adminAccess, rolesController.updateRole);
+  .put(auth.verifyToken, auth.adminAccess, rolesController.updateRole)
+  .delete(auth.verifyToken, auth.adminAccess, rolesController.deleteRole);
 
 module.exports = () => router;
