@@ -124,3 +124,55 @@ describe('Role API', () => {
   });
 });
 
+describe('Role API two', () => {
+  let token;
+  let role;
+
+  before((done) => {
+    model.Role.create(adminRoleParam)
+      .then((adminRole) => {
+        userParam.RoleId = adminRole.id;
+        request.post('/users')
+          .send(userParam)
+          .end((error, response) => {
+            token = response.body.token;
+            expect(response.status).to.equal(201);
+            done();
+          });
+      });
+  });
+
+  beforeEach((done) => {
+    model.Role.create(regularRoleParam)
+      .then((regularRole) => {
+        role = regularRole;
+        done();
+      });
+  });
+
+  afterEach(() => model.Role.destroy({ where: { id: role.id } }));
+
+  after(() => model.sequelize.sync({ force: true }));
+
+  describe('PUT: (/roles/:id) - EDIT ROLE', () => {
+    it('should not perform edit if wrong id is supplied', (done) => {
+      const fieldsToUpdate = { title: 'super admin' };
+      request.put('/roles/999999')
+          .set({ Authorization: token })
+          .send(fieldsToUpdate)
+          .expect(404, done);
+    });
+    it('should perform edit when valid id is supplied', (done) => {
+      const fieldsToUpdate = { title: 'super admin' };
+      request.put(`/roles/${role.id}`)
+          .set({ Authorization: token })
+          .send(fieldsToUpdate)
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.title).to.equal(fieldsToUpdate.title);
+            done();
+          });
+    });
+  });
+});
+

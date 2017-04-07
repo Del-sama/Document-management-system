@@ -19,7 +19,7 @@ class RolesController {
   }
 
 /**
-   * Method getUsers to obtain all users
+   * Method createRoles to obtain all users
    * @param {object} request - request object
    * @param {object} response - response object
    * @returns {Object} response object
@@ -31,6 +31,12 @@ class RolesController {
       .catch(error => response.status(400)
         .send(error.errors));
   }
+  /**
+   * Method getRole to obtain all users
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {Object} response object
+   */
   static getRole(request, response) {
     model.Role.findById(request.params.id)
       .then((role) => {
@@ -40,6 +46,26 @@ class RolesController {
         }
         return response.status(200)
           .send(role);
+      });
+  }
+  /**
+   * Method updateUser
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   */
+  static updateRole(request, response) {
+    model.Role.findById(request.params.id)
+      .then((role) => {
+        if (!role) {
+          return response.status(404)
+            .send({ message: `Role with id ${request.params.id} not found` });
+        }
+        role.update(request.body)
+          .then((updateRole) => {
+            response.status(200)
+              .send(updateRole);
+          });
       });
   }
 }
