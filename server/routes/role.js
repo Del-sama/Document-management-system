@@ -7,6 +7,6 @@ const rolesController = require('../controllers/role');
 const auth = require('../middleware/authentication');
 
 router.route('/roles')
-  .post(auth.verifyToken, auth.adminAccess, rolesController.createRole);
+  .post(auth.verifyToken, auth.adminAccess, rolesController.createRoles);
 
 module.exports = () => router;
