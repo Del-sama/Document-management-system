@@ -19,7 +19,7 @@ class RolesController {
   }
 
 /**
-   * Method getUsers to obtain all users
+   * Method createRoles to obtain all users
    * @param {object} request - request object
    * @param {object} response - response object
    * @returns {Object} response object
@@ -32,7 +32,7 @@ class RolesController {
         .send(error.errors));
   }
   /**
-   * Method getUsers to obtain all users
+   * Method getRole to obtain all users
    * @param {object} request - request object
    * @param {object} response - response object
    * @returns {Object} response object
