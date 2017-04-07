@@ -84,6 +84,26 @@ describe('User API', () => {
           });
       });
     });
+
+    describe('DELETE: (/users/:id) - DELETE A USER', () => {
+      it('should not perform a delete if supplied id is invalid', (done) => {
+        request.get('/users/9999')
+          .set({ Authorization: token })
+          .expect(404, done);
+      });
+      it('should succesfully delete a user when provided valid id', (done) => {
+        request.delete(`/users/${user.id}`)
+          .set({ Authorization: token })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            model.User.count()
+              .then((userCount) => {
+                expect(userCount).to.equal(0);
+                done();
+              });
+          });
+      });
+    });
   });
 });
 
