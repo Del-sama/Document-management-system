@@ -10,4 +10,7 @@ router.route('/roles')
   .post(auth.verifyToken, auth.adminAccess, rolesController.createRoles)
   .get(auth.verifyToken, auth.adminAccess, rolesController.getRoles);
 
+router.route('/roles/:id')
+  .get(auth.verifyToken, auth.adminAccess, rolesController.getRole);
+
 module.exports = () => router;
