@@ -28,11 +28,17 @@ describe('User API', () => {
   describe('REQUESTS', () => {
     beforeEach((done) => {
       request.post('/users')
-        .send(userParams, userParams2)
+        .send(userParams)
         .end((error, response) => {
           user1 = response.body.newUser;
           token1 = response.body.token;
-          done();
+          request.post('/users')
+            .send(userParams2)
+            .end((err, res) => {
+              user2 = res.body.newUser;
+              token2 = res.body.token;
+              done();
+            });
         });
     });
 
@@ -104,16 +110,24 @@ describe('User API', () => {
             expect(response.status).to.equal(200);
             model.User.count()
               .then((userCount) => {
-                expect(userCount).to.equal(0);
+                expect(userCount).to.equal(1);
                 done();
               });
           });
       });
       it('should perform delete on request from admin', (done) => {
-        request.delete(`/users/${user1.id}`)
+        request.delete(`/users/${user2.id}`)
         .set({ Authorization: token1 })
         .end((error, response) => {
           expect(response.status).to.equal(200);
+          done();
+        });
+      });
+      it('should not delete if requester id is not user id', (done) => {
+        request.delete(`/users/${user1.id}`)
+        .set({ Authorization: token2 })
+        .end((error, response) => {
+          expect(response.status).to.equal(403);
           done();
         });
       });
