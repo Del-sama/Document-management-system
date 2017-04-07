@@ -103,6 +103,26 @@ describe('Role API', () => {
           });
       });
     });
+    describe('PUT: (/roles/:id) - EDIT ROLE', () => {
+      it('should not perform edit if wrong id is supplied', (done) => {
+        const fieldsToUpdate = { title: 'super Admin' };
+        request.put('/roles/999999')
+          .set({ Authorization: token })
+          .send(fieldsToUpdate)
+          .expect(404, done);
+      });
+      it('should perform edit when valid id is supplied', (done) => {
+        const fieldsToUpdate = { title: 'super Admin' };
+        request.put(`/roles/${role.id}`)
+          .set({ Authorization: token })
+          .send(fieldsToUpdate)
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.title).to.equal(fieldsToUpdate.title);
+            done();
+          });
+      });
+    });
   });
 });
 
