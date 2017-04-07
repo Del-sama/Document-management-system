@@ -130,6 +130,16 @@ class UsersController {
           .send({ message: 'Log in Failed' });
       });
   }
+   /**
+   * Method logout
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   */
+  static logout(request, response) {
+    return response.status(200)
+      .send({ message: 'Successful logout' });
+  }
 }
 
 module.exports = UsersController;

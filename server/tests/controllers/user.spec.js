@@ -108,6 +108,15 @@ describe('User API', () => {
           });
       });
     });
+    describe('POST: (/users/logout) - LOGOUT', () => {
+      it('should logout a user', (done) => {
+        request.post('/users/logout')
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            done();
+          });
+      });
+    });
   });
 });
 

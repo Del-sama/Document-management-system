@@ -17,4 +17,7 @@ router.route('/users/:id')
 router.route('/users/login')
   .post(usersController.login);
 
+router.route('/users/logout')
+  .post(usersController.logout);
+
 module.exports = () => router;
