@@ -130,6 +130,8 @@ describe('User API', () => {
           expect(response.status).to.equal(403);
           done();
         });
+      });
+    });
     describe('POST: (/users/login) - LOGIN', () => {
       it('should not login when supplied invalid email or password', (done) => {
         request.post('/users/login')
@@ -165,4 +167,3 @@ describe('User API', () => {
     });
   });
 });
-

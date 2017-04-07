@@ -131,14 +131,13 @@ class UsersController {
                 .send({ message: 'User was successfully deleted' }));
           });
     });
-
+  }
   /**
-   * 
-   * 
+   *
    * @static
-   * @param {any} request 
-   * @param {any} response 
-   * 
+   * @param {any} request
+   * @param {any} response
+   * @returns {object} response object
    * @memberOf UsersController
    */
   static login(request, response) {
