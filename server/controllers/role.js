@@ -68,6 +68,12 @@ class RolesController {
           });
       });
   }
+  /**
+   * Method deleteRole
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response object
+   */
   static deleteRole(request, response) {
     console.log('--------I got callled--------');
     model.Role.findById(request.params.id)
