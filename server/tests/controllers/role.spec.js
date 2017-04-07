@@ -81,6 +81,28 @@ describe('Role API', () => {
           });
       });
     });
+    describe('GET: (/roles)', () => {
+      it('should not return roles where no token is provided', (done) => {
+        request.get('/roles')
+          .expect(401, done);
+      });
+      it('should not return roles where token is invalid', (done) => {
+        request.get('/roles')
+          .set({ Authorization: 'jbugubhbhkbkbkb' })
+          .expect(401, done);
+      });
+      it('should return roles where token is valid', (done) => {
+        request.get('/roles')
+          .set({ Authorization: token })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            // eslint-disable-next-line no-unused-expressions
+            expect(Array.isArray(response.body)).to.be.true;
+            expect(response.body.length).to.be.greaterThan(0);
+            done();
+          });
+      });
+    });
   });
 });
 
