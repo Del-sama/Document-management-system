@@ -13,7 +13,7 @@ class RolesController {
    * @returns {Object} response object
    */
   static createRoles(request, response) {
-    model.Role.Create(request.body)
+    model.Role.create(request.body)
       .then(newRole => response.status(201)
           .send(newRole))
       .catch(error => response.status(400)
