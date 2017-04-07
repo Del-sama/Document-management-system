@@ -6,13 +6,19 @@ const helper = require('../specHelper');
 
 const userParams = helper.testUser;
 const roleParams = helper.testRole;
+const userParams2 = helper.testUser2;
+const roleParams2 = helper.testRole2;
 
 describe('User API', () => {
-  let user;
-  let token;
-  before(() => model.Role.create(roleParams)
-      .then((createdRole) => {
-        userParams.RoleId = createdRole.id;
+  let user1;
+  let user2;
+  let token1;
+  let token2;
+  before(() => model.Role.bulkCreate([roleParams, roleParams2], {
+    returning: true })
+      .then((createdRoles) => {
+        userParams.RoleId = createdRoles[0].id;
+        userParams2.RoleId = createdRoles[1].id;
       }));
 
   afterEach(() => model.User.destroy({ where: {} }));
@@ -22,10 +28,10 @@ describe('User API', () => {
   describe('REQUESTS', () => {
     beforeEach((done) => {
       request.post('/users')
-        .send(userParams)
+        .send(userParams, userParams2)
         .end((error, response) => {
-          user = response.body.newUser;
-          token = response.body.token;
+          user1 = response.body.newUser;
+          token1 = response.body.token;
           done();
         });
     });
@@ -37,7 +43,7 @@ describe('User API', () => {
     });
     it('should get all users when provided valid token & access', (done) => {
       request.get('/users')
-        .set({ Authorization: token })
+        .set({ Authorization: token1 })
         .end((error, response) => {
           expect(response.status).to.equal(200);
           // eslint-disable-next-line no-unused-expressions
@@ -49,15 +55,15 @@ describe('User API', () => {
     describe('GET: (/users/:id) - GET A USER', () => {
       it('should not return a user id is invalid', (done) => {
         request.get('/users/9999')
-        .set({ Authorization: token })
+        .set({ Authorization: token1 })
         .expect(404, done);
       });
       it('should return the user with supplied id', (done) => {
-        request.get(`/users/${user.id}`)
-        .set({ Authorization: token })
+        request.get(`/users/${user1.id}`)
+        .set({ Authorization: token1 })
         .end((error, response) => {
           expect(response.status).to.equal(200);
-          expect(user.userName).to.equal(userParams.userName);
+          expect(user1.userName).to.equal(userParams.userName);
           done();
         });
       });
@@ -65,7 +71,7 @@ describe('User API', () => {
     describe('PUT: (/users/:id) - UPDATE', () => {
       it('should not perform update if supplied id is invalid', (done) => {
         request.get('/users/9999')
-          .set({ Authorization: token })
+          .set({ Authorization: token1 })
           .expect(404, done);
       });
       it('should update a user if supplied id is valid', (done) => {
@@ -74,8 +80,8 @@ describe('User API', () => {
           lastName: 'Diei'
         };
 
-        request.put(`/users/${user.id}`)
-          .set({ Authorization: token })
+        request.put(`/users/${user1.id}`)
+          .set({ Authorization: token1 })
           .send(fieldsToUpdate)
           .end((error, response) => {
             expect(response.status).to.equal(200);
@@ -88,12 +94,12 @@ describe('User API', () => {
     describe('DELETE: (/users/:id) - DELETE A USER', () => {
       it('should not perform a delete if supplied id is invalid', (done) => {
         request.get('/users/9999')
-          .set({ Authorization: token })
+          .set({ Authorization: token1 })
           .expect(404, done);
       });
       it('should succesfully delete a user when provided valid id', (done) => {
-        request.delete(`/users/${user.id}`)
-          .set({ Authorization: token })
+        request.delete(`/users/${user1.id}`)
+          .set({ Authorization: token1 })
           .end((error, response) => {
             expect(response.status).to.equal(200);
             model.User.count()
@@ -102,6 +108,14 @@ describe('User API', () => {
                 done();
               });
           });
+      });
+      it('should perform delete on request from admin', (done) => {
+        request.delete(`/users/${user1.id}`)
+        .set({ Authorization: token1 })
+        .end((error, response) => {
+          expect(response.status).to.equal(200);
+          done();
+        });
       });
     });
   });
