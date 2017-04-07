@@ -103,6 +103,24 @@ describe('Role API', () => {
           });
       });
     });
+    describe('GET: (/roles/:id) - GET ROLE', () => {
+      it('should not return the role when supplied invalid id', (done) => {
+        request.get('/roles/999999')
+          .set({ Authorization: token })
+          .end((error, response) => {
+            expect(response.status).to.equal(404);
+            done();
+          });
+      });
+      it('should return the role when valid id is provided', (done) => {
+        request.get(`/roles/${role.id}`)
+          .set({ Authorization: token })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            done();
+          });
+      });
+    });
   });
 });
 
