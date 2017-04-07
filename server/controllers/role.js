@@ -31,6 +31,17 @@ class RolesController {
       .catch(error => response.status(400)
         .send(error.errors));
   }
+  static getRole(request, response) {
+    model.Role.findById(request.params.id)
+      .then((role) => {
+        if (!role) {
+          return response.status(404)
+            .send({ message: `Role with id ${request.params.id} not found` });
+        }
+        return response.status(200)
+          .send(role);
+      });
+  }
 }
 
 module.exports = RolesController;
