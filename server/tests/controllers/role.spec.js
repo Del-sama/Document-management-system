@@ -103,22 +103,20 @@ describe('Role API', () => {
           });
       });
     });
-    describe('PUT: (/roles/:id) - EDIT ROLE', () => {
-      it('should not perform edit if wrong id is supplied', (done) => {
-        const fieldsToUpdate = { title: 'super Admin' };
-        request.put('/roles/999999')
+    describe('GET: (/roles/:id) - GET ROLE', () => {
+      it('should not return the role when supplied invalid id', (done) => {
+        request.get('/roles/999999')
           .set({ Authorization: token })
-          .send(fieldsToUpdate)
-          .expect(404, done);
+          .end((error, response) => {
+            expect(response.status).to.equal(404);
+            done();
+          });
       });
-      it('should perform edit when valid id is supplied', (done) => {
-        const fieldsToUpdate = { title: 'super Admin' };
-        request.put(`/roles/${role.id}`)
+      it('should return the role when valid id is provided', (done) => {
+        request.get(`/roles/${role.id}`)
           .set({ Authorization: token })
-          .send(fieldsToUpdate)
           .end((error, response) => {
             expect(response.status).to.equal(200);
-            expect(response.body.title).to.equal(fieldsToUpdate.title);
             done();
           });
       });
