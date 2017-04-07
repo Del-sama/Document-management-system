@@ -110,10 +110,35 @@ class UsersController {
       });
   }
   /**
-   * Method login
+   * Method deleteUser
    * @param {object} request - request object
    * @param {object} response - response object
    * @returns {object} - response object
+   */
+  static deleteUser(request, response) {
+    model.Role.findById(request.decoded.RoleId).then((Role) => {
+      if (request.decoded.UserId !== request.params.id && Role.title.toLowerCase() !== 'admin') {
+        return response.status(403).send({ message: 'User is unauthorized for this request' });
+      }
+      model.User.findById(request.params.id)
+          .then((user) => {
+            if (!user) {
+              return response.status(404)
+              .send({ message: `No user with id: ${request.params.id}` });
+            }
+            return user.destroy()
+              .then(() => response.status(200)
+                .send({ message: 'User was successfully deleted' }));
+          });
+    });
+  }
+  /**
+   *
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @returns {object} response object
+   * @memberOf UsersController
    */
   static login(request, response) {
     model.User.findOne({ where: { email: request.body.email } })
