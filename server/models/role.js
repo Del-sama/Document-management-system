@@ -3,9 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       defaultValue: 'regular',
       allowNull: false,
+      unique: true,
       type: DataTypes.STRING,
       validate: {
-        isIn: [['admin', 'regular']]
+        // isIn: [['admin', 'regular']]
       }
     }
   }, {
