@@ -130,6 +130,37 @@ describe('User API', () => {
           expect(response.status).to.equal(403);
           done();
         });
+    describe('POST: (/users/login) - LOGIN', () => {
+      it('should not login when supplied invalid email or password', (done) => {
+        request.post('/users/login')
+          .send({
+            email: 'delores@gmail.com',
+            password: 'bikermice'
+          })
+          .end((error, response) => {
+            expect(response.status).to.equal(401);
+            expect(response.body.token).to.not.exist;
+            done();
+          });
+      });
+      it('should login when supplied valid email & password', (done) => {
+        request.post('/users/login')
+          .send(userParams)
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.token).to.exist;
+            expect(response.body.expiresIn).to.exist;
+            done();
+          });
+      });
+    });
+    describe('POST: (/users/logout) - LOGOUT', () => {
+      it('should logout a user', (done) => {
+        request.post('/users/logout')
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            done();
+          });
       });
     });
   });

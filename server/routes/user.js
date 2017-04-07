@@ -15,4 +15,10 @@ router.route('/users/:id')
   .put(auth.verifyToken, usersController.updateUser)
   .delete(auth.verifyToken, usersController.deleteUser);
 
+router.route('/users/login')
+  .post(usersController.login);
+
+router.route('/users/logout')
+  .post(usersController.logout);
+
 module.exports = () => router;
