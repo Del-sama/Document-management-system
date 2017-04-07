@@ -1,10 +1,8 @@
-const express = require('express');
+import express from 'express';
+import usersController from '../controllers/user';
+import auth from '../middleware/authentication';
 
 const router = express.Router();
-
-const usersController = require('../controllers/user');
-
-const auth = require('../middleware/authentication');
 
 router.route('/users')
   .get(auth.verifyToken, auth.adminAccess, usersController.getUsers)

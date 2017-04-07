@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const model = require('../models');
+import jwt from 'jsonwebtoken';
+import * as model from '../models';
 
 const secret = 'secret';
 
