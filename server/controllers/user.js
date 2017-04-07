@@ -117,20 +117,19 @@ class UsersController {
    */
   static deleteUser(request, response) {
     model.Role.findById(request.decoded.RoleId).then((Role) => {
-      if (request.decoded.UserId === request.params.id || Role.title.toLowerCase() === 'admin') {
-        model.User.findById(request.params.id)
+      if (request.decoded.UserId !== request.params.id && Role.title.toLowerCase() !== 'admin') {
+        return response.status(403).send({ message: 'User is unauthorized for this request' });
+      }
+      model.User.findById(request.params.id)
           .then((user) => {
             if (!user) {
               return response.status(404)
               .send({ message: `No user with id: ${request.params.id}` });
             }
-            if (request.decoded.UserId === user.id) {
-              user.destroy()
-                .then(() => response.status(200)
-                    .send({ message: 'User was successfully deleted' }));
-            }
+            return user.destroy()
+              .then(() => response.status(200)
+                .send({ message: 'User was successfully deleted' }));
           });
-      }
     });
   }
 }
