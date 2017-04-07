@@ -14,4 +14,7 @@ router.route('/users/:id')
   .get(auth.verifyToken, usersController.getUser)
   .put(auth.verifyToken, usersController.updateUser);
 
+router.route('/users/login')
+  .post(usersController.login);
+
 module.exports = () => router;
