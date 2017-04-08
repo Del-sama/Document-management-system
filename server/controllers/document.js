@@ -21,10 +21,10 @@ class DocumentsController {
    * @memberOf DocumentsController
    */
   static createDocuments(request, response) {
-    model.Documents.create(request.body)
+    model.Document.create(request.body)
       .then(newDocument => response.status(201)
           .send(newDocument))
-      .catch(error => response.status(400)
+      .catch(error => response.status(500)
           .send(error.errors));
   }
 }
