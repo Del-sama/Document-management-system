@@ -13,7 +13,8 @@ const publicDocumentParams = helper.testDocument;
 const documentParams = helper.testDocument3;
 
 describe('DOCUMENT API', () => {
-  let adminRole, regularRole, adminUser, privateUser, publicToken;
+  let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
+    privateToken, privateToken2, publicDocument, privateDocument, roleDocument;
 
   before((done) => {
     model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
@@ -31,7 +32,6 @@ describe('DOCUMENT API', () => {
           .end((error, response) => {
             adminUser = response.body.newUser;
             publicToken = response.body.token;
-
             request.post('/users')
               .send(regularUserParams)
               .end((err, res) => {
@@ -96,5 +96,33 @@ describe('DOCUMENT API', () => {
             .expect(500, done);
         });
     });
+    describe('Requests for Documents', () => {
+      describe('GET: (/documents) - GET ALL DOCUMENTS', () => {
+        it('should not return documents if no token is provided', (done) => {
+          request.get('/documents')
+            .expect(401, done);
+        });
+        it('should not return documents if invalid token is provided',
+          (done) => {
+            request.get('/documents')
+              .set({ Authorization: 'ADRYDUIGUtrtrr6e' })
+              .expect(401, done);
+          });
+        it('should return all documents when valid token is provided',
+          (done) => {
+            request.get('/documents')
+              .set({ Authorization: publicToken })
+              .end((error, response) => {
+                expect(response.status).to.equal(200);
+                expect(Array.isArray(response.body)).to.be.true;
+                expect(response.body.length).to.be.greaterThan(0);
+                expect(response.body[0].title)
+                  .to.equal(publicDocumentParams.title);
+                done();
+              });
+          });
+      });
+    });
   });
 });
+

@@ -14,3 +14,5 @@ before_script:
   - psql -c 'create database dms_test;' -U postgres
   - NODE_ENV=travis npm run migrate-test
 
+after_success:
+- npm run coveralls
