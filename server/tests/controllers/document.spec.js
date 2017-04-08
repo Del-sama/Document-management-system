@@ -10,12 +10,10 @@ const adminUserParams = helper.testUser;
 const regularUserParams = helper.testUser2;
 const regularUserParams2 = helper.testUser3;
 const publicDocumentParams = helper.testDocument;
-const privateDocumentParams = helper.testDocument2;
 const documentParams = helper.testDocument3;
 
 describe('DOCUMENT API', () => {
-  let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
-    privateToken, privateToken2, publicDocument, privateDocument, roleDocument;
+  let adminRole, regularRole, adminUser, privateUser, publicToken;
 
   before((done) => {
     model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
@@ -76,7 +74,7 @@ describe('DOCUMENT API', () => {
     afterEach(() => model.Document.destroy({ where: {} }));
 
     describe('POST: (/documents) - CREATE A DOCUMENT', () => {
-      it.only('should create a document for a validated user', (done) => {
+      it('should create a document for a validated user', (done) => {
         documentParams.UserId = adminUser.id;
         request.post('/documents')
           .set({ Authorization: publicToken })
