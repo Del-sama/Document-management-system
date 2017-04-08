@@ -7,7 +7,7 @@ const helper = require('../specHelper');
 const documentParams = helper.testDocument;
 const userParams = helper.testUser;
 
-const requiredFields = [title, content, UserId, access, publishedDate];
+const requiredFields = ['title', 'content', 'UserId', 'access', 'publishedDate'];
 
 describe('Document Model', () => {
   describe('How Document Model Works', () => {
