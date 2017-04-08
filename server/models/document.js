@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['private', 'public', 'role']]
       }
     },
-    publishedDate: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
   }, {
     classMethods: {
       associate: (models) => {
