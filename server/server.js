@@ -3,6 +3,7 @@ const parser = require('body-parser');
 const usersRoute = require('./routes/user');
 const rolesRoute = require('./routes/role');
 const indexRoute = require('./routes/index');
+const documentRoute = require('./routes/document');
 const logger = require('morgan');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(logger('tiny'));
 app.use(indexRoute());
 app.use(usersRoute());
 app.use(rolesRoute());
+app.use(documentRoute());
 
 app.listen(5050, () => {
   console.log('app is listening on port 5050');
