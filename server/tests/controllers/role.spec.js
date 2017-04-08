@@ -121,6 +121,22 @@ describe('Role API', () => {
           });
       });
     });
+    describe('DELETE: (/roles/:id) - DELETE ROLE', () => {
+      it('should not perform delete action if wrong id is supplied', (done) => {
+        request.delete('/roles/999999')
+          .set({ Authorization: token })
+          .expect(404, done);
+      });
+      it('should perform a delete when valid id is supplied', (done) => {
+        request.delete(`/roles/${role.id}`)
+          .set({ Authorization: token })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.message).to.equal('Successfully deleted role');
+            done();
+          });
+      });
+    });
   });
 });
 
