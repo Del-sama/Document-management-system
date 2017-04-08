@@ -10,12 +10,6 @@ const adminUserParams = helper.testUser;
 const regularUserParams = helper.testUser2;
 const regularUserParams2 = helper.testUser3;
 const publicDocumentParams = helper.testDocument;
-const privateDocumentParams = helper.testDocument2;
-const documentParams = helper.testDocument3;
-const documentsCollection = helper.documentsCollection();
-
-const compareDate = (dateA, dateB) =>
-  new Date(dateA).getTime() <= new Date(dateB).getTime();
 
 describe('DOCUMENT API', () => {
   let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
