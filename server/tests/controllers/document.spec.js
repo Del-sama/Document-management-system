@@ -72,5 +72,18 @@ describe('Document Model', () => {
           done();
         });
     });
+    describe('Document Model Validations', () => {
+      describe('Required Fields Validation', () => {
+        requiredFields.forEach((field) => {
+          it(`requires a ${field} field to create a document`, () => {
+            document[field] = null;
+            return document.save()
+              .catch((error) => {
+                expect(/notNull Violation/.test(error.message)).to.be.true;
+              });
+          });
+        });
+      });
+    });
   });
 });
