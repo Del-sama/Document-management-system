@@ -10,6 +10,7 @@ const adminUserParams = helper.testUser;
 const regularUserParams = helper.testUser2;
 const regularUserParams2 = helper.testUser3;
 const publicDocumentParams = helper.testDocument;
+const documentParams = helper.testDocument3;
 
 describe('DOCUMENT API', () => {
   let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
@@ -31,7 +32,6 @@ describe('DOCUMENT API', () => {
           .end((error, response) => {
             adminUser = response.body.newUser;
             publicToken = response.body.token;
-
             request.post('/users')
               .send(regularUserParams)
               .end((err, res) => {
