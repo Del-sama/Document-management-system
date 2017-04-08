@@ -128,7 +128,6 @@ describe('Role API', () => {
           .expect(404, done);
       });
       it('should perform a delete when valid id is supplied', (done) => {
-        console.log('Role to delete>>>>>>>>>>>>', role.id);
         request.delete(`/roles/${role.id}`)
           .set({ Authorization: token })
           .end((error, response) => {
