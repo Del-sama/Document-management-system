@@ -59,7 +59,7 @@ describe('Document Model', () => {
     it('should create a document with publish date', (done) => {
       document.save()
       .then((createdDocument) => {
-        expect(createdDocument.publishedDate).to.exist;
+        expect(createdDocument.createdAt).to.exist;
         done();
       });
     });

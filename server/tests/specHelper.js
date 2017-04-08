@@ -36,20 +36,17 @@ module.exports = {
   testDocument: {
     title: faker.lorem.sentence(7),
     content: faker.lorem.paragraphs(),
-    publishedDate: Date.now()
   },
 
   testDocument2: {
     title: faker.finance.accountName(),
     content: faker.lorem.paragraph(),
     access: 'private',
-    publishedDate: Date.now()
   },
 
   testDocument3: {
     title: faker.commerce.department(),
     content: faker.lorem.paragraph(),
-    publishedDate: Date.now()
   },
 
   documentsCollection() {

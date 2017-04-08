@@ -4,86 +4,97 @@ const expect = require('chai').expect;
 const model = require('../../models');
 const helper = require('../specHelper');
 
-const documentParams = helper.testDocument;
-const userParams = helper.testUser;
+const adminRoleParams = helper.testRole;
+const regularRoleParams = helper.testRole2;
+const adminUserParams = helper.testUser;
+const regularUserParams = helper.testUser2;
+const regularUserParams2 = helper.testUser3;
+const publicDocumentParams = helper.testDocument;
+const documentParams = helper.testDocument3;
 
-const requiredFields = ['title', 'content', 'UserId', 'access', 'publishedDate'];
+describe('DOCUMENT API', () => {
+  let adminRole, regularRole, adminUser, privateUser, publicToken;
 
-describe('Document Model', () => {
-  describe('How Document Model Works', () => {
-    let document;
-    let user;
+  before((done) => {
+    model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
+      returning: true })
+      .then((createdRoles) => {
+        adminRole = createdRoles[0];
+        regularRole = createdRoles[1];
+        adminUserParams.RoleId = adminRole.id;
+        // Two users here are assigned same RoleId to demonstrate role access
+        regularUserParams.RoleId = regularRole.id;
+        regularUserParams2.RoleId = regularRole.id;
 
-    before((done) => {
-      model.Role.create(helper.testRole)
-        .then((createdRole) => {
-          userParams.RoleId = createdRole.id;
-          return model.User.create(userParams);
-        })
-        .then((createdUser) => {
-          user = createdUser;
-          documentParams.UserId = user.id;
+        request.post('/users')
+          .send(adminUserParams)
+          .end((error, response) => {
+            adminUser = response.body.newUser;
+            publicToken = response.body.token;
+
+            request.post('/users')
+              .send(regularUserParams)
+              .end((err, res) => {
+                privateUser = res.body.newUser;
+                privateToken = res.body.token;
+
+                request.post('/users')
+                  .send(regularUserParams2)
+                  .end((err, res) => {
+                    privateUser2 = res.body.newUser;
+                    privateToken2 = res.body.token;
+                    done();
+                  });
+              });
+          });
+      });
+  });
+
+  after(() => model.sequelize.sync({ force: true }));
+
+  it('should correctly create test roles & user', () => {
+    expect(adminRole.title).to.equal(adminRoleParams.title);
+    expect(regularRole.title).to.equal(regularRoleParams.title);
+    expect(adminUser.email).to.equal(adminUserParams.email);
+    expect(privateUser.email).to.equal(regularUserParams.email);
+    expect(adminUser.id).to.equal(1);
+    expect(privateUser.id).to.equal(2);
+  });
+
+  describe('REQUESTS', () => {
+    beforeEach((done) => {
+      publicDocumentParams.UserId = adminUser.id;
+      model.Document.create(publicDocumentParams)
+        .then((createdPublicDocument) => {
+          publicDocument = createdPublicDocument;
           done();
         });
-    });
-
-    beforeEach(() => {
-      document = model.Document.build(documentParams);
     });
 
     afterEach(() => model.Document.destroy({ where: {} }));
 
-    after(() => model.sequelize.sync({ force: true }));
-
-    it('should be able to create a document', (done) => {
-      document.save()
-        .then((createdDocument) => {
-          expect(createdDocument).to.exist;
-          expect(typeof createdDocument).to.equal('object');
-          done();
-        });
-    });
-    it('should create a document with title and content', (done) => {
-      document.save()
-        .then((createdDocument) => {
-          expect(createdDocument.title).to.equal(documentParams.title);
-          expect(createdDocument.content).to.equal(documentParams.content);
-          done();
-        });
-    });
-    it('should create a document with correct UserId', (done) => {
-      document.save()
-        .then((createdDocument) => {
-          expect(createdDocument.UserId).to.equal(user.id);
-          done();
-        });
-    });
-    it('should create a document with published date', (done) => {
-      document.save()
-      .then((createdDocument) => {
-        expect(createdDocument.publishedDate).to.exist;
-        done();
-      });
-    });
-    it('should create a document with access set to public', (done) => {
-      document.save()
-        .then((createdDocument) => {
-          expect(createdDocument.access).to.equal('public');
-          done();
-        });
-    });
-    describe('Document Model Validations', () => {
-      describe('Required Fields Validation', () => {
-        requiredFields.forEach((field) => {
-          it(`requires a ${field} field to create a document`, () => {
-            document[field] = null;
-            return document.save()
-              .catch((error) => {
-                expect(/notNull Violation/.test(error.message)).to.be.true;
-              });
+    describe('POST: (/documents) - CREATE A DOCUMENT', () => {
+      it('should create a document for a validated user', (done) => {
+        documentParams.UserId = adminUser.id;
+        request.post('/documents')
+          .set({ Authorization: publicToken })
+          .send(documentParams)
+          .end((error, response) => {
+            expect(response.status).to.equal(201);
+            expect(response.body.title).to.equal(documentParams.title);
+            expect(response.body.content)
+              .to.equal(documentParams.content);
+            done();
           });
-        });
       });
+      it('should not create a document without all required fields',
+        (done) => {
+          const invalidDocument = { title: 'I have no content' };
+          request.post('/documents')
+            .set({ Authorization: publicToken })
+            .send(invalidDocument)
+            .expect(500, done);
+        });
     });
   });
 });
