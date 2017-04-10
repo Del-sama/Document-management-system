@@ -11,6 +11,7 @@ router.route('/documents')
   .get(auth.verifyToken, documentsController.getDocuments);
 
 router.route('/documents/:id')
-  .get(auth.verifyToken, documentsController.getDocument);
+  .get(auth.verifyToken, documentsController.getDocument)
+  .put(auth.verifyToken, documentsController.updateDocument);
 
 module.exports = () => router;
