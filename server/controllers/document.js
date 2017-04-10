@@ -1,12 +1,6 @@
 const model = require('../models');
 
 
-const accessCategories = {
-  public: 'public',
-  private: 'private',
-  role: 'role'
-};
-
 /**
  * Class DocumentsController
  * To handle routing logic for documents route
@@ -50,11 +44,57 @@ class DocumentsController {
    * @memberOf DocumentsController
    */
   static createDocuments(request, response) {
-    model.Document.create(request.body)
+    return model.Document.create(request.body)
       .then(newDocument => response.status(201)
           .send(newDocument))
       .catch(error => response.status(500)
-          .send(error.errors));
+          .send(error));
+  }
+
+  /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   * @memberOf DocumentsController
+   */
+  static getDocument(request, response) {
+    model.Document.findById(request.params.id)
+      .then((document) => {
+        if (!document) {
+          return response.status(404)
+            .send({ message: `Doccument with id ${request.params.id} not found` });
+        }
+        switch (document.access) {
+        case 'public' :
+          response.status(200)
+          .send(document);
+          break;
+        case 'private':
+          if (document.UserId === request.decoded.UserId) {
+            response.status(200)
+              .send(document);
+          } else {
+            response.status(403)
+              .send({ message: 'You are not authorized to access this document' });
+          }
+          break;
+        case 'role' :
+          model.User.findById(document.UserId)
+            .then((documentOwner) => {
+              if (documentOwner.RoleId === request.decoded.RoleId) {
+                return response.status(200)
+                  .send(document);
+              }
+              return response.status(403)
+                .send({ message: 'You are not authorized to access this document' });
+            });
+          break;
+        default:
+          return response.status(403)
+            .send({ message: 'You are not authorized to access this document' });
+        }
+      });
   }
 }
 module.exports = DocumentsController;
