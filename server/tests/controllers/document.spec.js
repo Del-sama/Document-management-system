@@ -9,6 +9,7 @@ const regularRoleParams = helper.testRole2;
 const adminUserParams = helper.testUser;
 const regularUserParams = helper.testUser2;
 const regularUserParams2 = helper.testUser3;
+const regularUserParams3 = helper.testUser;
 const publicDocumentParams = helper.testDocument;
 const privateDocumentParams = helper.testDocument2;
 const documentParams = helper.testDocument3;
@@ -19,7 +20,7 @@ const compareDate = (dateA, dateB) =>
 
 describe('DOCUMENT API', () => {
   let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
-    privateToken, privateToken2, publicDocument, privateDocument, roleDocument;
+    privateToken, publicToken2, publicRole, publicUser, privateToken2, publicDocument, privateDocument, roleDocument;
 
   before((done) => {
     model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
@@ -49,7 +50,14 @@ describe('DOCUMENT API', () => {
                   .end((err, res) => {
                     privateUser2 = res.body.newUser;
                     privateToken2 = res.body.token;
-                    done();
+
+                    request.post('/users')
+                    .send(regularUserParams3)
+                    .end((err, res) => {
+                      publicUser = res.body.newUser;
+                      publicToken2 = res.body.token;
+                      done();
+                    });
                   });
               });
           });
@@ -149,17 +157,20 @@ describe('DOCUMENT API', () => {
               });
           });
       });
-    });
-
-    describe('get all documents created by a particular user', () => {
-      describe('GET: (/users/:id/documents) - GET all documents created by a perticular user', () => {
-        it('should return documents if access is public',
-        (done) => {
-          request.get(``)
+      describe('get all documents created by a particular user', () => {
+        describe('GET: (/users/:id/documents) - GET all documents created by a perticular user', () => {
+          it.only('should return documents to any user if access is public',
+          (done) => {
+            request.get(`/users/${publicUser.UserId}/documents`)
+            .set({ AuthOrization: privateToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(200);
+              done();
+            });
+          });
         });
       });
     });
-
     describe('Requests for Documents with Access set to Private', () => {
       describe('GET: (/documents/:id - GET A DOCUMENT)', () => {
         beforeEach((done) => {
@@ -195,10 +206,10 @@ describe('DOCUMENT API', () => {
                 done();
               });
           });
-        it.only('should NOT return documents that are set to private',
+        it('should NOT return documents that are set to private',
           (done) => {
             console.log('private user 1------------>', privateUser.id);
-             console.log('private user 1------------>', privateUser2.id);
+            console.log('private user 1------------>', privateUser2.id);
             request.get(`/users/${privateUser.id}/documents`)
             .set({ Authorization: privateToken })
             .end((error, response) => {
