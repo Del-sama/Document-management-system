@@ -119,5 +119,29 @@ class DocumentsController {
         }
       });
   }
+/**
+   * Method deleteDocument
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response Object
+   */
+  static deleteDocument(request, response) {
+    model.Document.findById(request.params.id)
+      .then((document) => {
+        if (!document) {
+          return response.status(404)
+          .send({ message: `No document with this id ${request.params.id}` });
+        }
+        if (document.UserId === request.decoded.UserId) {
+          document.destroy()
+            .then(() => response.status(200)
+                .send({ message: 'Document successfully deleted' }));
+        } else {
+          return response.status(403)
+            .send({ message: 'You are not the Owner of this document.' });
+        }
+      });
+  }
+
 }
 module.exports = DocumentsController;
