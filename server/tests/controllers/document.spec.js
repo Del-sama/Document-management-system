@@ -149,6 +149,34 @@ describe('DOCUMENT API', () => {
               });
           });
       });
+      describe('PUT: (/documents/:id) - EDIT A DOCUMENT', () => {
+        it('should not perform edit if invalid id is provided', (done) => {
+          const fieldToUpdate = { content: 'replace previous document' };
+          request.put('/documents/789')
+            .set({ Authorization: publicToken })
+            .send(fieldToUpdate)
+            .expect(404, done);
+        });
+        it('should not perform edit if User is not document Owner', (done) => {
+          const fieldToUpdate = { content: 'replace previous document' };
+          request.put(`/documents/${publicDocument.id}`)
+            .set({ Authorization: privateToken })
+            .send(fieldToUpdate)
+            .expect(403, done);
+        });
+        it('should correctly edit document if valid id is provided',
+          (done) => {
+            const fieldToUpdate = { content: 'replace previous document' };
+            request.put(`/documents/${publicDocument.id}`)
+              .set({ Authorization: publicToken })
+              .send(fieldToUpdate)
+              .end((error, response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body.content).to.equal(fieldToUpdate.content);
+                done();
+              });
+          });
+      });
     });
 
     describe('Requests for Documents with Access set to Private', () => {
@@ -214,6 +242,7 @@ describe('DOCUMENT API', () => {
         });
       });
     });
+
   });
 });
 

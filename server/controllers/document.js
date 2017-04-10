@@ -96,5 +96,28 @@ class DocumentsController {
         }
       });
   }
+/**
+   * Method updateDocument
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response Object
+   */
+  static updateDocument(request, response) {
+    model.Document.findById(request.params.id)
+      .then((document) => {
+        if (!document) {
+          return response.status(404)
+          .send({ message: `No document found with id: ${request.params.id}` });
+        }
+        if (document.UserId === request.decoded.UserId) {
+          document.update(request.body)
+            .then(updatedDocument => response.status(200)
+                .send(updatedDocument));
+        } else {
+          return response.status(403)
+            .send({ message: 'You are not the Owner of this document.' });
+        }
+      });
+  }
 }
 module.exports = DocumentsController;
