@@ -151,6 +151,15 @@ describe('DOCUMENT API', () => {
       });
     });
 
+    describe('get all documents created by a particular user', () => {
+      describe('GET: (/users/:id/documents) - GET all documents created by a perticular user', () => {
+        it('should return documents if access is public',
+        (done) => {
+          request.get(``)
+        });
+      });
+    });
+
     describe('Requests for Documents with Access set to Private', () => {
       describe('GET: (/documents/:id - GET A DOCUMENT)', () => {
         beforeEach((done) => {
@@ -185,6 +194,17 @@ describe('DOCUMENT API', () => {
                   .to.equal(privateDocumentParams.content);
                 done();
               });
+          });
+        it.only('should NOT return documents that are set to private',
+          (done) => {
+            console.log('private user 1------------>', privateUser.id);
+             console.log('private user 1------------>', privateUser2.id);
+            request.get(`/users/${privateUser.id}/documents`)
+            .set({ Authorization: privateToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(403);
+              done();
+            });
           });
       });
     });
