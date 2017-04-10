@@ -177,6 +177,38 @@ describe('DOCUMENT API', () => {
               });
           });
       });
+      describe('DELETE: (/documents/:id) - DELETE A DOCUMENT', () => {
+        it('should not perform delete if an invalid id is provided',
+          (done) => {
+            request.delete('/documents/789')
+              .set({ Authorization: publicToken })
+              .expect(404, done);
+          });
+        it('should not perform delete if User is not document Owner',
+          (done) => {
+            const fieldToUpdate = { content: 'replace previous document' };
+            request.delete(`/documents/${publicDocument.id}`)
+              .set({ Authorization: privateToken })
+              .send(fieldToUpdate)
+              .expect(403, done);
+          });
+        it('should succesfully delete when provided a valid Id', (done) => {
+          request.delete(`/documents/${publicDocument.id}`)
+            .set({ Authorization: publicToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(200);
+              expect(response.body.message)
+
+                .to.equal('Document successfully deleted');
+
+              model.Document.count()
+                .then((documentCount) => {
+                  expect(documentCount).to.equal(0);
+                  done();
+                });
+            });
+        });
+      });
     });
 
     describe('Requests for Documents with Access set to Private', () => {
