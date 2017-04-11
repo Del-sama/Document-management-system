@@ -16,7 +16,7 @@ const documentParams = helper.testDocument3;
 const documentsCollection = helper.documentsCollection();
 
 const compareDate = (dateA, dateB) =>
-  new Date(dateA).getTime() <= new Date(dateB).getTime();
+  new Date(dateA).getTime() < new Date(dateB).getTime();
 
 describe('DOCUMENT API', () => {
   let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
@@ -136,6 +136,52 @@ describe('DOCUMENT API', () => {
                 done();
               });
           });
+          describe('Document Pagination', () => {
+            before(() => model.Document.bulkCreate(documentsCollection));
+            it('allows use of query params "limit" to limit the result', (done) => {
+              request.get('/documents?limit=7')
+                .set({ Authorization: publicToken })
+                .end((error, response) => {
+                  expect(response.status).to.equal(200);
+                  expect(response.body.length).to.equal(7);
+                  done();
+                });
+            });
+            it.only('allows use of query params "offset" to create a range', (done) => {
+              request.get('/documents?offset=8')
+                .set({ Authorization: publicToken })
+                .end((error, response) => {
+                  expect(response.status).to.equal(200);
+                  expect(response.body.length).to.equal(9);
+                  done();
+                });
+            });
+            it('returns the documents in order of their published dates', (done) => {
+              request.get('/documents?limit=7')
+                .set({ Authorization: publicToken })
+                .end((error, response) => {
+                  const documents = response.body;
+                  let flag = false;
+                  for (let index = 0; index < documents.length - 1; index += 1) {
+                    flag = compareDate(documents[index].createdAt,
+                      documents[index + 1].createdAt);
+                    if (flag === true) break;
+                  }
+                  expect(flag).to.be.false;
+                  done();
+                });
+            });
+            it('does NOT return documents if the limit is not valid', (done) => {
+              request.get('/documents?limit=-1')
+                .set({ Authorization: publicToken })
+                .expect(400, done);
+            });
+            it('does NOT return documents if the offset is not valid', (done) => {
+              request.get('/documents?offset=-2')
+                .set({ Authorization: publicToken })
+                .expect(400, done);
+            });
+          });
       });
 
       describe('GET: (/documents/:id) - GET A DOCUMENT', () => {
@@ -168,6 +214,62 @@ describe('DOCUMENT API', () => {
               done();
             });
           });
+      describe('PUT: (/documents/:id) - EDIT A DOCUMENT', () => {
+        it('should not perform edit if invalid id is provided', (done) => {
+          const fieldToUpdate = { content: 'replace previous document' };
+          request.put('/documents/789')
+            .set({ Authorization: publicToken })
+            .send(fieldToUpdate)
+            .expect(404, done);
+        });
+        it('should not perform edit if User is not document Owner', (done) => {
+          const fieldToUpdate = { content: 'replace previous document' };
+          request.put(`/documents/${publicDocument.id}`)
+            .set({ Authorization: privateToken })
+            .send(fieldToUpdate)
+            .expect(403, done);
+        });
+        it('should correctly edit document if valid id is provided',
+          (done) => {
+            const fieldToUpdate = { content: 'replace previous document' };
+            request.put(`/documents/${publicDocument.id}`)
+              .set({ Authorization: publicToken })
+              .send(fieldToUpdate)
+              .end((error, response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body.content).to.equal(fieldToUpdate.content);
+                done();
+              });
+          });
+      });
+      describe('DELETE: (/documents/:id) - DELETE A DOCUMENT', () => {
+        it('should not perform delete if an invalid id is provided',
+          (done) => {
+            request.delete('/documents/789')
+              .set({ Authorization: publicToken })
+              .expect(404, done);
+          });
+        it('should not perform delete if User is not document Owner',
+          (done) => {
+            const fieldToUpdate = { content: 'replace previous document' };
+            request.delete(`/documents/${publicDocument.id}`)
+              .set({ Authorization: privateToken })
+              .send(fieldToUpdate)
+              .expect(403, done);
+          });
+        it('should succesfully delete when provided a valid Id', (done) => {
+          request.delete(`/documents/${publicDocument.id}`)
+            .set({ Authorization: publicToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(200);
+              expect(response.body.message)
+              .to.equal('Document successfully deleted');
+              model.Document.count()
+                .then((documentCount) => {
+                  expect(documentCount).to.equal(0);
+                  done();
+                });
+            });
         });
       });
     });
@@ -245,6 +347,7 @@ describe('DOCUMENT API', () => {
         });
       });
     });
+
   });
 });
 

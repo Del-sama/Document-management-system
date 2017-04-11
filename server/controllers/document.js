@@ -6,8 +6,20 @@ const model = require('../models');
  * To handle routing logic for documents route
  */
 class DocumentsController {
-
-
+  /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} response object
+   * @memberOf DocumentsController
+   */
+  static createDocuments(request, response) {
+    return model.Document.create(request.body)
+      .then(newDocument => response.status(201)
+          .send(newDocument))
+      .catch(error => response.status(500)
+          .send(error));
+  }
 /**
  * static getDocuments
  * @param {object} request - request object
@@ -24,7 +36,7 @@ class DocumentsController {
       where: {
         $or: [
           { access: 'public' },
-          { UserId: request.decoded.UserId }
+          { UserId: request.decoded.id }
         ]
       },
       limit: request.query.limit || null,
@@ -36,26 +48,12 @@ class DocumentsController {
       .then(documents => response.status(200)
           .send(documents));
   }
-  /**
-   * static
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} response object
-   * @memberOf DocumentsController
-   */
-  static createDocuments(request, response) {
-    return model.Document.create(request.body)
-      .then(newDocument => response.status(201)
-          .send(newDocument))
-      .catch(error => response.status(500)
-          .send(error));
-  }
 
   /**
    * static
    * @param {object} request - request object
    * @param {object} response - response object
-   * @returns {object} - response object
+   * @returns {object} - reponse object
    * @memberOf DocumentsController
    */
   static getDocument(request, response) {
@@ -116,6 +114,52 @@ class DocumentsController {
         }
         return response.status(403)
           .send({ message: 'You are not authoried to access these documents' });
+      });
+  }
+/**
+   * Method updateDocument
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response Object
+   */
+  static updateDocument(request, response) {
+    model.Document.findById(request.params.id)
+      .then((document) => {
+        if (!document) {
+          return response.status(404)
+          .send({ message: `No document found with id: ${request.params.id}` });
+        }
+        if (document.UserId === request.decoded.UserId) {
+          document.update(request.body)
+            .then(updatedDocument => response.status(200)
+                .send(updatedDocument));
+        } else {
+          return response.status(403)
+            .send({ message: 'You are not the Owner of this document.' });
+        }
+      });
+  }
+/**
+   * Method deleteDocument
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response Object
+   */
+  static deleteDocument(request, response) {
+    model.Document.findById(request.params.id)
+      .then((document) => {
+        if (!document) {
+          return response.status(404)
+          .send({ message: `No document with this id ${request.params.id}` });
+        }
+        if (document.UserId === request.decoded.UserId) {
+          document.destroy()
+            .then(() => response.status(200)
+                .send({ message: 'Document successfully deleted' }));
+        } else {
+          return response.status(403)
+            .send({ message: 'You are not the Owner of this document.' });
+        }
       });
   }
 }
