@@ -15,7 +15,7 @@ const documentParams = helper.testDocument3;
 const documentsCollection = helper.documentsCollection();
 
 const compareDate = (dateA, dateB) =>
-  new Date(dateA).getTime() <= new Date(dateB).getTime();
+  new Date(dateA).getTime() < new Date(dateB).getTime();
 
 describe('DOCUMENT API', () => {
   let adminRole, regularRole, adminUser, privateUser, privateUser2, publicToken,
@@ -105,8 +105,6 @@ describe('DOCUMENT API', () => {
 
     describe('Requests for Documents', () => {
       describe('GET: (/documents) - GET ALL DOCUMENTS', () => {
-         before(() => model.Document.bulkCreate(documentsCollection));
-
         it('should not return documents if no token is provided', (done) => {
           request.get('/documents')
             .expect(401, done);
@@ -131,6 +129,7 @@ describe('DOCUMENT API', () => {
               });
           });
           describe('Document Pagination', () => {
+            before(() => model.Document.bulkCreate(documentsCollection));
             it('allows use of query params "limit" to limit the result', (done) => {
               request.get('/documents?limit=7')
                 .set({ Authorization: publicToken })
@@ -140,12 +139,12 @@ describe('DOCUMENT API', () => {
                   done();
                 });
             });
-            it('allows use of query params "offset" to create a range', (done) => {
-              request.get('/documents?offset=7')
+            it.only('allows use of query params "offset" to create a range', (done) => {
+              request.get('/documents?offset=8')
                 .set({ Authorization: publicToken })
                 .end((error, response) => {
                   expect(response.status).to.equal(200);
-                  // expect(response.body.length).to.equal(9);
+                  expect(response.body.length).to.equal(9);
                   done();
                 });
             });
@@ -154,14 +153,13 @@ describe('DOCUMENT API', () => {
                 .set({ Authorization: publicToken })
                 .end((error, response) => {
                   const documents = response.body;
-
                   let flag = false;
                   for (let index = 0; index < documents.length - 1; index += 1) {
                     flag = compareDate(documents[index].createdAt,
                       documents[index + 1].createdAt);
-                    if (!flag) break;
+                    if (flag === true) break;
                   }
-                  expect(flag).to.be.true;
+                  expect(flag).to.be.false;
                   done();
                 });
             });
@@ -246,9 +244,7 @@ describe('DOCUMENT API', () => {
             .end((error, response) => {
               expect(response.status).to.equal(200);
               expect(response.body.message)
-
-                .to.equal('Document successfully deleted');
-
+              .to.equal('Document successfully deleted');
               model.Document.count()
                 .then((documentCount) => {
                   expect(documentCount).to.equal(0);
