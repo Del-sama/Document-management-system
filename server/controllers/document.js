@@ -94,6 +94,27 @@ class DocumentsController {
         }
       });
   }
+ /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   * @memberOf DocumentsController
+   */
+  static getUserDocuments(request, response) {
+    model.Document.findAll({ where: { UserId: request.params.id } })
+      .then((documents) => {
+        if (!documents) {
+          return response.status(404)
+            .send({ message: `User with id ${request.params.id} has no documents` });
+        } else if (documents.access === 'public' || documents.UserId === request.decoded.id) {
+          return response.status(200)
+          .send(documents);
+        }
+        response.status(403)
+          .send({ message: 'You are not authoried to access these documents' });
+      });
+  }
 /**
    * Method updateDocument
    * @param {Object} request - request Object
@@ -140,6 +161,5 @@ class DocumentsController {
         }
       });
   }
-
 }
 module.exports = DocumentsController;
