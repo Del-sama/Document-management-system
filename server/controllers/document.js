@@ -6,8 +6,20 @@ const model = require('../models');
  * To handle routing logic for documents route
  */
 class DocumentsController {
-
-
+  /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} response object
+   * @memberOf DocumentsController
+   */
+  static createDocuments(request, response) {
+    return model.Document.create(request.body)
+      .then(newDocument => response.status(201)
+          .send(newDocument))
+      .catch(error => response.status(500)
+          .send(error));
+  }
 /**
  * static getDocuments
  * @param {object} request - request object
@@ -24,7 +36,7 @@ class DocumentsController {
       where: {
         $or: [
           { access: 'public' },
-          { UserId: request.decoded.UserId }
+          { UserId: request.decoded.id }
         ]
       },
       limit: request.query.limit || null,
@@ -36,26 +48,12 @@ class DocumentsController {
       .then(documents => response.status(200)
           .send(documents));
   }
-  /**
-   * static
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} response object
-   * @memberOf DocumentsController
-   */
-  static createDocuments(request, response) {
-    return model.Document.create(request.body)
-      .then(newDocument => response.status(201)
-          .send(newDocument))
-      .catch(error => response.status(500)
-          .send(error));
-  }
 
   /**
    * static
    * @param {object} request - request object
    * @param {object} response - response object
-   * @returns {object} - response object
+   * @returns {object} - reponse object
    * @memberOf DocumentsController
    */
   static getDocument(request, response) {
