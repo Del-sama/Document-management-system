@@ -4,6 +4,8 @@ const router = express.Router();
 
 const usersController = require('../controllers/user');
 
+const documentsController = require('../controllers/document');
+
 const auth = require('../middleware/authentication');
 
 router.route('/users')
@@ -23,4 +25,8 @@ router.route('/users/logout')
 
 router.route('/search/users')
   .get(auth.verifyToken, usersController.searchUsers);
+
+router.route('/users/:id/documents')
+  .get(auth.verifyToken, documentsController.getUserDocuments);
+
 module.exports = () => router;

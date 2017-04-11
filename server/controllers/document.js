@@ -6,8 +6,20 @@ const model = require('../models');
  * To handle routing logic for documents route
  */
 class DocumentsController {
-
-
+  /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} response object
+   * @memberOf DocumentsController
+   */
+  static createDocuments(request, response) {
+    return model.Document.create(request.body)
+      .then(newDocument => response.status(201)
+          .send(newDocument))
+      .catch(error => response.status(500)
+          .send(error));
+  }
 /**
  * static getDocuments
  * @param {object} request - request object
@@ -24,7 +36,7 @@ class DocumentsController {
       where: {
         $or: [
           { access: 'public' },
-          { UserId: request.decoded.UserId }
+          { UserId: request.decoded.id }
         ]
       },
       limit: request.query.limit || null,
@@ -36,26 +48,12 @@ class DocumentsController {
       .then(documents => response.status(200)
           .send(documents));
   }
-  /**
-   * static
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} response object
-   * @memberOf DocumentsController
-   */
-  static createDocuments(request, response) {
-    return model.Document.create(request.body)
-      .then(newDocument => response.status(201)
-          .send(newDocument))
-      .catch(error => response.status(500)
-          .send(error));
-  }
 
   /**
    * static
    * @param {object} request - request object
    * @param {object} response - response object
-   * @returns {object} - response object
+   * @returns {object} - reponse object
    * @memberOf DocumentsController
    */
   static getDocument(request, response) {
@@ -94,6 +92,27 @@ class DocumentsController {
           return response.status(403)
             .send({ message: 'You are not authorized to access this document' });
         }
+      });
+  }
+ /**
+   * static
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   * @memberOf DocumentsController
+   */
+  static getUserDocuments(request, response) {
+    model.Document.findAll({ where: { UserId: request.params.id } })
+      .then((documents) => {
+        if (!documents) {
+          return response.status(404)
+            .send({ message: `User with id ${request.params.id} has no documents` });
+        } else if (documents.access === 'public' || documents.UserId === request.decoded.id) {
+          return response.status(200)
+          .send(documents);
+        }
+        response.status(403)
+          .send({ message: 'You are not authoried to access these documents' });
       });
   }
 /**
@@ -142,6 +161,5 @@ class DocumentsController {
         }
       });
   }
-
 }
 module.exports = DocumentsController;

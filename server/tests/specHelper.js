@@ -33,6 +33,14 @@ module.exports = {
     password: faker.internet.password()
   },
 
+  testUser4: {
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+
   testDocument: {
     title: faker.lorem.sentence(7),
     content: faker.lorem.paragraphs(),

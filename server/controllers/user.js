@@ -176,7 +176,7 @@ class UsersController {
       .then((result) => {
         if (!result) {
           return response.status(404)
-            .send('Search results not found')
+            .send('Search results not found');
         }
         return response.status(200)
           .send(result);
