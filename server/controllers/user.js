@@ -165,6 +165,23 @@ class UsersController {
     return response.status(200)
       .send({ message: 'Successful logout' });
   }
+  /**
+   * Method searchUsers
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   */
+  static searchUsers(request, response) {
+    model.User.findAndCountAll({ where: ['MATCH(userName, email) AGAINST(?)', [request.query.user]] })
+      .then((result) => {
+        if (!result) {
+          return response.status(404)
+            .send('Search results not found')
+        }
+        return response.status(200)
+          .send(result);
+      });
+  }
 }
 
 module.exports = UsersController;

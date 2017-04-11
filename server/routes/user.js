@@ -21,4 +21,6 @@ router.route('/users/login')
 router.route('/users/logout')
   .post(usersController.logout);
 
+router.route('/search/users')
+  .get(auth.verifyToken, usersController.searchUsers);
 module.exports = () => router;
