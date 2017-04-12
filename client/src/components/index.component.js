@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import Navbar from './Nav.component';
+import Body from './body.component';
 
 class Index extends Component {
+  /**
+   * renders the index component
+   * @returns {void}
+   * @memberOf Index
+   */
   render() {
     return (
-      <h1>Document Management System</h1>
+      <div>
+        <Navbar isLoginActive="active" isSignupActive="" />
+       <Body />
+      </div>
     );
   }
 }
