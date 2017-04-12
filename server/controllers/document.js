@@ -172,7 +172,7 @@ class DocumentsController {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
     }
-    const queryString = request.query.query;
+    const queryString = request.query.queryString;
     const role = Math.abs(request.query.role, 10);
     const publishedDate = request.query.publishedDate;
     const order = publishedDate && /^ASC$/i.test(publishedDate)
@@ -200,7 +200,7 @@ class DocumentsController {
     if (role) {
       query.include = [{
         model: model.User,
-        as: 'Owner',
+        as: 'User',
         attributes: [],
         include: [{
           model: model.Role,
@@ -214,7 +214,6 @@ class DocumentsController {
       .then((documents) => {
         response.send(documents);
       });
-  }
   }
 }
 module.exports = DocumentsController;
