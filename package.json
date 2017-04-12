@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
-    "start": "node server/server.js",
+    "start": "node server.js",
     "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
@@ -32,10 +32,16 @@
     "morgan": "^1.8.1",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.6.0",
     "swagger-jsdoc": "^1.9.2",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

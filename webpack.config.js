@@ -1,26 +1,3 @@
-module.exports = {
-  context: `${__dirname}/client/app`,
-
-  entry: './js/app.js',
-
-  output: {
-    filename: 'bundle.js',
-    path: `${__dirname}/dist`,
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json']
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loaders: ['babel-loader']
-      }
-    ]
-  }
-};
-
 const webpack = require('webpack');
 const path = require('path');
 
@@ -37,11 +14,19 @@ module.exports = {
         query: {
           presets: ['react']
         }
+      },
+      {
+        test: /\.jsx$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['react']
+        }
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.jsx']
   },
   output: {
     path: path.join(__dirname, 'client/dist/'),
