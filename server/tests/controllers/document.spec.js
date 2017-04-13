@@ -138,7 +138,7 @@ describe('DOCUMENT API', () => {
               });
           });
         describe('Document Pagination', () => {
-          before(() => model.Document.bulkCreate(documentsCollection));
+          beforeEach(() => model.Document.bulkCreate(documentsCollection));
           it('allows use of query params "limit" to limit the result', (done) => {
             request.get('/documents?limit=7')
               .set({ Authorization: publicToken })
@@ -148,17 +148,15 @@ describe('DOCUMENT API', () => {
                 done();
               });
           });
-          setTimeout(() => {
-            it('allows use of query params "offset" to create a range', (done) => {
-              request.get('/documents?offset=8')
-                .set({ Authorization: publicToken })
-                .end((error, response) => {
-                  expect(response.status).to.equal(200);
-                  expect(response.body.length).to.equal(9);
-                  done();
-                });
-            });
-          }, 1000);
+          it('allows use of query params "offset" to create a range', (done) => {
+            request.get('/documents?offset=8')
+              .set({ Authorization: publicToken })
+              .end((error, response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body.length).to.equal(9);
+                done();
+              });
+          });
           it('returns the documents in order of their published dates', (done) => {
             request.get('/documents?limit=7')
               .set({ Authorization: publicToken })
@@ -339,6 +337,93 @@ describe('DOCUMENT API', () => {
               });
           });
         });
+      });
+    });
+    describe('Document Search', () => {
+      beforeEach(() => model.Document.bulkCreate(documentsCollection));
+      it('performs a search and returns the correct document', (done) => {
+        const query = documentsCollection[10].content.substr(5, 13);
+        console.log('Search Query>>>>>>>>>>', query);
+        const matcher = new RegExp(query);
+
+        request.get(`/search/documents?queryString=${query}`)
+          .set({ Authorization: publicToken })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            console.log('found content>>>>>>>>>>>>>>', response.body);
+            expect(matcher.test(response.body[0].content)).to.be.true;
+            done();
+          });
+      });
+
+      it('allows use of query params "limit" to determine the result number',
+        (done) => {
+          request.get('/search/documents?limit=4')
+            .set({ Authorization: publicToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(200);
+              expect(response.body.length).to.equal(4);
+              done();
+            });
+        });
+      it('allows use of query params "offset" to create a range', (done) => {
+        request.get('/search/documents?offset=7')
+          .set({ Authorization: publicToken })
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.length).to.equal(10);
+            done();
+          });
+      });
+      it('allows use of query params "role" to get documents by role',
+        (done) => {
+          request.get('/search/documents?role=1')
+            .set({ Authorization: publicToken })
+            .end((error, response) => {
+              expect(response.status).to.equal(200);
+              const query = {
+                where: { id: response.body[0].id },
+                include: [{
+                  model: model.User,
+                  as: 'User'
+                }]
+              };
+
+              model.Document.findAll(query)
+                .then((foundDocuments) => {
+                  expect(foundDocuments[0].User.RoleId).to.equal(1);
+                  done();
+                });
+            });
+        });
+
+      it('allows use of query params "publishedDate" to determine the order',
+        (done) => {
+          request.get('/documents?publishedDate=ASC')
+            .set({ Authorization: publicToken })
+            .end((error, response) => {
+              const foundDocuments = response.body;
+              let flag = true;
+
+              for (let index = 0; index < foundDocuments.length - 1;
+                index += 1) {
+                flag = compareDate(foundDocuments[index].createdAt,
+                  foundDocuments[index + 1].createdAt);
+                if (!flag) break;
+              }
+              expect(flag).to.be.false;
+              done();
+            });
+        });
+      it('does NOT return documents if the limit is not valid', (done) => {
+        request.get('/search/documents?limit=-1')
+          .set({ Authorization: publicToken })
+          .expect(400, done);
+      });
+      it('does NOT return documents if the offset is not valid', (done) => {
+        request.get('/search/documents?offset=-2')
+          .set({ Authorization: publicToken })
+          .expect(400, done);
       });
     });
   });

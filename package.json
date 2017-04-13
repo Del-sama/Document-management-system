@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
-    "start": "node server/server.js",
+    "start": "node server.js",
     "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/Andela-ddiei/Document-management-system#readme",
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-preset-react": "^6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "chai": "^3.5.0",
@@ -28,9 +32,16 @@
     "morgan": "^1.8.1",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.6.0",
-    "swagger-jsdoc": "^1.9.2"
+    "swagger-jsdoc": "^1.9.2",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -47,7 +58,8 @@
     "mocha": "^3.2.0",
     "sequelize-cli": "^2.6.0",
     "supertest": "^3.0.0",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.4.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }

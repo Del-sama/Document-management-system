@@ -161,5 +161,59 @@ class DocumentsController {
         }
       });
   }
+  /**
+   * Method searchDocuments
+   * @param {Object} request - request Object
+   * @param {Object} response - request Object
+   * @return {Object} response Object
+   */
+  static searchDocuments(request, response) {
+    if (request.query.limit < 0 || request.query.offset < 0) {
+      return response.status(400)
+      .send({ message: 'Only Positive integers are permitted.' });
+    }
+    const queryString = request.query.queryString;
+    const role = Math.abs(request.query.role, 10);
+    const publishedDate = request.query.publishedDate;
+    const order = publishedDate && /^ASC$/i.test(publishedDate)
+            ? publishedDate : 'DESC';
+
+    const query = {
+      where: {
+        $and: [{ $or: [
+          { access: 'public' },
+          { UserId: request.decoded.id }
+        ] }],
+      },
+      limit: request.query.limit || null,
+      offset: request.query.offset || null,
+      order: [['createdAt', order]]
+    };
+
+    if (queryString) {
+      query.where.$and.push({ $or: [
+        { title: { $like: `%${queryString}%` } },
+        { content: { $like: `%${queryString}%` } }
+      ] });
+    }
+
+    if (role) {
+      query.include = [{
+        model: model.User,
+        as: 'User',
+        attributes: [],
+        include: [{
+          model: model.Role,
+          attributes: [],
+          where: { id: role }
+        }]
+      }];
+    }
+
+    model.Document.findAll(query)
+      .then((documents) => {
+        response.send(documents);
+      });
+  }
 }
 module.exports = DocumentsController;
