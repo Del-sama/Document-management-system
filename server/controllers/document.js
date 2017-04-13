@@ -175,7 +175,7 @@ class DocumentsController {
     const queryString = request.query.queryString;
     const role = Math.abs(request.query.role, 10);
     const publishedDate = request.query.publishedDate;
-    const order = publishedDate && /^ASC$/i.test(publishedDate)
+    const order = /^ASC$/i.test(publishedDate)
             ? publishedDate : 'DESC';
 
     const query = {
