@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    './client/src/index'
+    './client/src/js/index.js'
   ],
   module: {
     loaders: [
@@ -22,6 +22,10 @@ module.exports = {
         query: {
           presets: ['react']
         }
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
@@ -30,7 +34,6 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'client/dist/'),
-    publicPath: '/app/',
     filename: 'bundle.js'
   },
   devServer: {
