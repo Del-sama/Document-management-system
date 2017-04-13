@@ -172,14 +172,21 @@ class UsersController {
    * @returns {object} - response object
    */
   static searchUsers(request, response) {
-    model.User.findAndCountAll({ where: ['MATCH(userName, email) AGAINST(?)', [request.query.user]] })
-      .then((result) => {
-        if (!result) {
-          return response.status(404)
-            .send('Search results not found');
-        }
-        return response.status(200)
-          .send(result);
+  if (request.query.limit < 0 || request.query.offset < 0) {
+      return response.status(400)
+      .send({ message: 'Only Positive integers are permitted.' });
+    }
+    const queryString = request.query.queryString;
+
+    const query = {
+      where: { userName: { $like: `%${queryString}%`} },
+      limit: request.query.limit || null,
+      offset: request.query.offset || null,
+      order: [['UserId', 'ASC']]
+    };
+    model.User.findAll(query)
+      .then((users) => {
+        response.send(users);
       });
   }
 }

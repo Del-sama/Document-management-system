@@ -343,14 +343,12 @@ describe('DOCUMENT API', () => {
       beforeEach(() => model.Document.bulkCreate(documentsCollection));
       it('performs a search and returns the correct document', (done) => {
         const query = documentsCollection[10].content.substr(5, 13);
-        console.log('Search Query>>>>>>>>>>', query);
         const matcher = new RegExp(query);
 
         request.get(`/search/documents?queryString=${query}`)
           .set({ Authorization: publicToken })
           .end((error, response) => {
             expect(response.status).to.equal(200);
-            console.log('found content>>>>>>>>>>>>>>', response.body);
             expect(matcher.test(response.body[0].content)).to.be.true;
             done();
           });
