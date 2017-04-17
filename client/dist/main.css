@@ -1,20 +1,42 @@
 .nav-wrapper {
-  background-color: #eee; }
+  background-color: #239B56; }
 
 nav ul a {
-  color: #222; }
+  color: #FDFEFE; }
 
 nav a {
-  color: #222; }
+  color: #FDFEFE; }
 
-.homeImg {
-  background-image: url("/images/files.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  width: 100vw;
-  height: 100vh; }
+nav {
+  font-family: "UnifrakturCook", cursive; }
 
-.about {
-  color: #fff;
-  margin: auto; }
+.loginForm {
+  margin: 10% 20% 10% 25%;
+  width: 70%;
+  height: 80%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  padding: 2%; }
+
+.signupForm {
+  margin: 2% 25%;
+  width: 50%;
+  height: 80%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  padding: 2% 3%; }
+
+.center {
+  text-align: center;
+  color: #212121; }
+
+.auth-button {
+  margin: 2%;
+  width: 95%;
+  background-color: #239B56;
+  color: #FDFEFE; }
+
+.auth-button:hover {
+  background-color: #52BE80; }
+
+.auth-header a {
+  color: #212121;
+  font-family: "UnifrakturCook", cursive; }
