@@ -1,24 +1,52 @@
-@import '_color';
+$nav-color: #239B56;
+$header-font: 'UnifrakturCook', cursive;
+$nav-text-color: #FDFEFE;
+$box-shadow: 2px 2px 2px 2px rgba(0.4, 0.4, 0.4, 0.4);
+$center-align: center;
+
 
 .nav-wrapper {
-  background-color: #eee;
+  background-color: $nav-color;
 }
 nav ul a {
-  color: #222;
+  color: $nav-text-color;
 }
 nav a {
-  color: #222;
+  color: $nav-text-color;
 }
-.homeImg {
-background-image: url("/images/files.jpeg");
-background-size: cover;
-background-repeat: no-repeat;
-position: absolute;
-width: 100vw;
-height: 100vh;
+ nav {
+   font-family: $header-font;
+ }
+.loginForm {
+  margin: 10% 20% 10% 25%;
+  width: 70%;
+  height: 80%;
+  box-shadow: $box-shadow;
+  padding: 2%;
 }
-.about {
-  color: #fff;
-  margin: auto;
+.signupForm {
+  margin: 2% 25%;
+  width: 50%;
+  height: 80%;
+  box-shadow: $box-shadow;
+  padding: 2% 3%;
 }
+.center {
+  text-align: center;
+  color: #212121;
 
+}
+.auth-button {
+  margin: 2%;
+  width: 95%;
+  background-color: $nav-color;
+  color: $nav-text-color;
+
+}
+.auth-button:hover {
+  background-color: #52BE80;
+}
+.auth-header a{
+  color: #212121;
+  font-family: $header-font;
+}
