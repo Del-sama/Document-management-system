@@ -23,9 +23,13 @@ module.exports = {
           presets: ['react']
         }
       },
+        {
+        test: /\.(png|jpg|jpeg)$/,
+        loaders: ['url']
+      },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: ['style', 'css', 'sass']
       }
     ]
   },
