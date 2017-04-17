@@ -15,9 +15,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path='/app/' component={Index} />
+          <Route exact path='/' component={Index} />
           <Route  path='/app/login' component={Login} />
-          <Route  path='/app/signup/' component={Signup} />
+          <Route  path='/app/signup' component={Signup} />
         </div>
       </BrowserRouter>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import Link from react-router-dom;
 
 class Navbar extends Component {
   /**
@@ -18,13 +19,10 @@ class Navbar extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <div className="brand-logo"><a href="/app/">Document Management System</a></div>
+          <div className="brand-logo"><a href="/">Document Management System</a></div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li className={this.props.isLoginActive}>
-              <a href="#">Login</a>
-            </li>
             <li className={this.props.isSignupActive}>
-              <a href="#">Signup</a>
+              <a href="/app/signup">Signup</a>
             </li>
           </ul>
         </div>
@@ -34,7 +32,6 @@ class Navbar extends Component {
 }
 
 Navbar.defaultProps = {
-  isLoginActive: 'active',
   isSignupActive: ''
 };
 export default Navbar;
