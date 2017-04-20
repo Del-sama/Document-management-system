@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    './client/src/js/index.js'
+    './client/src/js/index.jsx'
   ],
   module: {
     loaders: [
@@ -23,9 +23,13 @@ module.exports = {
           presets: ['react']
         }
       },
+        {
+        test: /\.(png|jpg|jpeg)$/,
+        loaders: ['url']
+      },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: ['style', 'css', 'sass']
       }
     ]
   },

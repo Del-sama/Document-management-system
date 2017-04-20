@@ -11,8 +11,11 @@ class Index extends Component {
   render() {
     return (
       <div>
+        <div className="mainContainer">
+          <div className="bg"></div>
         <Navbar isLoginActive="active" isSignupActive="" />
         <Body />
+        </div>
       </div>
     );
   }

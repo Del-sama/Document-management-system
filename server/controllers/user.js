@@ -60,7 +60,8 @@ class UsersController {
           .then((newUser) => {
             const token = jwt.sign({
               UserId: newUser.id,
-              RoleId: newUser.RoleId
+              RoleId: newUser.RoleId,
+              userName: newUser.userName
             }, secret, { expiresIn: '2 days' });
             newUser = formattedUser(newUser);
             return response.status(201)
@@ -141,13 +142,15 @@ class UsersController {
    * @memberOf UsersController
    */
   static login(request, response) {
-    model.User.findOne({ where: { email: request.body.email } })
+    model.User.findOne({ where: { userName: request.body.userName } })
       .then((user) => {
         if (user && user.validPassword(request.body.password)) {
-          const token = jwt.sign({
+          const payload = {
             UserId: user.id,
-            RoleId: user.RoleId
-          }, secret, { expiresIn: '2 days' });
+            RoleId: user.RoleId,
+            userName: user.userName
+          };
+          const token = jwt.sign(payload, secret, { expiresIn: '2 days' });
           return response.status(200)
             .send({ token, expiresIn: '2 days' });
         }

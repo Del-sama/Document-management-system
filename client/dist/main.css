@@ -1,20 +1,78 @@
-.nav-wrapper {
-  background-color: #eee; }
+.loginForm {
+  margin: 2% 25%;
+  width: 50%;
+  height: 80%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  padding: 2% 3%; }
 
-nav ul a {
-  color: #222; }
+.signupForm {
+  margin: 2% 25%;
+  width: 50%;
+  height: 80%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  padding: 2% 3%; }
 
-nav a {
-  color: #222; }
+.center {
+  text-align: center;
+  color: #212121; }
 
-.homeImg {
-  background-image: url("/images/files.jpeg");
+.auth-button {
+  margin: 2%;
+  width: 95%;
+  background-color: #003366;
+  color: #FDFEFE; }
+
+.auth-button:hover {
+  background-color: #52BE80; }
+
+.auth-header a {
+  color: #212121;
+  font-family: "Sanchez", serif; }
+
+.myContainer {
+  margin: 0 18px; }
+
+.mainContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FDFEFE;
+  position: absolute;
+  height: 100%;
+  width: 100%; }
+
+.mainContainer .bg {
+  background-image: url("https://www.google.com/drive/static/images/home/intro-1024.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
   width: 100vw;
-  height: 100vh; }
+  height: 100vh;
+  z-index: -1; }
 
-.about {
-  color: #fff;
-  margin: auto; }
+.bodyInnards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center; }
+
+.bodyInnards i {
+  font-size: 6rem;
+  color: #2C4849; }
+
+nav ul a {
+  color: #FDFEFE; }
+
+nav a {
+  color: #FDFEFE; }
+
+nav {
+  font-family: "Sanchez", serif;
+  background-color: rgba(255, 0, 0, 0.1); }
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 47%; } }
+
+.upperCase {
+  text-transform: uppercase; }
