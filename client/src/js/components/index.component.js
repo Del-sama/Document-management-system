@@ -12,7 +12,7 @@ class Index extends Component {
     return (
       <div>
         <Navbar isLoginActive="active" isSignupActive="" />
-       <Body />
+        <Body />
       </div>
     );
   }

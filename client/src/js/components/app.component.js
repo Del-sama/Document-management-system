@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Index from './index.component';
+import Login from './login.component';
+import Signup from './signup.component';
 
 class App extends Component {
   /**
@@ -12,11 +14,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path='/app' component={Index} />
+        <div>
+          <Route exact path='/app/' component={Index} />
+          <Route  path='/app/login' component={Login} />
+          <Route  path='/app/signup/' component={Signup} />
+        </div>
       </BrowserRouter>
     );
   }
 }
 
 export default App;
-
