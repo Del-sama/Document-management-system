@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import loginAction from '../actions/loginAction';
+import jwtDecode from 'jwt-decode';
+import { browserHistory, Link } from 'react-router';
+import loginAction from '../actions/authorizationManagement/loginAction';
+
 
 class Login extends Component {
   /**
@@ -11,7 +14,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      userName: '',
       password: ''
     }
     this.onChange=this.onChange.bind(this);
@@ -29,6 +32,9 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <div className="row">
+           <h4 className="center auth-header"><Link to="/">Document Mangement System</Link></h4>
+          </div>
          <div className="row loginForm">
            <h4 className="center">Login</h4>
            <div>{ this.props.status}</div>
@@ -36,14 +42,14 @@ class Login extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                value={this.state.email}
+                value={this.state.userName}
                 onChange={this.onChange}
-                name="email"
-                id="email"
-                type="email"
-                className="validate"
+                name="userName"
+                id="userName"
+                type="text"
+                 className="validate"
                 required />
-                <label htmlFor="email">Email</label>
+                <label  htmlFor="userName">User Name</label>
               </div>
             </div>
             <div className="row">
@@ -64,7 +70,7 @@ class Login extends Component {
             </button>
             <div className="row">
               <div className="col s12">
-                <p className="center">Don't have an account? <a href="/app/signup"> Sign Up </a></p>
+                <p className="center">Don't have an account? <Link to="/app/signup"> Sign Up </Link></p>
               </div>
             </div>
           </form>
@@ -74,11 +80,15 @@ class Login extends Component {
   }
 }
 
+
 const mapStoreToProps = (state) => {
   return {
-    status: state.userReducer.status
-  }
-}
+    user: state.loginReducer.user,
+    loginSuccess: state.loginReducer.success,
+    loginError: state.loginReducer.error,
+    token: state.loginReducer.token
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
    return {

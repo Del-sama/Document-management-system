@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router, Route, browserHistory } from 'react-router';
 import Index from './index.component';
 import Login from './login.component';
 import Signup from './signup.component';
@@ -13,13 +12,11 @@ class App extends Component {
    */
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route exact path='/' component={Index} />
-          <Route  path='/app/login' component={Login} />
+      <Router history={browserHistory}>
+          <Route path='/' component={Index} />
+          <Route path='/app/login' component={Login} />
           <Route  path='/app/signup' component={Signup} />
-        </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
