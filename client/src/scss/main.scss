@@ -1,28 +1,19 @@
-$nav-color: #239B56;
-$header-font: 'UnifrakturCook', cursive;
-$nav-text-color: #FDFEFE;
+$logo-color: #FFD04A;
+$nav-color: #003366;
+$header-font: 'Sanchez', serif;
+$text-color: #FDFEFE;
 $box-shadow: 2px 2px 2px 2px rgba(0.4, 0.4, 0.4, 0.4);
 $center-align: center;
+$transparentNavColor: rgba(255,0,0,0.1);
+$transparentBodyColor: rgba(0,0,0,0.5);
+$primary-color: #4386FC;
 
-
-.nav-wrapper {
-  background-color: $nav-color;
-}
-nav ul a {
-  color: $nav-text-color;
-}
-nav a {
-  color: $nav-text-color;
-}
- nav {
-   font-family: $header-font;
- }
 .loginForm {
-  margin: 10% 20% 10% 25%;
-  width: 70%;
+  margin: 2% 25%;
+  width: 50%;
   height: 80%;
   box-shadow: $box-shadow;
-  padding: 2%;
+  padding: 2% 3%;
 }
 .signupForm {
   margin: 2% 25%;
@@ -40,7 +31,7 @@ nav a {
   margin: 2%;
   width: 95%;
   background-color: $nav-color;
-  color: $nav-text-color;
+  color: $text-color;
 
 }
 .auth-button:hover {
@@ -49,4 +40,54 @@ nav a {
 .auth-header a{
   color: #212121;
   font-family: $header-font;
+}
+
+// $: 'Sanchez', serif;
+// $: 'Pacifico', cursive;
+// $: 'Tillana', cursive;
+.myContainer {
+  margin: 0 18px;
+}
+.mainContainer {
+  background-color: $transparentBodyColor;
+  color: $text-color;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.mainContainer .bg {
+  background-image: url("https://www.google.com/drive/static/images/home/intro-1024.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+.bodyInnards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.bodyInnards i {
+  font-size: 6rem;
+  color: #2C4849;
+}
+nav ul a {
+  color: $text-color;
+}
+nav a {
+  color: $text-color;
+}
+ nav {
+   font-family: $header-font;
+   background-color: $transparentNavColor;
+ }
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 47%;
+  }
 }

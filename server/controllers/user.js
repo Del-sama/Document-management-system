@@ -141,7 +141,7 @@ class UsersController {
    * @memberOf UsersController
    */
   static login(request, response) {
-    model.User.findOne({ where: { email: request.body.email } })
+    model.User.findOne({ where: { userName: request.body.userName } })
       .then((user) => {
         if (user && user.validPassword(request.body.password)) {
           const token = jwt.sign({
