@@ -22,13 +22,30 @@ import axios from 'axios';
     this.onChange=this.onChange.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
   }
+
+  componentWillMount() {
+    if (window.localStorage.getItem('token')) {
+      browserHistory.push('/dashboard');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.error === 'unique violation') {
+      this.setState({
+        error: 'User already exists'
+      });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name] : e.target.value });
   }
+
   onSubmit(e) {
     e.preventDefault();
     this.props.Signup(this.state);
   }
+
   render() {
     return (
       <div>
@@ -38,6 +55,18 @@ import axios from 'axios';
          <div className="row signupForm">
            <h4 className="center">Sign Up</h4>
           <form  className="col s12" onSubmit={this.onSubmit}>
+            { this.state.error ?
+              <div className="center">
+                { this.state.error }
+              </div>
+              : <span />
+            }
+            { this.state.success ?
+              <div className="center">
+                { this.state.success }
+              </div>
+              : <span />
+            }
             <div className="row">
               <div className="input-field col s6">
                 <input
@@ -119,7 +148,8 @@ import axios from 'axios';
 
 const mapStoreToProps = (state) => {
   return {
-    user: state.user
+    user: state.signupReducer.user,
+    error: state.signupReducer.error
   };
 };
 const mapDispatchToProps = (dispatch) => {

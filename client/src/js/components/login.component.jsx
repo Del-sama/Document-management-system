@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory, Link } from 'react-router';
 import loginAction from '../actions/authorizationManagement/loginAction';
+import Navbar from './Nav.component';
 
+
+
+const ADMIN_ROLE_ID = 1;
 
 class Login extends Component {
   /**
@@ -19,13 +23,42 @@ class Login extends Component {
     }
     this.onChange=this.onChange.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
+    this.redirectIfLoggedIn = this.redirectIfLoggedIn.bind(this);
   }
   onChange(e) {
     this.setState({ [e.target.name] : e.target.value });
   }
+
+   componentWillMount() {
+    this.redirectIfLoggedIn();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      error: nextProps.loginError,
+      success: nextProps.loginSuccess
+    });
+
+    setTimeout(() => {
+      this.redirectIfLoggedIn();
+    }, 1000);
+  }
+
+  redirectIfLoggedIn (){
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      const decodedUser = jwtDecode(token);
+      const roleId = decodedUser.RoleId;
+      if (roleId === ADMIN_ROLE_ID) {
+        browserHistory.push('/app/admindashboard');
+      } else {
+        browserHistory.push('/app/dashboard');
+      }
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.login(this.state);
   }
 
@@ -37,9 +70,20 @@ class Login extends Component {
           </div>
          <div className="row loginForm">
            <h4 className="center">Login</h4>
-           <div>{ this.props.status}</div>
           <form className="col s12" onSubmit={this.onSubmit}>
-            <div className="row">
+            { this.state.error ?
+              <div className="center">
+                { this.state.error }
+              </div>
+                : <span />
+            }
+              { this.state.success ?
+                <div className="center">
+                  { this.state.success }
+                </div>
+                  : <span />
+              }
+              <div className="row">
               <div className="input-field col s12">
                 <input
                 value={this.state.userName}
@@ -92,7 +136,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-    login: (credentials) => dispatch(loginAction(credentials))
+    login: (loginCredentials) => dispatch(loginAction(loginCredentials))
    }
 }
 

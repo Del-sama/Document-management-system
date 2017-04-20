@@ -13,11 +13,11 @@ require('../scss/main.scss');
 
 const store = createStore(
   rootReducer,
-  (state = {}) => state,
   applyMiddleware(thunk)
 );
 
 ReactDom.render(
 <Provider store={store}>
-  <App />
-</Provider>, document.getElementById('react-app'));
+  <App  />
+</Provider>, document.getElementById('react-app')
+);

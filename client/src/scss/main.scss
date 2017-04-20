@@ -7,6 +7,7 @@ $center-align: center;
 $transparentNavColor: rgba(255,0,0,0.1);
 $transparentBodyColor: rgba(0,0,0,0.5);
 $primary-color: #4386FC;
+$upperCase: uppercase;
 
 .loginForm {
   margin: 2% 25%;
@@ -90,4 +91,7 @@ nav a {
   nav .brand-logo {
     left: 47%;
   }
+}
+.upperCase {
+text-transform: $upperCase;
 }

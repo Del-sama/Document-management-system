@@ -11,7 +11,7 @@ class Navbar extends Component {
     super(props);
     const token = (window.localStorage.getItem('token'));
     if (token) {
-      this.state = { id: jwtDecode(token).UserId};
+      this.state = { id: jwtDecode(token).UserId, userName: jwtDecode(token).userName};
       this.logout = this.logout.bind(this);
     }
   }
@@ -33,12 +33,11 @@ class Navbar extends Component {
               <Link to="/" className="brand-logo myContainer"><i className="material-icons">library_books</i>I-DocMan</Link>
               <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
+                <li className="upperCase">Welcome, {this.state.userName}</li>
                 <li><Link id="logout" onClick={this.logout}>Sign Out</Link></li>
               </ul>
                 <ul id="nav-mobile" className="right hide-on-med-and-down" />
             </div>
-            <Link data-activates="slide-out" className="btn" id="collapse_btn">
-              <i className="material-icons">view_headline</i></Link>
           </nav>
       );
     }
@@ -48,13 +47,11 @@ class Navbar extends Component {
           <Link to="/" className="brand-logo myContainer"><i className="material-icons">library_books</i>I-DocMan</Link>
           <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
           <ul className="right hide-on-med-and-down">
-            <li><input type="text" id="searchInput" placeholder="...search"></input></li>
             <li><Link to="/app/login"><i className="material-icons left">lock_open  </i>LOGIN   </Link></li>
             <li><Link to="/app/signup"><i className="material-icons left">vpn_key    </i>SIGNUP  </Link></li>
           </ul>
           <ul className="side-nav" id="mobile">
             <li></li>
-            <li><input type="text" id="searchInput"></input></li>
             <li><Link to="/app/login"><i className="material-icons left">lock_open  </i>LOGIN </Link></li>
             <li><Link to="/app/signup"><i className="material-icons left">vpn_key    </i>SIGNUP </Link></li>
           </ul>

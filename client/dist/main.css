@@ -73,3 +73,6 @@ nav {
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     left: 47%; } }
+
+.upperCase {
+  text-transform: uppercase; }

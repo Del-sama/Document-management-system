@@ -9,14 +9,14 @@ export default (loginCredentials) => {
         const user = jwtDecode(token).user;
         window.localStorage.setItem('token', token);
         dispatch({
-          type: LOGIN_SUCCESSFUL,
+          type:'LOGIN_SUCCESSFUL',
           user,
           token,
           message: 'Login Successful'
         });
       }).catch((error) => {
         dispatch({
-          type: LOGIN_ERROR,
+          type: 'LOGIN_ERROR',
           message: error.response.data.error
         });
       });

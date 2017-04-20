@@ -3,6 +3,8 @@ import { Router, Route, browserHistory } from 'react-router';
 import Index from './index.component';
 import Login from './login.component';
 import Signup from './signup.component';
+import AdminDashboard from './admindashboard.component';
+import Dashboard from './dashboard.component';
 
 class App extends Component {
   /**
@@ -16,6 +18,8 @@ class App extends Component {
           <Route path='/' component={Index} />
           <Route path='/app/login' component={Login} />
           <Route  path='/app/signup' component={Signup} />
+          <Route  path='/app/admindashboard' component={AdminDashboard} />
+          <Route  path='/app/dashboard' component={Dashboard} />
       </Router>
     );
   }
