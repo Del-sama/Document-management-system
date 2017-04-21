@@ -14,7 +14,7 @@ export const viewUserDocuments = (userId) => {
     const token = window.localStorage.getItem('token');
     return axios.get(`/users/${userId}/documents`, {
       headers: {
-        'authorization': `Bearer ${token}`
+        'authorization': token
       }
     }).then(documents => {
       console.log(documents);

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "173c6b87f7da0cc71e31"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "044fbe7e996e0a247cb3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7170,14 +7170,24 @@
 	          'div',
 	          { className: 'nav-wrapper' },
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '#!', id: 'createDoc', className: 'waves-effect waves-light btn-large' },
+	            Modal,
+	            {
+	              header: 'Modal Header',
+	              trigger: _react2.default.createElement(
+	                Button,
+	                { waves: 'light', id: 'createDoc', className: 'waves-effect waves-light btn-large' },
+	                _react2.default.createElement(
+	                  'i',
+	                  { className: 'material-icons left' },
+	                  'add_circle_outline'
+	                ),
+	                'Add Document'
+	              ) },
 	            _react2.default.createElement(
-	              'i',
-	              { className: 'material-icons left' },
-	              'add_circle_outline'
-	            ),
-	            'Add Documents'
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -19279,7 +19289,7 @@
 	    var token = window.localStorage.getItem('token');
 	    return _axios2.default.get('/users/' + userId + '/documents', {
 	      headers: {
-	        'authorization': 'Bearer ' + token
+	        'authorization': token
 	      }
 	    }).then(function (documents) {
 	      console.log(documents);
