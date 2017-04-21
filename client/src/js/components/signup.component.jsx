@@ -23,17 +23,21 @@ import axios from 'axios';
     this.onSubmit=this.onSubmit.bind(this);
   }
 
-  componentWillMount() {
-    if (window.localStorage.getItem('token')) {
-      browserHistory.push('/dashboard');
-    }
-  }
+  // componentWillMount() {
+  //   if (window.localStorage.getItem('token')) {
+  //     browserHistory.push('/app/dashboard');
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps, 'nextProps');
     if (nextProps.error === 'unique violation') {
       this.setState({
         error: 'User already exists'
       });
+    }
+    if (nextProps.user) {
+      browserHistory.push('/app/dashboard');
     }
   }
 
@@ -147,6 +151,7 @@ import axios from 'axios';
 
 
 const mapStoreToProps = (state) => {
+  console.log(state, 'state');
   return {
     user: state.signupReducer.user,
     error: state.signupReducer.error

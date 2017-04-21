@@ -6,9 +6,6 @@ import loginAction from '../actions/authorizationManagement/loginAction';
 import Navbar from './Nav.component';
 
 
-
-const ADMIN_ROLE_ID = 1;
-
 class Login extends Component {
   /**
    * renders the Nav component
@@ -47,13 +44,7 @@ class Login extends Component {
   redirectIfLoggedIn (){
     const token = window.localStorage.getItem('token');
     if (token) {
-      const decodedUser = jwtDecode(token);
-      const roleId = decodedUser.RoleId;
-      if (roleId === ADMIN_ROLE_ID) {
-        browserHistory.push('/app/admindashboard');
-      } else {
-        browserHistory.push('/app/dashboard');
-      }
+      browserHistory.push('/app/dashboard');
     }
   }
 

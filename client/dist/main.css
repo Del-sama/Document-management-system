@@ -76,3 +76,89 @@ nav {
 
 .upperCase {
   text-transform: uppercase; }
+
+.bodyInnards i,
+#createDoc i {
+  font-size: 6rem;
+  color: #FFD04A; }
+
+.searchBox {
+  left: 35%;
+  width: 45%;
+  display: -webkit-inline-box;
+  position: absolute;
+  height: inherit;
+  padding: 0 20px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+  border: 1px solid #000;
+  opacity: 0.9;
+  z-index: 11; }
+
+.searchBox input {
+  border: 0px solid;
+  width: 100%;
+  color: #000; }
+
+.searchBox i {
+  padding-right: 10%;
+  color: #000; }
+
+.searchBox select {
+  display: block;
+  width: 100%;
+  height: 61px;
+  float: right;
+  color: #000;
+  background-color: #F2F2F2; }
+
+.dropdown {
+  border-left: 2px solid #000;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  padding-right: 3%; }
+
+.userTopNav {
+  z-index: 30;
+  background-color: #FDFEFE; }
+
+.dropdown-content {
+  width: 50%;
+  color: #000; }
+
+.dropdown-content li {
+  text-align: left; }
+
+.tabs {
+  -webkit-box-shadow: 0 8px 10px -6px black;
+  -moz-box-shadow: 0 8px 10px -6px black;
+  box-shadow: 0 8px 10px -6px black;
+  z-index: 9; }
+
+.tabRow {
+  background-color: #003366;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4); }
+
+.tabContent {
+  height: 100vh;
+  background-color: #F2F2F2;
+  padding: .9rem !important;
+  color: #000;
+  opacity: 0.9; }
+
+.tabs .tab a {
+  color: #000; }
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #4386FC; }
+
+.tabs .indicator {
+  background-color: #4386FC; }
+
+.dropdown-content li > a, .dropdown-content li > span {
+  left: 0%; }
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 47%; } }

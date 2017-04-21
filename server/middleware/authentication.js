@@ -5,12 +5,16 @@ const secret = 'secret';
 
 const Auth = {
   verifyToken(request, response, next) {
-    const token = request.headers.authorization ||
+    let token = request.headers.authorization ||
       request.body.token || request.headers['x-access-token'];
     if (!token) {
       return response.status(401)
       .send({ message: 'No token supplied' });
     }
+    jwt.verify(token, secret, (err, decoded)=>{
+      console.log(token, err, decoded, 'token');
+    });
+
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         return response.status(401)
