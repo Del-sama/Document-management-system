@@ -11,7 +11,6 @@ const Auth = {
       return response.status(401)
       .send({ message: 'No token supplied' });
     }
-    token = token.split(" ")[1];
     jwt.verify(token, secret, (err, decoded)=>{
       console.log(token, err, decoded, 'token');
     });
