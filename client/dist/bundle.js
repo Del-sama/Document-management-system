@@ -67,7 +67,11 @@
 /******/ 	var hotApplyOnUpdate = true;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /******/ 	var hotCurrentHash = "b65cfbbe6885f027f8de"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "4854498714204312bcad"; // eslint-disable-line no-unused-vars
+>>>>>>> Stashed changes
 =======
 /******/ 	var hotCurrentHash = "4854498714204312bcad"; // eslint-disable-line no-unused-vars
 >>>>>>> Stashed changes
@@ -7201,6 +7205,7 @@
 	          { className: 'nav-wrapper' },
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '#!', id: 'createDoc', className: 'waves-effect waves-light btn-large' },
@@ -7211,6 +7216,9 @@
 	            ),
 	            'Add Documents'
 	          ),
+=======
+	          _react2.default.createElement(_adddoc2.default, null),
+>>>>>>> Stashed changes
 =======
 	          _react2.default.createElement(_adddoc2.default, null),
 >>>>>>> Stashed changes
