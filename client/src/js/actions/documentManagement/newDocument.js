@@ -6,7 +6,7 @@ export default (details) => {
   return (dispatch) => {
     return axios.post('/documents', details, {
       headers: {
-        Authorization: `User ${token}`
+        Authorization: token
       }
     })
       .then(() => {
@@ -15,7 +15,7 @@ export default (details) => {
           document,
           status: 'success'
         });
-        browserHistory.push('/');
+        browserHistory.push('/app/dashboard');
       }).catch((err) => {
         dispatch({
           type: 'DOCUMENT_CREATE_FAILED',

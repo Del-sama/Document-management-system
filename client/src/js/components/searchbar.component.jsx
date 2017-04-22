@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import CreateDocument from './createDocument';
+import AddDoc from './adddoc.component';
 
 class Searchbar extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       selectValue: 'users'
@@ -13,7 +15,7 @@ class Searchbar extends Component {
     this.setState({ selectValue: e.target.value });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -31,10 +33,9 @@ class Searchbar extends Component {
     return (
       <nav id="nav">
         <div className="nav-wrapper">
-          <Link to="#!" id="createDoc" className="waves-effect waves-light btn-large">
-            <i className="material-icons left">add_circle_outline</i>
-            Add Documents
-          </Link>
+
+         <AddDoc />
+
           <div className="searchBox">
             <i className="material-icons">search</i>
             <input type="text" id="searchInput" placeholder="....SEARCH"></input>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import CreateDocument from './docs/docForm.component'
 
 class AddDoc extends Component {
   constructor() {
@@ -29,11 +30,11 @@ class AddDoc extends Component {
           </Link>
         <div id="modal" className="modal modal-fixed-footer">
           <div className="modal-content">
-            <h4>Add Document</h4>
-            <p>A bunch of text</p>
+            <h4>Create a Document</h4>
+            <CreateDocument />
           </div>
           <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Create</a>
+            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
           </div>
         </div>
       </div>
