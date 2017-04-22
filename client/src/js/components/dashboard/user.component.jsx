@@ -13,7 +13,6 @@ import RoleDocs from '../docs/roleDocs.component';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    console.log("dashboard", props);
   }
 
   componentDidMount() {
