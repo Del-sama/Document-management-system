@@ -29,7 +29,6 @@ $logo-color: #FFD04A;
 .center {
   text-align: center;
   color: #212121;
-
 }
 .auth-button {
   margin: 2%;
@@ -86,10 +85,10 @@ nav ul a {
 nav a {
   color: $text-color;
 }
- nav {
-   font-family: $header-font;
-   background-color: $transparentNavColor;
- }
+nav {
+  font-family: $header-font;
+  background-color: $transparentNavColor;
+}
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     left: 47%;
@@ -183,9 +182,9 @@ background-color: $primary-color;
 .dropdown-content li>a, .dropdown-content li>span {
   left: 0%
 }
-
-@media only screen and (max-width: 992px) {
-  nav .brand-logo {
-    left: 47%;
-  }
+.modal {
+  color: $text-color-two;
+}
+.inline {
+  display: inline-block;
 }
