@@ -17,7 +17,6 @@ export const viewUserDocuments = (userId) => {
         'authorization': token
       }
     }).then(documents => {
-      console.log(documents);
       dispatch(documentReadSuccess(documents));
     }).catch((err) => {
       });

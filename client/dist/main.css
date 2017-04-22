@@ -159,6 +159,8 @@ nav {
 .dropdown-content li > a, .dropdown-content li > span {
   left: 0%; }
 
-@media only screen and (max-width: 992px) {
-  nav .brand-logo {
-    left: 47%; } }
+.modal {
+  color: #000; }
+
+.inline {
+  display: inline-block; }
