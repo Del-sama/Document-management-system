@@ -65,6 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -78,6 +79,9 @@
 =======
 /******/ 	var hotCurrentHash = "4854498714204312bcad"; // eslint-disable-line no-unused-vars
 >>>>>>> Stashed changes
+=======
+/******/ 	var hotCurrentHash = "b65cfbbe6885f027f8de"; // eslint-disable-line no-unused-vars
+>>>>>>> e3937485de2e82899d578ac0e5c394cacde3a4c6
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
