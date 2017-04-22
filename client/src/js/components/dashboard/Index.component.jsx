@@ -23,11 +23,6 @@ class Dashboard extends Component {
     this.props.actions.viewUserDocuments(userId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps, "these are the next props")
-
-  }
-
   render() {
     const roleId = this.state.authUser.role_id || null
     return (roleId === this.state.AdminRoleId) ?
