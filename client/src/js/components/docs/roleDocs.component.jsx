@@ -11,7 +11,7 @@ const RoleDocs = (props) => {
     })
     .map((document) => {
       return (
-        <SingleDocument document={document} key={document.id} />
+        <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument}/>
       )
     })
   }
@@ -43,8 +43,8 @@ const SingleDocument = (props) => {
       <td>{ document.access }</td>
       <td className="truncate">{ document.content }</td>
       <td>{ (document.createdAt).slice(0, 10) }</td>
-      <Link to="#" className="green-text"> <i className="material-icons">edit</i></Link>
-      <Link to="#" className="red-text"> <i className="material-icons">delete</i></Link>
+      <td><a className="modal-trigger green-text" href="#modal1" onClick={()=>{ props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>
+      <td><Link to="#" className="red-text"> <i className="material-icons">delete</i></Link></td>
     </tr>
   );
 }

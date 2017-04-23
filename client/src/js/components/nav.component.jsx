@@ -34,9 +34,12 @@ class Navbar extends Component {
               <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li className="upperCase">Welcome, {this.state.userName}</li>
-                <li><Link id="logout" onClick={this.logout}>Sign Out</Link></li>
+                <li><Link id="logout" onClick={this.logout}><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
               </ul>
-                <ul id="nav-mobile" className="right hide-on-med-and-down" />
+              <ul className="side-nav" id="mobile">
+                <li className="upperCase">Welcome, {this.state.userName}</li>
+                <li><Link id="logout" onClick={this.logout}><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
+              </ul>
             </div>
           </nav>
       );
