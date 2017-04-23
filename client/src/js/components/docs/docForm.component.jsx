@@ -31,11 +31,13 @@ export class CreateDocument extends Component {
         this.state = { id: jwtDecode(token).UserId, userName: jwtDecode(token).userName};
       }
 
+      console.log(props, "props");
+
       this.state = {
-        title: '',
-        content: '',
-        access: '',
-        status: '',
+        title: props.document ? props.document.title :  '',
+        content: props.document ? props.document.content : '',
+        access: props.document ? props.document.access : '',
+        status: props.document ? props.document.status : '',
         UserId: this.state.id
       };
       this.onChange = this.onChange.bind(this);
@@ -43,8 +45,17 @@ export class CreateDocument extends Component {
     }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps, 'nextProps');
       if (nextProps.status === 'success') {
         browserHistory.push('/dashboard');
+      }
+      if(nextProps.document){
+        this.setState({
+          title: nextProps.document.title,
+          content: nextProps.document.content,
+          access: nextProps.document.access,
+          status: nextProps.document.status
+        });
       }
     }
 
@@ -63,7 +74,7 @@ export class CreateDocument extends Component {
       <div>
         <div>
          <div className="row">
-          <form className="col s12" onSubmit={this.onSubmit}>
+          <form className="col s12" onSubmit={this.props.onEdit ? ()=> { this.props.onEdit(this.state,this.props.documentId)} : this.onSubmit}>
               <div className="row">
               <div className="input-field col s12">
                 <input
