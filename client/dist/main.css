@@ -164,3 +164,6 @@ nav {
 
 .inline {
   display: inline-block; }
+
+.side-nav {
+  padding-top: 60px; }

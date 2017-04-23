@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "130e3e7c12b9286e2c6c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "14c43ef04281e0b63c8c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7254,7 +7254,7 @@
 
 
 	// module
-	exports.push([module.id, ".loginForm {\n  margin: 2% 25%;\n  width: 50%;\n  height: 80%;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);\n  padding: 2% 3%; }\n\n.signupForm {\n  margin: 2% 25%;\n  width: 50%;\n  height: 80%;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);\n  padding: 2% 3%; }\n\n.center {\n  text-align: center;\n  color: #212121; }\n\n.auth-button {\n  margin: 2%;\n  width: 95%;\n  background-color: #003366;\n  color: #FDFEFE; }\n\n.auth-button:hover {\n  background-color: #52BE80; }\n\n.auth-header a {\n  color: #212121;\n  font-family: \"Sanchez\", serif; }\n\n.myContainer {\n  margin: 0 18px; }\n\n.mainContainer {\n  background-color: rgba(0, 0, 0, 0.5);\n  color: #FDFEFE;\n  position: absolute;\n  height: 100%;\n  width: 100%; }\n\n.mainContainer .bg {\n  background-image: url(\"https://www.google.com/drive/static/images/home/intro-1024.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat;\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: -1; }\n\n.bodyInnards {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-right: -50%;\n  transform: translate(-50%, -50%);\n  text-align: center; }\n\n.bodyInnards i {\n  font-size: 6rem;\n  color: #2C4849; }\n\nnav ul a {\n  color: #FDFEFE; }\n\nnav a {\n  color: #FDFEFE; }\n\nnav {\n  font-family: \"Sanchez\", serif;\n  background-color: rgba(255, 0, 0, 0.1); }\n\n@media only screen and (max-width: 992px) {\n  nav .brand-logo {\n    left: 47%; } }\n\n.upperCase {\n  text-transform: uppercase; }\n\n.bodyInnards i,\n#createDoc i {\n  font-size: 6rem;\n  color: #FFD04A; }\n\n.searchBox {\n  left: 35%;\n  width: 45%;\n  display: -webkit-inline-box;\n  position: absolute;\n  height: inherit;\n  padding: 0 20px;\n  border-radius: 8px;\n  background-color: #F2F2F2;\n  border: 1px solid #000;\n  opacity: 0.9;\n  z-index: 11; }\n\n.searchBox input {\n  border: 0px solid;\n  width: 100%;\n  color: #000; }\n\n.searchBox i {\n  padding-right: 10%;\n  color: #000; }\n\n.searchBox select {\n  display: block;\n  width: 100%;\n  height: 61px;\n  float: right;\n  color: #000;\n  background-color: #F2F2F2; }\n\n.dropdown {\n  border-left: 2px solid #000;\n  display: inline-block;\n  position: absolute;\n  right: 0;\n  padding-right: 3%; }\n\n.userTopNav {\n  z-index: 30;\n  background-color: #FDFEFE; }\n\n.dropdown-content {\n  width: 50%;\n  color: #000; }\n\n.dropdown-content li {\n  text-align: left; }\n\n.tabs {\n  -webkit-box-shadow: 0 8px 10px -6px black;\n  -moz-box-shadow: 0 8px 10px -6px black;\n  box-shadow: 0 8px 10px -6px black;\n  z-index: 9; }\n\n.tabRow {\n  background-color: #003366;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4); }\n\n.tabContent {\n  height: 100vh;\n  background-color: #F2F2F2;\n  padding: .9rem !important;\n  color: #000;\n  opacity: 0.9; }\n\n.tabs .tab a {\n  color: #000; }\n\n.tabs .tab a:hover, .tabs .tab a.active {\n  color: #4386FC; }\n\n.tabs .indicator {\n  background-color: #4386FC; }\n\n.dropdown-content li > a, .dropdown-content li > span {\n  left: 0%; }\n\n.modal {\n  color: #000; }\n\n.inline {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, ".loginForm {\n  margin: 2% 25%;\n  width: 50%;\n  height: 80%;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);\n  padding: 2% 3%; }\n\n.signupForm {\n  margin: 2% 25%;\n  width: 50%;\n  height: 80%;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);\n  padding: 2% 3%; }\n\n.center {\n  text-align: center;\n  color: #212121; }\n\n.auth-button {\n  margin: 2%;\n  width: 95%;\n  background-color: #003366;\n  color: #FDFEFE; }\n\n.auth-button:hover {\n  background-color: #52BE80; }\n\n.auth-header a {\n  color: #212121;\n  font-family: \"Sanchez\", serif; }\n\n.myContainer {\n  margin: 0 18px; }\n\n.mainContainer {\n  background-color: rgba(0, 0, 0, 0.5);\n  color: #FDFEFE;\n  position: absolute;\n  height: 100%;\n  width: 100%; }\n\n.mainContainer .bg {\n  background-image: url(\"https://www.google.com/drive/static/images/home/intro-1024.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat;\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: -1; }\n\n.bodyInnards {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-right: -50%;\n  transform: translate(-50%, -50%);\n  text-align: center; }\n\n.bodyInnards i {\n  font-size: 6rem;\n  color: #2C4849; }\n\nnav ul a {\n  color: #FDFEFE; }\n\nnav a {\n  color: #FDFEFE; }\n\nnav {\n  font-family: \"Sanchez\", serif;\n  background-color: rgba(255, 0, 0, 0.1); }\n\n@media only screen and (max-width: 992px) {\n  nav .brand-logo {\n    left: 47%; } }\n\n.upperCase {\n  text-transform: uppercase; }\n\n.bodyInnards i,\n#createDoc i {\n  font-size: 6rem;\n  color: #FFD04A; }\n\n.searchBox {\n  left: 35%;\n  width: 45%;\n  display: -webkit-inline-box;\n  position: absolute;\n  height: inherit;\n  padding: 0 20px;\n  border-radius: 8px;\n  background-color: #F2F2F2;\n  border: 1px solid #000;\n  opacity: 0.9;\n  z-index: 11; }\n\n.searchBox input {\n  border: 0px solid;\n  width: 100%;\n  color: #000; }\n\n.searchBox i {\n  padding-right: 10%;\n  color: #000; }\n\n.searchBox select {\n  display: block;\n  width: 100%;\n  height: 61px;\n  float: right;\n  color: #000;\n  background-color: #F2F2F2; }\n\n.dropdown {\n  border-left: 2px solid #000;\n  display: inline-block;\n  position: absolute;\n  right: 0;\n  padding-right: 3%; }\n\n.userTopNav {\n  z-index: 30;\n  background-color: #FDFEFE; }\n\n.dropdown-content {\n  width: 50%;\n  color: #000; }\n\n.dropdown-content li {\n  text-align: left; }\n\n.tabs {\n  -webkit-box-shadow: 0 8px 10px -6px black;\n  -moz-box-shadow: 0 8px 10px -6px black;\n  box-shadow: 0 8px 10px -6px black;\n  z-index: 9; }\n\n.tabRow {\n  background-color: #003366;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4); }\n\n.tabContent {\n  height: 100vh;\n  background-color: #F2F2F2;\n  padding: .9rem !important;\n  color: #000;\n  opacity: 0.9; }\n\n.tabs .tab a {\n  color: #000; }\n\n.tabs .tab a:hover, .tabs .tab a.active {\n  color: #4386FC; }\n\n.tabs .indicator {\n  background-color: #4386FC; }\n\n.dropdown-content li > a, .dropdown-content li > span {\n  left: 0%; }\n\n.modal {\n  color: #000; }\n\n.inline {\n  display: inline-block; }\n\n.side-nav {\n  padding-top: 60px; }\n", ""]);
 
 	// exports
 
@@ -10939,6 +10939,8 @@
 	      _this.state = { id: (0, _jwtDecode2.default)(token).UserId, userName: (0, _jwtDecode2.default)(token).userName };
 	    }
 
+	    console.log(props, "props");
+
 	    _this.state = {
 	      title: props.document ? props.document.title : '',
 	      content: props.document ? props.document.content : '',
@@ -10982,6 +10984,8 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -10993,7 +10997,9 @@
 	            { className: 'row' },
 	            _react2.default.createElement(
 	              'form',
-	              { className: 'col s12', onSubmit: this.props.onEdit || this.onSubmit },
+	              { className: 'col s12', onSubmit: this.props.onEdit ? function () {
+	                  _this2.props.onEdit(_this2.state, _this2.props.documentId);
+	                } : this.onSubmit },
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'row' },
@@ -20476,7 +20482,8 @@
 	    value: function setEditDocument(document) {
 	      console.log(document, 'to edit');
 	      this.setState({
-	        editDocument: document
+	        editDocument: document,
+	        documentId: document.id
 	      });
 	    }
 	  }, {
@@ -20501,7 +20508,7 @@
 	              null,
 	              'Edit Document'
 	            ),
-	            _react2.default.createElement(_docForm2.default, { document: this.state.editDocument || null })
+	            _react2.default.createElement(_docForm2.default, { document: this.state.editDocument || null, documentId: this.state.documentId || null, onEdit: this.props.EditDocument })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -20574,17 +20581,17 @@
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'test1', className: 'tabContent col s12' },
-	              _react2.default.createElement(_privateDocs2.default, { document: this.props.documents })
+	              _react2.default.createElement(_privateDocs2.default, { document: this.props.documents, setEditDocument: this.setEditDocument })
 	            ),
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'test2', className: 'tabContent col s12' },
-	              _react2.default.createElement(_publicDocs2.default, { document: this.props.documents })
+	              _react2.default.createElement(_publicDocs2.default, { document: this.props.documents, setEditDocument: this.setEditDocument })
 	            ),
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'test4', className: 'tabContent col s12' },
-	              _react2.default.createElement(_roleDocs2.default, { document: this.props.documents })
+	              _react2.default.createElement(_roleDocs2.default, { document: this.props.documents, setEditDocument: this.setEditDocument })
 	            )
 	          ),
 	          _react2.default.createElement('div', null)
@@ -20598,13 +20605,13 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
-	    EditDocument: function EditDocument(documentDetails) {
-	      return dispatch((0, _editDocument2.default)(documentDetails, jwt(token), document.id));
+	    EditDocument: function EditDocument(documentDetails, documentId) {
+	      return dispatch((0, _editDocument2.default)(documentDetails, documentId));
 	    }
 	  };
 	};
 
-	exports.default = Dashboard;
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Dashboard);
 
 /***/ }),
 /* 186 */
@@ -20630,7 +20637,7 @@
 	    documentList = props.document.document.data.filter(function (document) {
 	      return document.access === 'private';
 	    }).map(function (document) {
-	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id });
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
 	    });
 	  }
 	  return _react2.default.createElement(
@@ -20703,23 +20710,32 @@
 	      document.createdAt.slice(0, 10)
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'green-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'edit'
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'red-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'delete'
+	        _reactRouter.Link,
+	        { to: '#', className: 'red-text' },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
 	      )
 	    )
 	  );
@@ -20752,7 +20768,7 @@
 	    documentList = props.document.document.data.filter(function (document) {
 	      return document.access === 'public';
 	    }).map(function (document) {
-	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id });
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
 	    });
 	  }
 	  return _react2.default.createElement(
@@ -20825,23 +20841,32 @@
 	      document.createdAt.slice(0, 10)
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'green-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'edit'
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'red-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'delete'
+	        _reactRouter.Link,
+	        { to: '#', className: 'red-text' },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
 	      )
 	    )
 	  );
@@ -20874,7 +20899,7 @@
 	    documentList = props.document.document.data.filter(function (document) {
 	      return document.access === 'role';
 	    }).map(function (document) {
-	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id });
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
 	    });
 	  }
 	  return _react2.default.createElement(
@@ -20947,23 +20972,32 @@
 	      document.createdAt.slice(0, 10)
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'green-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'edit'
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '#', className: 'red-text' },
-	      ' ',
+	      'td',
+	      null,
 	      _react2.default.createElement(
-	        'i',
-	        { className: 'material-icons' },
-	        'delete'
+	        _reactRouter.Link,
+	        { to: '#', className: 'red-text' },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
 	      )
 	    )
 	  );
@@ -20993,7 +21027,6 @@
 
 	var UserDocs = function UserDocs(props) {
 	  var documentList = void 0;
-	  console.log('====+++++++', props);
 	  if (props.document.document !== undefined) {
 	    documentList = props.document.document.data.map(function (document) {
 	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
@@ -21030,6 +21063,11 @@
 	            'th',
 	            null,
 	            'Published date'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Updated date'
 	          )
 	        )
 	      ),
@@ -21067,6 +21105,11 @@
 	      'td',
 	      null,
 	      document.createdAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.updatedAt.slice(0, 10)
 	    ),
 	    _react2.default.createElement(
 	      'td',
