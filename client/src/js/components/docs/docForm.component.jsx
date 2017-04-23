@@ -30,9 +30,6 @@ export class CreateDocument extends Component {
       if (token) {
         this.state = { id: jwtDecode(token).UserId, userName: jwtDecode(token).userName};
       }
-
-      console.log(props, "props");
-
       this.state = {
         title: props.document ? props.document.title :  '',
         content: props.document ? props.document.content : '',
