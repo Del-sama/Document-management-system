@@ -10,6 +10,12 @@ export default (state = {}, action) => {
       return { ...state, documents: action.documents };
     case actionTypes.VIEW_USER_DOCUMENTS_SUCCESS:
       return { ...state, document: action.documents };
+    case 'DOCUMENT_DELETED':
+      return { ...state,
+        documents: state.documents.filter((document) => {
+          return document.id !== action.documentid;
+        })
+      };
     default:
       return state;
   }

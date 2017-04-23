@@ -43,6 +43,7 @@ const SingleDocument = (props) => {
       <td>{ document.access }</td>
       <td className="truncate">{ document.content }</td>
       <td>{ (document.createdAt).slice(0, 10) }</td>
+      <td>{(document.updatedAt).slice(0, 10)}</td>
       <td><a className="modal-trigger green-text" href="#modal1" onClick={()=>{ props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>
       <td><Link to="#" className="red-text"> <i className="material-icons">delete</i></Link></td>
     </tr>

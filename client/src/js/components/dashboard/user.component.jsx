@@ -8,13 +8,15 @@ import PrivateDocs from '../docs/privateDocs.component';
 import PublicDocs from '../docs/publicDocs.component';
 import RoleDocs from '../docs/roleDocs.component';
 import CreateDocument from '../docs/docForm.component'
-import EditDocument from '../../actions/documentManagement/editDocument'
+import EditDocument from '../../actions/documentManagement/editDocument';
+import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
+    this.setDeleteDocument = this.setDeleteDocument.bind(this);
     this.state = {};
   }
 
@@ -24,6 +26,10 @@ class Dashboard extends Component {
       editDocument: document,
       documentId: document.id
     });
+  }
+
+  setDeleteDocument(documentId) {
+    this.props.DeleteDocument(documentId);
   }
 
   componentDidMount() {
@@ -57,16 +63,16 @@ class Dashboard extends Component {
               </ul>
             </div>
             <div id="test3" className="tabContent col s12">
-              <UserDocs document={this.props.documents} setEditDocument={this.setEditDocument}/>
+              <UserDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test1" className="tabContent col s12">
-              <PrivateDocs document={this.props.documents} setEditDocument={this.setEditDocument} />
+              <PrivateDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument} />
             </div>
             <div id="test2" className="tabContent col s12">
-              <PublicDocs document={this.props.documents} setEditDocument={this.setEditDocument}/>
+              <PublicDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test4" className="tabContent col s12">
-              <RoleDocs document={this.props.documents} setEditDocument={this.setEditDocument}/>
+              <RoleDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
           </div>
           <div></div>
@@ -79,6 +85,8 @@ class Dashboard extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditDocument: (documentDetails, documentId) => dispatch(EditDocument(documentDetails, documentId)),
+    DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId))
+
   };
 };
 
