@@ -35,10 +35,13 @@ class DocumentsController {
     const query = {
       where: {
         $or: [
-          { access: 'public' },
-          { UserId: request.decoded.id }
+          { UserId: request.decoded.UserId },
+          { access: 'public' }
         ]
       },
+      include: [{
+        model: model.User
+      }],
       limit: request.query.limit || null,
       offset: request.query.offset || null,
       order: [['createdAt', 'DESC']]

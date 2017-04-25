@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Documents', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Document', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -16,7 +16,11 @@ module.exports = {
     },
     UserId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
+      references: {
+         model: 'User',
+         key: 'id',
+       },
     },
     access: {
       allowNull: false,
@@ -31,5 +35,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: queryInterface => queryInterface.dropTable('Documents')
+  down: queryInterface => queryInterface.dropTable('Document')
 };

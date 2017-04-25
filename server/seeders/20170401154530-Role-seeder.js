@@ -1,6 +1,6 @@
 module.exports = {
   up(queryInterface) {
-    return queryInterface.bulkInsert('Roles', [
+    return queryInterface.bulkInsert('Role', [
       {
         id: 1,
         title: 'admin',
@@ -16,7 +16,7 @@ module.exports = {
   },
 
   down(queryInterface) {
-    return queryInterface.bulkDelete('Roles',
+    return queryInterface.bulkDelete('Role',
        { title: ['regular', 'admin'] }
     );
   }
