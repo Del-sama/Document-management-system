@@ -54,7 +54,7 @@ import axios from 'axios';
     return (
       <div>
          <div className="row">
-           <h4 className="center auth-header"><Link to="/">Document Mangement System</Link></h4>
+           <h4 className="center auth-header"><Link to="/app/">Document Mangement System</Link></h4>
           </div>
          <div className="row signupForm">
            <h4 className="center">Sign Up</h4>

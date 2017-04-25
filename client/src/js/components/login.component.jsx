@@ -57,7 +57,7 @@ class Login extends Component {
     return (
       <div>
         <div className="row">
-           <h4 className="center auth-header"><Link to="/">Document Mangement System</Link></h4>
+           <h4 className="center auth-header"><Link to="/app/">Document Mangement System</Link></h4>
           </div>
          <div className="row loginForm">
            <h4 className="center">Login</h4>

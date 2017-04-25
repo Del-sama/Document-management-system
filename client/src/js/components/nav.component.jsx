@@ -22,7 +22,7 @@ class Navbar extends Component {
     this.setState({
       id: null
     });
-    browserHistory.push('/');
+    browserHistory.push('/app/');
   }
 
   render() {
@@ -30,7 +30,7 @@ class Navbar extends Component {
       return (
           <nav>
             <div className="nav-wrapper">
-              <Link to="/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
+              <Link to="/app/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
               <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li className="upperCase">Welcome, {this.state.userName}</li>
@@ -47,7 +47,7 @@ class Navbar extends Component {
     return (
        <nav id= "nav">
         <div className="nav-wrapper">
-          <Link to="/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
+          <Link to="/app/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
           <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
           <ul className="right hide-on-med-and-down">
             <li><Link to="/app/login"><i className="material-icons left">lock_open  </i>LOGIN   </Link></li>

@@ -36,7 +36,13 @@ class DocumentsController {
       where: {
         $or: [
           { UserId: request.decoded.UserId },
-          { access: 'public' }
+          { access: 'public' },
+            {
+              $and: [
+              { access: 'role' },
+              { '$User.RoleId$': request.decoded.RoleId }
+              ]
+            }
         ]
       },
       include: [{

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "359e0471f542fbe986d7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "da505335f126eecf8520"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20234,8 +20234,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import * as docActions from '../../actions/documentManagement/readDocument';
-
 
 	var Dashboard = function (_Component) {
 	  _inherits(Dashboard, _Component);
@@ -20257,7 +20255,6 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      var userId = this.state.authUser.UserId || null;
-	      // this.props.actions.viewUserDocuments(userId);
 	      this.props.actions.viewAllDocuments(userId);
 	    }
 	  }, {
@@ -20290,7 +20287,6 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
-	    // actions: bindActionCreators(docActions, dispatch),
 	    actions: (0, _redux.bindActionCreators)(AllDocActions, dispatch)
 	  };
 	};
@@ -20741,11 +20737,6 @@
 	            'th',
 	            null,
 	            'Published date'
-	          ),
-	          _react2.default.createElement(
-	            'th',
-	            null,
-	            'Updated date'
 	          )
 	        )
 	      ),
@@ -20788,11 +20779,6 @@
 	      'td',
 	      null,
 	      document.createdAt.slice(0, 10)
-	    ),
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      document.updatedAt.slice(0, 10)
 	    )
 	  );
 	};
@@ -21909,8 +21895,6 @@
 	      return _extends({}, state, { status: action.status });
 	    case 'ALL_DOCUMENTS':
 	      return _extends({}, state, { documents: action.documents });
-	    // case actionTypes.VIEW_USER_DOCUMENTS_SUCCESS:
-	    //   return { ...state, document: action.documents };
 	    case actionTypes.VIEW_ALL_DOCUMENTS_SUCCESS:
 	      return _extends({}, state, { document: action.documents });
 	    case 'DOCUMENT_DELETED':
