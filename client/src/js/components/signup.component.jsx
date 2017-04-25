@@ -151,8 +151,7 @@ import axios from 'axios';
 
 
 const mapStoreToProps = (state) => {
-  console.log(state, 'state');
-  return {
+    return {
     user: state.signupReducer.user,
     error: state.signupReducer.error
   };
