@@ -165,5 +165,14 @@ describe('User API', () => {
           });
       });
     });
+    describe('GET: (/search/users) - SEARCH FOR USER BY NAME', () => {
+      it('should correctly find a created user', (done) => {
+        request.get(`/search/users?queryString=${query}`)
+          .set({ Authorization: token1 })
+          .end((err, response) => {
+            console.log('HERRRRREREEURDYTDYUGHIO++++++++++++++', response.body);
+          })
+      });
+    });
   });
 });

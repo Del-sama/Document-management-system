@@ -283,6 +283,9 @@ router.route('/users/logout')
    */
   .post(usersController.logout);
 
+router.route('/search/users')
+  .get(auth.verifyToken, usersController.searchUsers);
+
 router.route('/users/:id/documents')
  /**
    * @swagger

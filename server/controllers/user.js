@@ -175,6 +175,30 @@ class UsersController {
     return response.status(200)
       .send({ message: 'Successful logout' });
   }
+  /**
+   * Method searchUsers
+   * @param {object} request - request object
+   * @param {object} response - response object
+   * @returns {object} - response object
+   */
+  static searchUsers(request, response) {
+  if (request.query.limit < 0 || request.query.offset < 0) {
+      return response.status(400)
+      .send({ message: 'Only Positive integers are permitted.' });
+    }
+    const queryString = request.query.queryString;
+
+    const query = {
+      where: { userName: { $like: `%${queryString}%`} },
+      limit: request.query.limit || null,
+      offset: request.query.offset || null,
+      order: [['UserId', 'ASC']]
+    };
+    model.User.findAll(query)
+      .then((users) => {
+        response.send(users);
+      });
+  }
 }
 
 module.exports = UsersController;
