@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f7adaa95ecb3329522c4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fa84c910a3ca8e6b8e9e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -11134,9 +11134,9 @@
 
 	var _loginAction2 = _interopRequireDefault(_loginAction);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19973,9 +19973,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _newDocument = __webpack_require__(97);
 
@@ -20208,9 +20208,9 @@
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _searchbar = __webpack_require__(57);
 
@@ -20326,9 +20326,9 @@
 
 	var _reactRouter = __webpack_require__(8);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _searchbar = __webpack_require__(57);
 
@@ -20361,7 +20361,7 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement('div', { className: 'bg' }),
-	          _react2.default.createElement(_Nav2.default, null),
+	          _react2.default.createElement(_nav2.default, null),
 	          _react2.default.createElement(_searchbar2.default, null),
 	          _react2.default.createElement(
 	            'div',
@@ -20462,9 +20462,9 @@
 
 	var _reactRouter = __webpack_require__(8);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _searchbar = __webpack_require__(57);
 
@@ -20572,7 +20572,7 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement('div', { className: 'bg' }),
-	          _react2.default.createElement(_Nav2.default, null),
+	          _react2.default.createElement(_nav2.default, null),
 	          _react2.default.createElement(_searchbar2.default, null),
 	          _react2.default.createElement(
 	            'div',
@@ -21230,9 +21230,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Nav = __webpack_require__(29);
+	var _nav = __webpack_require__(29);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _body = __webpack_require__(182);
 
@@ -21271,7 +21271,7 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement('div', { className: 'bg' }),
-	          _react2.default.createElement(_Nav2.default, { isLoginActive: 'active', isSignupActive: '' }),
+	          _react2.default.createElement(_nav2.default, { isLoginActive: 'active', isSignupActive: '' }),
 	          _react2.default.createElement(_body2.default, null)
 	        )
 	      );
