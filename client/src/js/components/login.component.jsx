@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory, Link } from 'react-router';
 import loginAction from '../actions/authorizationManagement/loginAction';
-import Navbar from './Nav.component';
+import Navbar from './nav.component';
 
 
 class Login extends Component {

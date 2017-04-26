@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import Navbar from '../Nav.component';
+import Navbar from '../nav.component';
 import Searchbar from '../searchbar.component';
 import UserDocs from '../docs/userDocs.component';
 import PrivateDocs from '../docs/privateDocs.component';

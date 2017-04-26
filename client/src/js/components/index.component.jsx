@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './Nav.component';
+import Navbar from './nav.component';
 import Body from './body.component';
 
 class Index extends Component {

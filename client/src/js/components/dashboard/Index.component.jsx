@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
-import Navbar from '../Nav.component';
+import Navbar from '../nav.component';
 import Searchbar from '../searchbar.component';
 import AdminDashboard from './admin.component';
 import UserDashboard from './user.component';
