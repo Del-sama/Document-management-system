@@ -15,7 +15,6 @@ import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
 class UserDashboard extends Component {
   constructor(props) {
-    console.log("props=========>", props);
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
     this.setDeleteDocument = this.setDeleteDocument.bind(this);
