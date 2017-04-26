@@ -4,7 +4,23 @@ import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import newDocument from '../../actions/documentManagement/newDocument';
 
-
+const ResponseMessage = (props) => {
+  if (props.status === 'success') {
+    return (
+      <div>
+        Document Created
+      </div>
+    );
+  } else if (props.status === 'failed') {
+    return (
+      <div>
+        Document not Created
+      </div>
+    );
+  } else {
+    return (<span />);
+  }
+};
 export class CreateDocument extends Component {
   constructor(props) {
       super(props);
