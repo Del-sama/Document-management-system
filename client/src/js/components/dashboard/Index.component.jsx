@@ -39,7 +39,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const roleId = this.state.authUser.role_id || null
+    const roleId = this.state.authUser.RoleId || null
     return (roleId === this.state.AdminRoleId) ?
       <AdminDashboard /> :
       <UserDashboard documents={this.props.documents} />

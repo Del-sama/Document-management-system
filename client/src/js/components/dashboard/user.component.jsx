@@ -13,7 +13,7 @@ import EditDocument from '../../actions/documentManagement/editDocument';
 import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
 
-class Dashboard extends Component {
+class UserDashboard extends Component {
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
@@ -37,6 +37,7 @@ class Dashboard extends Component {
     $('ul.tabs').tabs();
   }
   render() {
+
     return (
       <div>
         <div id="modal1" className="modal modal-fixed-footer">
@@ -65,7 +66,7 @@ class Dashboard extends Component {
               </ul>
             </div>
             <div id="test3" className="tabContent col s12">
-              <UserDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
+              <UserDocs document={this.props.document} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test1" className="tabContent col s12">
               <PrivateDocs document={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument} />
@@ -95,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(null, mapDispatchToProps)(UserDashboard);

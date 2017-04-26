@@ -163,11 +163,12 @@ text-transform: $upperCase;
   box-shadow: $box-shadow
 }
 .tabContent{
-  height: 100vh;
+  max-height: 100vh;
   background-color: $background-color;
   padding: .9rem !important;
   color: $text-color-two;
   opacity: 0.9;
+  overflow: scroll;
 }
 .tabs .tab a {
   color: $text-color-two;
