@@ -13,6 +13,8 @@ const logger = require('morgan');
 
 const app = express();
 
+const port = process.env.PORT || 5050;
+
 if (process.env.NODE_ENV !== 'test') {
   const compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, {
@@ -37,8 +39,9 @@ app.use(usersRoute());
 app.use(rolesRoute());
 app.use(documentRoute());
 
-app.listen(5050, () => {
-  console.log('app is listening on port 5050');
+app.listen(port, () => {
+  console.log(`
+  app is listening on port ${port}`);
 });
 
 module.exports = app;
