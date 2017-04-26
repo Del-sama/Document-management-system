@@ -8,8 +8,8 @@ const config = require('../config.json')[env];
 
 const db = {};
 
-if (config.use_env_variable) {
-  let sequelize = new Sequelize(process.env[config.use_env_variable]);
+if (env === 'production') {
+  let sequelize = new Sequelize(process.env.DATABASE_URL_PROD);
 } else {
   let sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
