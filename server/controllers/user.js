@@ -29,6 +29,10 @@ class UsersController {
    * @returns {Object} response object
    */
   static getUsers(request, response) {
+    if (request.query.limit < 0 || request.query.offset < 0) {
+      return response.status(400)
+      .send({ message: 'Only Positive integers are permitted.' });
+    }
     model.User.findAll({
       attributes: [
         'id',
@@ -39,7 +43,10 @@ class UsersController {
         'RoleId',
         'createdAt',
         'updatedAt'
-      ]
+      ],
+      limit: request.query.limit || null,
+      offset: request.query.offset || null,
+      order: [['createdAt', 'DESC']]
     }).then(users => response.status(200)
         .send(users));
   }
@@ -60,7 +67,8 @@ class UsersController {
           .then((newUser) => {
             const token = jwt.sign({
               UserId: newUser.id,
-              RoleId: newUser.RoleId
+              RoleId: newUser.RoleId,
+              userName: newUser.userName
             }, secret, { expiresIn: '2 days' });
             newUser = formattedUser(newUser);
             return response.status(201)
@@ -141,19 +149,21 @@ class UsersController {
    * @memberOf UsersController
    */
   static login(request, response) {
-    model.User.findOne({ where: { email: request.body.email } })
+    model.User.findOne({ where: { userName: request.body.userName } })
       .then((user) => {
         if (user && user.validPassword(request.body.password)) {
-          const token = jwt.sign({
+          const payload = {
             UserId: user.id,
-            RoleId: user.RoleId
-          }, secret, { expiresIn: '2 days' });
+            RoleId: user.RoleId,
+            userName: user.userName
+          };
+          const token = jwt.sign(payload, secret, { expiresIn: '2 days' });
           return response.status(200)
             .send({ token, expiresIn: '2 days' });
         }
         return response.status(401)
           .send({ message: 'Log in Failed' });
-      });
+      })
   }
    /**
    * Method logout

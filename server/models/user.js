@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     RoleId: {
       allowNull: false,
       type: DataTypes.INTEGER,
+      defaultValue: 2
     }
   }, {
     classMethods: {
@@ -62,7 +63,8 @@ module.exports = (sequelize, DataTypes) => {
       beforeUpdate: (newUser) => {
         newUser.generateHash();
       }
-    }
+    },
+    freezeTableName: true
   });
   return User;
 };

@@ -14,8 +14,6 @@ app.use(parser.json());
 
 app.use(logger('tiny'));
 
-// app.use('/', indexRoute);
-// app.use('/users', usersRoute);
 app.use(indexRoute());
 app.use(usersRoute());
 app.use(rolesRoute());
