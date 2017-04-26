@@ -61,7 +61,9 @@
     "url-loader": "^0.5.8",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "node-sass": "^4.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
