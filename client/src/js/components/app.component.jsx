@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Router history={browserHistory}>
-          <Route path='/' component={Index} />
+          <Route path='/app/' component={Index} />
           <Route path='/app/login' component={Login} />
           <Route  path='/app/signup' component={Signup} />
           <Route  path='/app/dashboard' component={Dashboard} />

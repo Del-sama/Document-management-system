@@ -6,7 +6,7 @@ import Searchbar from '../searchbar.component';
 import AdminDashboard from './admin.component';
 import UserDashboard from './user.component';
 import { bindActionCreators } from 'redux';
-import * as docActions from '../../actions/documentManagement/readDocument';
+import * as AllDocActions from '../../actions/documentManagement/readAllDocuments';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Dashboard extends Component {
 
   componentWillMount() {
     const userId = this.state.authUser.UserId || null
-    this.props.actions.viewUserDocuments(userId);
+    this.props.actions.viewAllDocuments(userId)
   }
   componentDidMount() {
     $('.modal').modal({
@@ -34,12 +34,12 @@ class Dashboard extends Component {
       //   alert("Ready");
       //   console.log(modal, trigger);
       // },
-      complete: function () { alert('Closed'); } // Callback for Modal close
+      // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
 
   render() {
-    const roleId = this.state.authUser.role_id || null
+    const roleId = this.state.authUser.RoleId || null
     return (roleId === this.state.AdminRoleId) ?
       <AdminDashboard /> :
       <UserDashboard documents={this.props.documents} />
@@ -54,7 +54,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(docActions, dispatch)
+    actions: bindActionCreators(AllDocActions, dispatch)
   }
 }
 

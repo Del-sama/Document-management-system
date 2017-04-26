@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import { browserHistory, Link } from 'react-router';
+import jwtDecode from 'jwt-decode';
+
+let myId;
+let userName;
+const token = (window.localStorage.getItem('token'));
+if (token) {
+  myId = jwtDecode(token).UserId;
+  userName = jwtDecode(token).userName;
+}
 
 const RoleDocs = (props) => {
   let documentList;
@@ -7,11 +16,11 @@ const RoleDocs = (props) => {
 
     documentList = props.document.document.data
     .filter((document) => {
-      return document.access === 'role';
+      return (document.UserId === myId) && (document.access === 'role');
     })
     .map((document) => {
       return (
-        <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument}/>
+        <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument} setDeleteDocument={props.setDeleteDocument} />
       )
     })
   }
@@ -24,6 +33,7 @@ const RoleDocs = (props) => {
               <th>Access</th>
               <th>Content</th>
               <th>Published date</th>
+              <th>Updated date</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +55,7 @@ const SingleDocument = (props) => {
       <td>{ (document.createdAt).slice(0, 10) }</td>
       <td>{(document.updatedAt).slice(0, 10)}</td>
       <td><a className="modal-trigger green-text" href="#modal1" onClick={()=>{ props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>
-      <td><Link to="#" className="red-text"> <i className="material-icons">delete</i></Link></td>
+      <td><a className="red-text" href="#" onClick={()=>{ props.setDeleteDocument(document.id); }} > <i className="material-icons">delete</i></a></td>
     </tr>
   );
 }

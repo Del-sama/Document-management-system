@@ -11,7 +11,7 @@ class NotFound extends Component {
           <p>HUH!??</p>
           <div>
             <p>
-              <Link to="/">
+              <Link to="/app/">
                 Go back to home page
               </Link>
             </p>
