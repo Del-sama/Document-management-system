@@ -37,8 +37,9 @@ Document management system is an application used to track, manage and store doc
 
 - [Node js](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Materialize css](http://materializecss.com/) makes styling responsive web pages faster and easier.
-- [Karma](https://karma-runner.github.io/)is a feature-rich JavaScript test framework running on Node.js and in the browser used for asynchronous testing.
-- [Jasmine](https://jasmine.github.io/) is a BDD / TDD assertion library for node and the browser that can be paired with any javascript testing framework.
+- [Mocha](https://mochajs.org/)is a feature-rich JavaScript test framework running on Node.js and in the browser used for asynchronous testing.
+- [Chai](https://chaijs.com/) is a BDD / TDD assertion library for node and the browser that can be paired with any javascript testing framework.
+- [Istanbul](https://istanbul.js.org/) Istanbul instruments your ES5 and ES2015+ JavaScript code with line counters, so that you can track how well your unit-tests exercise your codebase.
 - [Eslint](http://eslint.org/) provides a pluggable linting utility for JavaScript.
 - [Hound CI](https://houndci.com/) comments on style violations in GitHub pull requests.
 - [Travis CI](https://travis-ci.org/) a hosted continuous integration and delivery service for GitHub projects.

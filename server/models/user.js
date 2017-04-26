@@ -63,7 +63,8 @@ module.exports = (sequelize, DataTypes) => {
       beforeUpdate: (newUser) => {
         newUser.generateHash();
       }
-    }
+    },
+    freezeTableName: true
   });
   return User;
 };

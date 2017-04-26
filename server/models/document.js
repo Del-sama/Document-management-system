@@ -24,12 +24,15 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         Document.belongsTo(models.User, {
-          as: 'User',
           onDelete: 'CASCADE',
-          foreignKey: { allowNull: true }
+          foreignKey: {
+            name: 'UserId',
+            allowNull: false
+          }
         });
       }
-    }
+    },
+    freezeTableName: true
   });
   return Document;
 };

@@ -54,7 +54,7 @@ import axios from 'axios';
     return (
       <div>
          <div className="row">
-           <h4 className="center auth-header"><Link to="/">Document Mangement System</Link></h4>
+           <h4 className="center auth-header"><Link to="/app/">Document Mangement System</Link></h4>
           </div>
          <div className="row signupForm">
            <h4 className="center">Sign Up</h4>
@@ -151,8 +151,7 @@ import axios from 'axios';
 
 
 const mapStoreToProps = (state) => {
-  console.log(state, 'state');
-  return {
+    return {
     user: state.signupReducer.user,
     error: state.signupReducer.error
   };
