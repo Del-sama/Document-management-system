@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e8825e323c76f18431f1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f7adaa95ecb3329522c4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -10938,9 +10938,6 @@
 	    if (token) {
 	      _this.state = { id: (0, _jwtDecode2.default)(token).UserId, userName: (0, _jwtDecode2.default)(token).userName };
 	    }
-
-	    console.log(props, "props");
-
 	    _this.state = {
 	      title: props.document ? props.document.title : '',
 	      content: props.document ? props.document.content : '',
@@ -20534,8 +20531,8 @@
 	    }
 	  }, {
 	    key: 'setDeleteDocument',
-	    value: function setDeleteDocument() {
-	      this.props.DeleteDocument(document.id);
+	    value: function setDeleteDocument(documentId) {
+	      this.props.DeleteDocument(documentId);
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -20662,6 +20659,7 @@
 	    DeleteDocument: function DeleteDocument(documentId) {
 	      return dispatch((0, _deleteDocuments2.default)(documentId));
 	    }
+
 	  };
 	};
 
@@ -21201,7 +21199,6 @@
 	      _react2.default.createElement(
 	        'a',
 	        { className: 'red-text', href: '#', onClick: function onClick() {
-	            console.log(document);
 	            props.setDeleteDocument(document.id);
 	          } },
 	        ' ',

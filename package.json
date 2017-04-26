@@ -9,8 +9,9 @@
     "build": "./node_modules/.bin/webpack && npm run sass",
     "startzz": "npm run build && node server.js",
     "serve": "npm run build && nodemon server.js",
-    "start": "./node_modules/.bin/nodemon --watch client/src --exec 'npm run serve'",
-    "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
+    "start": "node server.js",
+    "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
