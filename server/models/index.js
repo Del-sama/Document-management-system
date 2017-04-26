@@ -9,7 +9,7 @@ const config = require('../config.json')[env];
 const db = {};
 
 if (env === 'production') {
-  let sequelize = new Sequelize(process.env.DATABASE_URL_PROD);
+  let sequelize = new Sequelize({ url: process.env.DATABASE_URL_PROD, dialect: 'postgres'});
 } else {
   let sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
