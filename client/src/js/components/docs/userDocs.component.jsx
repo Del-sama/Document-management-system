@@ -11,7 +11,7 @@ if (token) {
 
 }
 const UserDocs = (props) => {
-
+  console.log(props)
   let documentList;
   if (props.document.document !== undefined) {
 
