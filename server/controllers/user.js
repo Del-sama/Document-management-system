@@ -29,6 +29,10 @@ class UsersController {
    * @returns {Object} response object
    */
   static getUsers(request, response) {
+    if (request.query.limit < 0 || request.query.offset < 0) {
+      return response.status(400)
+      .send({ message: 'Only Positive integers are permitted.' });
+    }
     model.User.findAll({
       attributes: [
         'id',
@@ -39,7 +43,10 @@ class UsersController {
         'RoleId',
         'createdAt',
         'updatedAt'
-      ]
+      ],
+      limit: request.query.limit || null,
+      offset: request.query.offset || null,
+      order: [['createdAt', 'DESC']]
     }).then(users => response.status(200)
         .send(users));
   }
