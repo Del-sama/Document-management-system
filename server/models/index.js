@@ -8,6 +8,8 @@ const config = require('../config.json')[env];
 
 const db = {};
 
+console.log(env, config, process.env.DATABASE_URL_PROD, "**********");
+
 if (env === 'production') {
   let sequelize = new Sequelize({ url: process.env.DATABASE_URL_PROD, dialect: 'postgres'});
 } else {
