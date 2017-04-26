@@ -12,7 +12,7 @@
     "start": "node server.js",
     "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
     "postinstall": "npm run build && npm run db-setup",
-    "db-setup": "NODE_ENV=production sequelize db:migrate && sequelize db:seed:all"
+    "db-setup": "sequelize db:migrate && sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
