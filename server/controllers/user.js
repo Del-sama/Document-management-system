@@ -156,8 +156,6 @@ class UsersController {
         }
         return response.status(401)
           .send({ message: 'Log in Failed' });
-      }).catch((error)=>{
-        console.log(error);
       })
   }
    /**
