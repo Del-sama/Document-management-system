@@ -45,6 +45,10 @@ Document management system is an application used to track, manage and store doc
 - [Express js](http://expressjs.com/) handles backend routing.
 - [Nodemon](https://nodemon.io/)monitors any changes in your source and restarts the browser.
 - [Coveralls](https://coveralls.io/) shows the parts of your code that are not covered by your test suite.
+- [Sequelize](http://docs.sequelizejs.com/) Sequelize is a promise-based ORM for Node.js and io.js. It supports the dialects PostgreSQL, MySQL, MariaDB, SQLite and MSSQL and features solid transaction support, relations, read replication and more.
+- [PostgreSQL](https://www.postgresql.org/) A powerful, open source object-relational database system.
+- [React](https://facebook.github.io/react/) A Javascript library for building user interfaces.
+- [Redux](http://redux.js.org/) A predictable state container for JavaScript apps.
 
 
 ## Installation and Setup
