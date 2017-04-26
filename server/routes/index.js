@@ -1,9 +1,10 @@
+const path  = require('path');
 const router = require('express').Router();
 
 router.route('/')
   .get((request, response) => response
     .status(200)
-    .send({ message: 'Document Management System' }));
+    .sendFile(path.join(__dirname, '../apiDocs', 'index.html')));
 
 module.exports = () => router;
 

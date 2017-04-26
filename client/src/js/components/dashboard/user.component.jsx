@@ -22,7 +22,6 @@ class UserDashboard extends Component {
   }
 
   setEditDocument(document){
-    console.log(document, 'to edit');
     this.setState({
       editDocument: document,
       documentId: document.id

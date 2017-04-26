@@ -8,6 +8,7 @@ const webpackConfig = require('./webpack.config');
 const usersRoute = require('./server/routes/user');
 const rolesRoute = require('./server/routes/role');
 const indexRoute = require('./server/routes/index');
+const swaggerRoute = require('./server/routes/swagger');
 const documentRoute = require('./server/routes/document');
 const logger = require('morgan');
 
@@ -23,21 +24,24 @@ if (process.env.NODE_ENV !== 'test') {
   }));
   app.use(webpackHotMiddleware(compiler));
 }
-app.use(express.static(path.join(__dirname, 'client/dist')));
-app.get('/app/*', (req, res) => {
-  res.sendFile(`${__dirname}/client/dist/index.html`);
-});
-
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
 app.use(logger('tiny'));
 
+app.use(express.static(path.join(__dirname, 'server/apiDocs')));
+
 app.use(indexRoute());
 app.use(usersRoute());
 app.use(rolesRoute());
 app.use(documentRoute());
+app.use(swaggerRoute());
+
+app.use(express.static(path.join(__dirname, 'client/dist')));
+app.get('/app/*', (req, res) => {
+  res.sendFile(`${__dirname}/client/dist/index.html`);
+});
 
 app.listen(port, () => {
   console.log(`
