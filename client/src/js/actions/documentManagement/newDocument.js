@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 export default (details) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {
-    return axios.post('/app/documents', details, {
+    return axios.post('/documents', details, {
       headers: {
         Authorization: token
       }

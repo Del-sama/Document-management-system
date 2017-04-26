@@ -7,7 +7,7 @@ export default (details, documentid) => {
     if(!token){
       return
     }
-    return axios.put(`/app/documents/${documentid}`, details, {
+    return axios.put(`/documents/${documentid}`, details, {
       headers: {
         Authorization: token
       }

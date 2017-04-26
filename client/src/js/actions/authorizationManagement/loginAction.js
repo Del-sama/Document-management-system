@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 export default (loginCredentials) => {
   return (dispatch) => {
-    return axios.post('/app/users/login', loginCredentials)
+    return axios.post('/users/login', loginCredentials)
       .then((response) => {
         const token = response.data.token;
         const user = jwtDecode(token).user;
