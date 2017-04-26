@@ -31,7 +31,7 @@ Document management system is an application used to track, manage and store doc
 
 ## How users can get started with the project
 
-- By clicking on the [Production app](https://ddiei-doc-mgt-system.herokuapp.com/)
+- By clicking on the [Production app](https://ddiei-doc-mgt-system-staging.herokuapp.com)
 
 ## Dependencies
 
@@ -95,4 +95,4 @@ Document management system is an application used to track, manage and store doc
 **Delores Diei**
 ## Troubleshooting and FAQ
 
-[https://github.com/andela-ddiei/inverted-index/issues](hhttps://github.com/Andela-ddiei/Document-management-system/issues)
+[https://github.com/andela-ddiei/Document-management-system/issues](hhttps://github.com/Andela-ddiei/Document-management-system/issues)
