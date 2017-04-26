@@ -13,10 +13,11 @@ addons:
 services:
   - postgresql
 
-before_script:
-  - psql -c 'create database dms_test;' -U postgres
-  - npm install
+# before_script:
+#   - psql -c 'create database dms_test;' -U postgres
+#   - npm install
 script:
+  - psql -c 'create database dms_test;' -U postgres
   - npm test
 
 after_success:
