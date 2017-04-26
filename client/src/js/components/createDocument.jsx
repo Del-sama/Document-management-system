@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
-import Navbar from './Nav.component';
+import Navbar from './nav.component';
 import newDocument from '../actions/documentManagement/newDocument';
 
 const ResponseMessage = (props) => {

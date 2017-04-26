@@ -1,0 +1,29 @@
+{
+  "name": "Document-management-system",
+  "scripts": {
+  },
+  "env": {
+    "DATABASE_URL_PROD": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "PORTS": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

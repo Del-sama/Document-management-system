@@ -156,7 +156,7 @@ class UsersController {
         }
         return response.status(401)
           .send({ message: 'Log in Failed' });
-      });
+      })
   }
    /**
    * Method logout

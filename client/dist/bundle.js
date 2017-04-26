@@ -65,7 +65,11 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 /******/ 	var hotCurrentHash = "bb5bfd596722e214cebe"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "fa84c910a3ca8e6b8e9e"; // eslint-disable-line no-unused-vars
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -11197,12 +11201,63 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+<<<<<<< HEAD
 	var AllDocs = function AllDocs(props) {
 	  var documentList = void 0;
 	  if (props.document.document !== undefined) {
 	    documentList = props.document.document.data.map(function (document) {
 	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id });
 	    });
+=======
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ResponseMessage = function ResponseMessage(props) {
+	  if (props.status === 'success') {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      'Document Created'
+	    );
+	  } else if (props.status === 'failed') {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      'Document not Created'
+	    );
+	  } else {
+	    return _react2.default.createElement('span', null);
+	  }
+	};
+
+	var CreateDocument = exports.CreateDocument = function (_Component) {
+	  _inherits(CreateDocument, _Component);
+
+	  function CreateDocument(props) {
+	    _classCallCheck(this, CreateDocument);
+
+	    var _this = _possibleConstructorReturn(this, (CreateDocument.__proto__ || Object.getPrototypeOf(CreateDocument)).call(this, props));
+
+	    var token = window.localStorage.getItem('token');
+	    if (token) {
+	      _this.state = { id: (0, _jwtDecode2.default)(token).UserId, userName: (0, _jwtDecode2.default)(token).userName };
+	    }
+	    _this.state = {
+	      title: props.document ? props.document.title : '',
+	      content: props.document ? props.document.content : '',
+	      access: props.document ? props.document.access : '',
+	      status: props.document ? props.document.status : '',
+	      UserId: _this.state.id
+	    };
+	    _this.onChange = _this.onChange.bind(_this);
+	    _this.onSubmit = _this.onSubmit.bind(_this);
+	    return _this;
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 	  }
 	  return _react2.default.createElement(
 	    'div',
@@ -11304,6 +11359,17 @@
 
 	var _reactRouter = __webpack_require__(8);
 
+<<<<<<< HEAD
+=======
+	var _loginAction = __webpack_require__(174);
+
+	var _loginAction2 = _interopRequireDefault(_loginAction);
+
+	var _nav = __webpack_require__(29);
+
+	var _nav2 = _interopRequireDefault(_nav);
+
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var PrivateDocs = function PrivateDocs(props) {
@@ -20728,9 +20794,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 	var _Nav = __webpack_require__(30);
+=======
+	var _nav = __webpack_require__(29);
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _newDocument = __webpack_require__(99);
 
@@ -20963,9 +21033,13 @@
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
+<<<<<<< HEAD
 	var _Nav = __webpack_require__(30);
+=======
+	var _nav = __webpack_require__(29);
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _searchbar = __webpack_require__(58);
 
@@ -21054,7 +21128,147 @@
 	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(Dashboard);
 
 /***/ }),
+<<<<<<< HEAD
 /* 190 */
+=======
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(19);
+
+	var _reactRouter = __webpack_require__(8);
+
+	var _nav = __webpack_require__(29);
+
+	var _nav2 = _interopRequireDefault(_nav);
+
+	var _searchbar = __webpack_require__(57);
+
+	var _searchbar2 = _interopRequireDefault(_searchbar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Dashboard = function (_Component) {
+	  _inherits(Dashboard, _Component);
+
+	  function Dashboard() {
+	    _classCallCheck(this, Dashboard);
+
+	    return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).apply(this, arguments));
+	  }
+
+	  _createClass(Dashboard, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'mainContainer' },
+	          _react2.default.createElement('div', { className: 'bg' }),
+	          _react2.default.createElement(_nav2.default, null),
+	          _react2.default.createElement(_searchbar2.default, null),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'tabRow' },
+	              _react2.default.createElement(
+	                'ul',
+	                { className: 'tabs' },
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'tab col s3' },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '#test3', className: 'active' },
+	                    'All Docs'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'tab col s3' },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '#test1' },
+	                    'Private Docs'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'tab col s3' },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '#test2' },
+	                    'Public Docs'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'tab col s3' },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '#test4' },
+	                    'Role Docs'
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'test3', className: 'tabContent col s12' },
+	              'All Docs'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'test1', className: 'tabContent col s12' },
+	              'Private Docs'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'test2', className: 'tabContent col s12' },
+	              'Public Docs'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'test4', className: 'tabContent col s12' },
+	              'Role Docs'
+	            )
+	          ),
+	          _react2.default.createElement('div', null)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Dashboard;
+	}(_react.Component);
+
+	exports.default = Dashboard;
+
+/***/ }),
+/* 186 */
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21073,9 +21287,13 @@
 
 	var _reactRouter = __webpack_require__(8);
 
+<<<<<<< HEAD
 	var _Nav = __webpack_require__(30);
+=======
+	var _nav = __webpack_require__(29);
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _searchbar = __webpack_require__(58);
 
@@ -21186,7 +21404,7 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement('div', { className: 'bg' }),
-	          _react2.default.createElement(_Nav2.default, null),
+	          _react2.default.createElement(_nav2.default, null),
 	          _react2.default.createElement(_searchbar2.default, null),
 	          _react2.default.createElement(
 	            'div',
@@ -21263,12 +21481,365 @@
 	              'div',
 	              { id: 'test4', className: 'tabContent col s12' },
 	              _react2.default.createElement(_roleDocs2.default, { document: this.props.documents, setEditDocument: this.setEditDocument, setDeleteDocument: this.setDeleteDocument })
+<<<<<<< HEAD
 	            ),
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'test5', className: 'tabContent col s12' },
 	              _react2.default.createElement(_allDocs2.default, { document: this.props.documents })
 	            )
+=======
+	            )
+	          ),
+	          _react2.default.createElement('div', null)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Dashboard;
+	}(_react.Component);
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    EditDocument: function EditDocument(documentDetails, documentId) {
+	      return dispatch((0, _editDocument2.default)(documentDetails, documentId));
+	    },
+	    DeleteDocument: function DeleteDocument(documentId) {
+	      return dispatch((0, _deleteDocuments2.default)(documentId));
+	    }
+
+	  };
+	};
+
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Dashboard);
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(8);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PrivateDocs = function PrivateDocs(props) {
+	  var documentList = void 0;
+	  if (props.document.document !== undefined) {
+	    documentList = props.document.document.data.filter(function (document) {
+	      return document.access === 'private';
+	    }).map(function (document) {
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
+	    });
+	  }
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'table',
+	      { className: 'bordered responsive' },
+	      _react2.default.createElement(
+	        'thead',
+	        null,
+	        _react2.default.createElement(
+	          'tr',
+	          null,
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Title'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Access'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Content'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Published date'
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'tbody',
+	        null,
+	        documentList
+	      )
+	    )
+	  );
+	};
+
+	var SingleDocument = function SingleDocument(props) {
+	  var document = props.document;
+
+	  return _react2.default.createElement(
+	    'tr',
+	    { className: 'hoverable' },
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.title
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.access
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      { className: 'truncate' },
+	      document.content
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.createdAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.updatedAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '#', className: 'red-text' },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
+	      )
+	    )
+	  );
+	};
+
+	exports.default = PrivateDocs;
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(8);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PublicDocs = function PublicDocs(props) {
+	  var documentList = void 0;
+	  if (props.document.document !== undefined) {
+
+	    documentList = props.document.document.data.filter(function (document) {
+	      return document.access === 'public';
+	    }).map(function (document) {
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
+	    });
+	  }
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'table',
+	      { className: 'bordered responsive' },
+	      _react2.default.createElement(
+	        'thead',
+	        null,
+	        _react2.default.createElement(
+	          'tr',
+	          null,
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Title'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Access'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Content'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Published date'
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'tbody',
+	        null,
+	        documentList
+	      )
+	    )
+	  );
+	};
+
+	var SingleDocument = function SingleDocument(props) {
+	  var document = props.document;
+
+	  return _react2.default.createElement(
+	    'tr',
+	    { className: 'hoverable' },
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.title
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.access
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      { className: 'truncate' },
+	      document.content
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.createdAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.updatedAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '#', className: 'red-text' },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
+	      )
+	    )
+	  );
+	};
+
+	exports.default = PublicDocs;
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(8);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var RoleDocs = function RoleDocs(props) {
+	  var documentList = void 0;
+	  if (props.document.document !== undefined) {
+
+	    documentList = props.document.document.data.filter(function (document) {
+	      return document.access === 'role';
+	    }).map(function (document) {
+	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument });
+	    });
+	  }
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'table',
+	      { className: 'bordered responsive' },
+	      _react2.default.createElement(
+	        'thead',
+	        null,
+	        _react2.default.createElement(
+	          'tr',
+	          null,
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Title'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Access'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Content'
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 	          ),
 	          _react2.default.createElement('div', null)
 	        )
@@ -21521,6 +22092,7 @@
 	  return UserDashboard;
 	}(_react.Component);
 
+<<<<<<< HEAD
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
 	    EditDocument: function EditDocument(documentDetails, documentId) {
@@ -21531,6 +22103,68 @@
 	    }
 
 	  };
+=======
+	  return _react2.default.createElement(
+	    'tr',
+	    { className: 'hoverable' },
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.title
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.access
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      { className: 'truncate' },
+	      document.content
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.createdAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      document.updatedAt.slice(0, 10)
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'modal-trigger green-text', href: '#modal1', onClick: function onClick() {
+	            props.setEditDocument(document);
+	          } },
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'edit'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'red-text', href: '#', onClick: function onClick() {
+	            props.setDeleteDocument(document.id);
+	          } },
+	        ' ',
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons' },
+	          'delete'
+	        )
+	      )
+	    )
+	  );
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 	};
 
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(UserDashboard);
@@ -21551,9 +22185,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 	var _Nav = __webpack_require__(30);
+=======
+	var _nav = __webpack_require__(29);
+>>>>>>> 586bfa3c49567b80a5b4ed6d254d2f28d5da766c
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _body = __webpack_require__(187);
 
@@ -21592,7 +22230,7 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement('div', { className: 'bg' }),
-	          _react2.default.createElement(_Nav2.default, { isLoginActive: 'active', isSignupActive: '' }),
+	          _react2.default.createElement(_nav2.default, { isLoginActive: 'active', isSignupActive: '' }),
 	          _react2.default.createElement(_body2.default, null)
 	        )
 	      );
