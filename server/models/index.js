@@ -8,12 +8,11 @@ const config = require('../config.json')[env];
 
 const db = {};
 
-// if (config.use_env_variable) {
-//   let sequelize = new Sequelize(process.env[config.use_env_variable]);
-// } else {
-//   let sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+if (config.use_env_variable) {
+  let sequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
+  let sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 fs
   .readdirSync(__dirname)
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
