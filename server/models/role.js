@@ -4,10 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'regular',
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING,
-      validate: {
-        // isIn: [['admin', 'regular']]
-      }
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {

@@ -56,7 +56,7 @@ router.route('/roles')
      */
   .post(auth.verifyToken, auth.adminAccess, rolesController.createRoles)
 /** @swagger
-      *  /roles
+      *  /roles:
       *   get:
       *     description: Returns roles
       *     tags:
