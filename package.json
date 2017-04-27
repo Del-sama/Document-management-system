@@ -11,7 +11,8 @@
     "startzz": "npm run build && node server.js",
     "serve": "npm run build && nodemon server.js",
     "start": "node server.js",
-    "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
+    "migrate-test": "./node_modules/.bin/sequelize db:migrate",
+    "migrate-dev-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
     "postinstall": "npm run build && npm run db-setup",
     "db-setup": "sequelize db:migrate && sequelize db:seed:undo:all && sequelize db:seed:all"
   },
