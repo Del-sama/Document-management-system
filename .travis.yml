@@ -1,6 +1,3 @@
-dist: trusty
-sudo: required
-
 language: node_js
 node_js: "stable"
 
@@ -15,5 +12,5 @@ before_script:
   - NODE_ENV=production npm run migrate-test
 
 after_success:
-- node node_modules/codeclimate-test-reporter/bin/codeclimate < coverage/lcov.info
+  - node node_modules/codeclimate-test-reporter/bin/codeclimate < coverage/lcov.info
 
