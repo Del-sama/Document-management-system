@@ -9,7 +9,6 @@ services:
 
 before_install:
   - psql -c 'create database dms_test;' -U postgres
-  - npm i -g istanbul
 
 after_success:
   - node node_modules/codeclimate-test-reporter/bin/codeclimate < coverage/lcov.info
