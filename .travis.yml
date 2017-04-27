@@ -9,6 +9,8 @@ services:
 
 before_install:
   - psql -c 'create database dms_test;' -U postgres
+
+before_script:
   - NODE_ENV=production npm run migrate-test
 
 
