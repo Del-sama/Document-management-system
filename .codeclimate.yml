@@ -18,6 +18,6 @@ ratings:
   paths:
   - "**.js"
   - "**.css"
-  -"**.scss"
+  - "**.scss"
 exclude_paths:
 - "bundle.js"
