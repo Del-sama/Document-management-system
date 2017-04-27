@@ -5,16 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha server/tests/**/*.spec.js",
-    "dev-test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
-    "sass": "./node_modules/.bin/node-sass ./client/src/scss/main.scss client/dist/main.css",
-    "build": "./node_modules/.bin/webpack && npm run sass",
-    "startzz": "npm run build && node server.js",
-    "serve": "npm run build && nodemon server.js",
+    "build": "./node_modules/.bin/webpack",
     "start": "node server.js",
-    "migrate-test": "./node_modules/.bin/sequelize db:migrate",
-    "migrate-dev-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
-    "postinstall": "npm run build && npm run db-setup",
-    "db-setup": "sequelize db:migrate && sequelize db:seed:undo:all && sequelize db:seed:all"
+    "postinstall": "sequelize db:migrate && sequelize db:seed:undo:all && sequelize db:seed:all",
+    "serve": "npm run build && nodemon server.js",
+    "dev-test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
+    "migrate-dev-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
