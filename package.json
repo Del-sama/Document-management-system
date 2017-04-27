@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
+    "test": "istanbul cover _mocha server/tests/**/*.spec.js",
+    "dev-test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
     "sass": "./node_modules/.bin/node-sass ./client/src/scss/main.scss client/dist/main.css",
     "build": "./node_modules/.bin/webpack && npm run sass",
     "startzz": "npm run build && node server.js",
