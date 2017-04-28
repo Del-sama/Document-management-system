@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    RoleId: {
+    roleId: {
       allowNull: false,
       type: DataTypes.INTEGER,
       defaultValue: 2
@@ -37,12 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       associate: (models) => {
         User.belongsTo(models.Role, {
           foreignKey: {
-            name: 'RoleId',
+            name: 'roleId',
             allowNull: false
           }
         });
         User.hasMany(models.Document, {
-          foreignKey: 'UserId'
+          foreignKey: 'userId'
         });
       }
     },

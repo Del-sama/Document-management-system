@@ -3,14 +3,14 @@ const model = require('../models');
 
 const secret = 'secret';
 
-const formattedUser = (user) => {
+const formatUser = (user) => {
   const userDetails = {
     id: user.id,
     userName: user.userName,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    RoleId: user.RoleId,
+    roleId: user.roleId,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt
   };
@@ -19,15 +19,15 @@ const formattedUser = (user) => {
 
 /**
  * Class UsersController
- * To handle routing logic for documents route
+ * To handle routing logic for users route
  */
 class UsersController {
-  /**
-   * Method getUsers to obtain all users
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {Object} response object
-   */
+/**
+ * Method getUsers to obtain all users
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {Object} response object
+ */
   static getUsers(request, response) {
     if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
@@ -40,7 +40,7 @@ class UsersController {
         'firstName',
         'lastName',
         'email',
-        'RoleId',
+        'roleId',
         'createdAt',
         'updatedAt'
       ],
@@ -50,12 +50,13 @@ class UsersController {
     }).then(users => response.status(200)
         .send(users));
   }
-   /**
-   * Method createUser to create a user
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {Object} - response object
-   */
+
+/**
+ * Method createUser to create a user
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {Object} - response object
+ */
   static createUser(request, response) {
     model.User.findOne({ where: { userName: request.body.userName } })
      .then((user) => {
@@ -66,24 +67,25 @@ class UsersController {
        model.User.create(request.body)
           .then((newUser) => {
             const token = jwt.sign({
-              UserId: newUser.id,
-              RoleId: newUser.RoleId,
+              userId: newUser.id,
+              roleId: newUser.roleId,
               userName: newUser.userName
             }, secret, { expiresIn: '2 days' });
-            newUser = formattedUser(newUser);
+            newUser = formatUser(newUser);
             return response.status(201)
             .send({ newUser, token, expiresIn: '2 days' });
           })
           .catch(error => response.status(400)
-            .send(error.errors));
+            .send(error.message));
      });
   }
-  /**
-   * Method getUsers to obtain all users
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {Object} response object
-   */
+
+/**
+ * Method getUser to obtain a user
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {Object} response object
+ */
   static getUser(request, response) {
     model.User.findById(request.params.id)
       .then((user) => {
@@ -91,16 +93,17 @@ class UsersController {
           return response.status(404)
           .send({ message: `user with id ${request.params.id} not found` });
         }
-        user = formattedUser(user);
+        user = formatUser(user);
         return response.send(user);
       });
   }
-  /**
-   * Method updateUser
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   */
+
+/**
+ * Method updateUser to update user details
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ */
   static updateUser(request, response) {
     model.User.findById(request.params.id)
       .then((user) => {
@@ -111,21 +114,22 @@ class UsersController {
 
         user.update(request.body)
           .then((updatedUser) => {
-            updatedUser = formattedUser(updatedUser);
+            updatedUser = formatUser(updatedUser);
             return response.status(200)
               .send(updatedUser);
           });
       });
   }
-  /**
-   * Method deleteUser
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   */
+
+/**
+ * Method deleteUser to delete a user from the database
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ */
   static deleteUser(request, response) {
-    model.Role.findById(request.decoded.RoleId).then((Role) => {
-      if (request.decoded.UserId !== request.params.id && Role.title.toLowerCase() !== 'admin') {
+    model.Role.findById(request.decoded.roleId).then((Role) => {
+      if (request.decoded.userId !== request.params.id && Role.title.toLowerCase() !== 'admin') {
         return response.status(403).send({ message: 'User is unauthorized for this request' });
       }
       model.User.findById(request.params.id)
@@ -140,21 +144,21 @@ class UsersController {
           });
     });
   }
-  /**
-   *
-   * @static
-   * @param {any} request
-   * @param {any} response
-   * @returns {object} response object
-   * @memberOf UsersController
-   */
+
+/**
+ * Method login to login created users
+ * @param {object} request
+ * @param {object} response
+ * @returns {object} response object
+ * @memberOf UsersController
+ */
   static login(request, response) {
     model.User.findOne({ where: { userName: request.body.userName } })
       .then((user) => {
         if (user && user.validPassword(request.body.password)) {
           const payload = {
-            UserId: user.id,
-            RoleId: user.RoleId,
+            userId: user.id,
+            roleId: user.roleId,
             userName: user.userName
           };
           const token = jwt.sign(payload, secret, { expiresIn: '2 days' });
@@ -162,25 +166,27 @@ class UsersController {
             .send({ token, expiresIn: '2 days' });
         }
         return response.status(401)
-          .send({ message: 'Log in Failed' });
+          .send({ message: 'Login Failed' });
       })
   }
-   /**
-   * Method logout
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   */
+
+/**
+ * Method logout to logout logged in users
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ */
   static logout(request, response) {
     return response.status(200)
       .send({ message: 'Successful logout' });
   }
-  /**
-   * Method searchUsers
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   */
+
+/**
+ * Method searchUsers to search for users using query strings
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ */
   static searchUsers(request, response) {
   if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
