@@ -31,7 +31,7 @@ Document management system is an application used to track, manage and store doc
 
 ## How users can get started with the project
 
-- By clicking on the [Production app](https://ddiei-doc-mgt-system-staging.herokuapp.com)
+- By clicking on the [Production app](https://ddiei-doc-mgt-system-staging.herokuapp.com/app/)
 
 ## Dependencies
 
@@ -72,10 +72,6 @@ Document management system is an application used to track, manage and store doc
  
      > npm install
 
-- Run tests in your terminal.
-
-     > npm test
-
 - Start the application.
 
      > npm start
@@ -87,13 +83,13 @@ Document management system is an application used to track, manage and store doc
 - In your terminal, run 
    > npm test
 ## API Documentation
-- [Api documentation](http://localhost:5050)
+- [Api documentation](https://ddiei-doc-mgt-system-staging.herokuapp.com)
 ## Limitations of the project
   N/A
 
 ## Contributing to the project
 
-**Delores Diei**
+
 ## Troubleshooting and FAQ
 
 [https://github.com/andela-ddiei/Document-management-system/issues](hhttps://github.com/Andela-ddiei/Document-management-system/issues)
