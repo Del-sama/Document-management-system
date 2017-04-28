@@ -76,7 +76,7 @@ Document management system is an application used to track, manage and store doc
 
      > npm start
 
-- This launches the app on your default browser on http://localhost:5050/app/
+- This launches the app on your [default browser](http://localhost:5050/app/)
 
 ## How to run tests
 
