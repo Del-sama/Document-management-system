@@ -6,7 +6,7 @@ let myId;
 let userName;
 const token = (window.localStorage.getItem('token'));
 if (token) {
-  myId = jwtDecode(token).UserId;
+  myId = jwtDecode(token).userId;
   userName = jwtDecode(token).userName;
 }
 
@@ -15,7 +15,7 @@ const PublicDocs = (props) => {
   if (props.document.document !== undefined) {
     documentList = props.document.document.data
     .filter((document) => {
-      return (document.UserId === myId) && (document.access === 'public');
+      return (document.userId === myId) && (document.access === 'public');
     })
     .map((document) => {
       return (

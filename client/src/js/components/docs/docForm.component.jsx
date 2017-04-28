@@ -26,14 +26,14 @@ export class CreateDocument extends Component {
       super(props);
       const token = (window.localStorage.getItem('token'));
       if (token) {
-        this.state = { id: jwtDecode(token).UserId, userName: jwtDecode(token).userName};
+        this.state = { id: jwtDecode(token).userId, userName: jwtDecode(token).userName};
       }
       this.state = {
         title: props.document ? props.document.title :  '',
         content: props.document ? props.document.content : '',
         access: props.document ? props.document.access : '',
         status: props.document ? props.document.status : '',
-        UserId: this.state.id
+        userId: this.state.id
       };
       this.onChange = this.onChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);

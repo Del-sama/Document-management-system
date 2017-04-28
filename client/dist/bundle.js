@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a89a536427bb8bae5d3c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b496836b66f20513678a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4007,7 +4007,7 @@
 
 	    var token = window.localStorage.getItem('token');
 	    if (token) {
-	      _this.state = { id: (0, _jwtDecode2.default)(token).UserId, userName: (0, _jwtDecode2.default)(token).userName };
+	      _this.state = { id: (0, _jwtDecode2.default)(token).userId, userName: (0, _jwtDecode2.default)(token).userName };
 	      _this.logout = _this.logout.bind(_this);
 	    }
 	    return _this;
@@ -7194,14 +7194,14 @@
 
 	    var token = window.localStorage.getItem('token');
 	    if (token) {
-	      _this.state = { id: (0, _jwtDecode2.default)(token).UserId, userName: (0, _jwtDecode2.default)(token).userName };
+	      _this.state = { id: (0, _jwtDecode2.default)(token).userId, userName: (0, _jwtDecode2.default)(token).userName };
 	    }
 	    _this.state = {
 	      title: props.document ? props.document.title : '',
 	      content: props.document ? props.document.content : '',
 	      access: props.document ? props.document.access : '',
 	      status: props.document ? props.document.status : '',
-	      UserId: _this.state.id
+	      userId: _this.state.id
 	    };
 	    _this.onChange = _this.onChange.bind(_this);
 	    _this.onSubmit = _this.onSubmit.bind(_this);
@@ -11456,7 +11456,7 @@
 	var userName = void 0;
 	var token = window.localStorage.getItem('token');
 	if (token) {
-	  myId = (0, _jwtDecode2.default)(token).UserId;
+	  myId = (0, _jwtDecode2.default)(token).userId;
 	  userName = (0, _jwtDecode2.default)(token).userName;
 	}
 
@@ -11464,7 +11464,7 @@
 	  var documentList = void 0;
 	  if (props.document.document !== undefined) {
 	    documentList = props.document.document.data.filter(function (document) {
-	      return document.UserId === myId && document.access === 'public';
+	      return document.userId === myId && document.access === 'public';
 	    }).map(function (document) {
 	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument, setDeleteDocument: props.setDeleteDocument });
 	    });
@@ -11610,7 +11610,7 @@
 	var userName = void 0;
 	var token = window.localStorage.getItem('token');
 	if (token) {
-	  myId = (0, _jwtDecode2.default)(token).UserId;
+	  myId = (0, _jwtDecode2.default)(token).userId;
 	  userName = (0, _jwtDecode2.default)(token).userName;
 	}
 
@@ -11619,7 +11619,7 @@
 	  if (props.document.document !== undefined) {
 
 	    documentList = props.document.document.data.filter(function (document) {
-	      return document.UserId === myId && document.access === 'role';
+	      return document.userId === myId && document.access === 'role';
 	    }).map(function (document) {
 	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument, setDeleteDocument: props.setDeleteDocument });
 	    });
@@ -11765,7 +11765,7 @@
 	var userName = void 0;
 	var token = window.localStorage.getItem('token');
 	if (token) {
-	  myId = (0, _jwtDecode2.default)(token).UserId;
+	  myId = (0, _jwtDecode2.default)(token).userId;
 	  userName = (0, _jwtDecode2.default)(token).userName;
 	}
 	var UserDocs = function UserDocs(props) {
@@ -11773,7 +11773,7 @@
 	  if (props.document.document !== undefined) {
 
 	    documentList = props.document.document.data.filter(function (document) {
-	      return document.UserId === myId;
+	      return document.userId === myId;
 	    }).map(function (document) {
 	      return _react2.default.createElement(SingleDocument, { document: document, key: document.id, setEditDocument: props.setEditDocument, setDeleteDocument: props.setDeleteDocument });
 	    });
@@ -20378,7 +20378,7 @@
 	  };
 	};
 
-	var viewAllDocuments = exports.viewAllDocuments = function viewAllDocuments(UserId) {
+	var viewAllDocuments = exports.viewAllDocuments = function viewAllDocuments(userId) {
 	  return function (dispatch) {
 	    var token = window.localStorage.getItem('token');
 	    return _axios2.default.get('/documents', {
@@ -21013,7 +21013,7 @@
 	  _createClass(Dashboard, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var userId = this.state.authUser.UserId || null;
+	      var userId = this.state.authUser.userId || null;
 	      this.props.actions.viewAllDocuments(userId);
 	    }
 	  }, {
@@ -21030,7 +21030,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var roleId = this.state.authUser.RoleId || null;
+	      var roleId = this.state.authUser.roleId || null;
 	      return roleId === this.state.AdminRoleId ? _react2.default.createElement(_admin2.default, { documents: this.props.documents }) : _react2.default.createElement(_user2.default, { documents: this.props.documents });
 	    }
 	  }]);

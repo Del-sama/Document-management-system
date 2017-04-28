@@ -19,7 +19,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    const userId = this.state.authUser.UserId || null
+    const userId = this.state.authUser.userId || null
     this.props.actions.viewAllDocuments(userId)
   }
   componentDidMount() {
@@ -39,7 +39,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const roleId = this.state.authUser.RoleId || null
+    const roleId = this.state.authUser.roleId || null
     return (roleId === this.state.AdminRoleId) ?
       <AdminDashboard documents={this.props.documents} /> :
       <UserDashboard documents={this.props.documents} />

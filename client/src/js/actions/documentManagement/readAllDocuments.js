@@ -8,7 +8,7 @@ const documentReadSuccess = function (documents) {
   }
 }
 
-export const viewAllDocuments = (UserId) => {
+export const viewAllDocuments = (userId) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');
     return axios.get('/documents', {
