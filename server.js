@@ -31,7 +31,7 @@ app.use(parser.json());
 
 app.use(logger('tiny'));
 
-app.use(express.static(path.join(__dirname, 'server/apiDocs')));
+app.use(express.static(path.join(__dirname, 'server/swaggerDocs')));
 
 app.use(indexRoute());
 app.use(usersRoute());

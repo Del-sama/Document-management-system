@@ -11,7 +11,7 @@ class Navbar extends Component {
     super(props);
     const token = (window.localStorage.getItem('token'));
     if (token) {
-      this.state = { id: jwtDecode(token).UserId, userName: jwtDecode(token).userName};
+      this.state = { id: jwtDecode(token).userId, userName: jwtDecode(token).userName};
       this.logout = this.logout.bind(this);
     }
   }

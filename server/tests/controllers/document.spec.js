@@ -28,11 +28,11 @@ describe('DOCUMENT API', () => {
       .then((createdRoles) => {
         adminRole = createdRoles[0];
         regularRole = createdRoles[1];
-        adminUserParams.RoleId = adminRole.id;
-        // Two users here are assigned same RoleId to demonstrate role access
-        regularUserParams.RoleId = regularRole.id;
-        regularUserParams2.RoleId = regularRole.id;
-        regularUserParams3.RoleId = regularRole.id;
+        adminUserParams.roleId = adminRole.id;
+        // Two users here are assigned same roleId to demonstrate role access
+        regularUserParams.roleId = regularRole.id;
+        regularUserParams2.roleId = regularRole.id;
+        regularUserParams3.roleId = regularRole.id;
 
         request.post('/users')
           .send(adminUserParams)
@@ -78,7 +78,7 @@ describe('DOCUMENT API', () => {
 
   describe('REQUESTS', () => {
     beforeEach((done) => {
-      publicDocumentParams.UserId = adminUser.id;
+      publicDocumentParams.userId = adminUser.id;
       model.Document.create(publicDocumentParams)
         .then((createdPublicDocument) => {
           publicDocument = createdPublicDocument;
@@ -90,7 +90,7 @@ describe('DOCUMENT API', () => {
 
     describe('POST: (/documents) - CREATE A DOCUMENT', () => {
       it('should create a document for a validated user', (done) => {
-        documentParams.UserId = adminUser.id;
+        documentParams.userId = adminUser.id;
         request.post('/documents')
           .set({ Authorization: publicToken })
           .send(documentParams)
@@ -137,6 +137,7 @@ describe('DOCUMENT API', () => {
                 done();
               });
           });
+
         describe('Document Pagination', () => {
           beforeEach(() => model.Document.bulkCreate(documentsCollection));
           it('allows use of query params "limit" to limit the result', (done) => {
@@ -204,6 +205,7 @@ describe('DOCUMENT API', () => {
               });
           });
       });
+
       describe('get all documents created by a particular user', () => {
         describe('GET: (/users/:id/documents) - GET all documents created by a particular user', () => {
           it('should return documents to any user if access is public',
@@ -216,6 +218,7 @@ describe('DOCUMENT API', () => {
             });
           });
         });
+
         describe('PUT: (/documents/:id) - EDIT A DOCUMENT', () => {
           it('should not perform edit if invalid id is provided', (done) => {
             const fieldToUpdate = { content: 'replace previous document' };
@@ -244,6 +247,7 @@ describe('DOCUMENT API', () => {
                 });
             });
         });
+
         describe('DELETE: (/documents/:id) - DELETE A DOCUMENT', () => {
           it('should not perform delete if an invalid id is provided',
             (done) => {
@@ -275,10 +279,11 @@ describe('DOCUMENT API', () => {
           });
         });
       });
+
       describe('Requests for Documents with Access set to Private', () => {
         describe('GET: (/documents/:id - GET A DOCUMENT)', () => {
           beforeEach((done) => {
-            privateDocumentParams.UserId = privateUser.id;
+            privateDocumentParams.userId = privateUser.id;
 
             model.Document.create(privateDocumentParams)
               .then((createdDocument) => {
@@ -316,7 +321,7 @@ describe('DOCUMENT API', () => {
       describe('Requests for Documents with Access set to Role', () => {
         describe('GET: (/documents/:id - GET A DOCUMENT)', () => {
           beforeEach((done) => {
-            documentParams.UserId = privateUser2.id;
+            documentParams.userId = privateUser2.id;
             documentParams.access = 'role';
 
             model.Document.create(documentParams)
@@ -339,6 +344,7 @@ describe('DOCUMENT API', () => {
         });
       });
     });
+
     describe('Document Search', () => {
       beforeEach(() => model.Document.bulkCreate(documentsCollection));
       it('performs a search and returns the correct document', (done) => {
@@ -353,7 +359,6 @@ describe('DOCUMENT API', () => {
             done();
           });
       });
-
       it('allows use of query params "limit" to determine the result number',
         (done) => {
           request.get('/search/documents?limit=4')
@@ -386,15 +391,13 @@ describe('DOCUMENT API', () => {
                   as: 'User'
                 }]
               };
-
               model.Document.findAll(query)
                 .then((foundDocuments) => {
-                  expect(foundDocuments[0].User.RoleId).to.equal(1);
+                  expect(foundDocuments[0].User.roleId).to.equal(1);
                   done();
                 });
             });
         });
-
       it('allows use of query params "publishedDate" to determine the order',
         (done) => {
           request.get('/documents?publishedDate=ASC')

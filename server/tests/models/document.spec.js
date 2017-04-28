@@ -5,7 +5,7 @@ const params = require('../specHelper.js');
 const documentParams = params.testDocument;
 const userParams = params.testUser;
 
-const requiredFields = ['title', 'content', 'UserId', 'access'];
+const requiredFields = ['title', 'content', 'userId', 'access'];
 
 describe('Document Model', () => {
   describe('How Document Model Works', () => {
@@ -15,12 +15,12 @@ describe('Document Model', () => {
     before((done) => {
       model.Role.create(params.testRole)
         .then((createdRole) => {
-          userParams.RoleId = createdRole.id;
+          userParams.roleId = createdRole.id;
           return model.User.create(userParams);
         })
         .then((createdUser) => {
           user = createdUser;
-          documentParams.UserId = user.id;
+          documentParams.userId = user.id;
           done();
         });
     });
@@ -49,10 +49,10 @@ describe('Document Model', () => {
           done();
         });
     });
-    it('should create a document with correct UserId', (done) => {
+    it('should create a document with correct userId', (done) => {
       document.save()
         .then((createdDocument) => {
-          expect(createdDocument.UserId).to.equal(user.id);
+          expect(createdDocument.userId).to.equal(user.id);
           done();
         });
     });

@@ -15,7 +15,7 @@ describe('Role API', () => {
   before((done) => {
     model.Role.create(adminRoleParam)
       .then((adminRole) => {
-        userParam.RoleId = adminRole.id;
+        userParam.roleId = adminRole.id;
         request.post('/users')
           .send(userParam)
           .end((error, response) => {
@@ -65,7 +65,7 @@ describe('Role API', () => {
           .send(newRole)
           .end((error, response) => {
             expect(response.status).to.equal(400);
-            expect(response.body[0].message).to.equal('title must be unique');
+            expect(response.text).to.equal('title must be unique');
             done();
           });
       });
@@ -76,11 +76,12 @@ describe('Role API', () => {
           .send(newRole)
           .end((error, response) => {
             expect(response.status).to.equal(400);
-            expect(response.body[0].message).to.equal('title cannot be null');
+            expect(response.text).to.equal('title cannot be null');
             done();
           });
       });
     });
+
     describe('GET: (/roles)', () => {
       it('should not return roles where no token is provided', (done) => {
         request.get('/roles')
@@ -103,6 +104,7 @@ describe('Role API', () => {
           });
       });
     });
+
     describe('GET: (/roles/:id) - GET ROLE', () => {
       it('should not return the role when supplied invalid id', (done) => {
         request.get('/roles/999999')
@@ -121,6 +123,7 @@ describe('Role API', () => {
           });
       });
     });
+
     describe('DELETE: (/roles/:id) - DELETE ROLE', () => {
       it('should not perform delete action if wrong id is supplied', (done) => {
         request.delete('/roles/999999')
@@ -147,7 +150,7 @@ describe('Role API two', () => {
   before((done) => {
     model.Role.create(adminRoleParam)
       .then((adminRole) => {
-        userParam.RoleId = adminRole.id;
+        userParam.roleId = adminRole.id;
         request.post('/users')
           .send(userParam)
           .end((error, response) => {

@@ -6,7 +6,7 @@ Document management system is an application used to track, manage and store doc
 ## Features
 
 * Users can sign up/ log into the application
-* Regular Users see a dashboard upon sign up/ log in where they can
+* Regular Users see a dashboard upon sign up/ login where they can
   * Create documents
     * Documents have different access levels (public, private and role).
   * Edit documents
@@ -24,7 +24,7 @@ Document management system is an application used to track, manage and store doc
   * View all created roles
   * Search for users
   * Search for documents
-  
+
 ## Why is this project useful
 
 * It enables proper and easy management, distribution and protection of documents.
@@ -69,7 +69,7 @@ Document management system is an application used to track, manage and store doc
 
 - Ensure you have [Node.js](https://nodejs.org/en/) installed.
 - Install the app's dependencies using npm.
- 
+
      > npm install
 
 - Start the application.
@@ -80,7 +80,7 @@ Document management system is an application used to track, manage and store doc
 
 ## How to run tests
 
-- In your terminal, run 
+- In your terminal, run
    > npm test
 ## API Documentation
 - [Api documentation](https://ddiei-doc-mgt-system-staging.herokuapp.com)

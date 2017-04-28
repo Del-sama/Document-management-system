@@ -1,11 +1,10 @@
 const model = require('../models');
 
 /**
- * Class UsersController
- * To handle routing logic for documents route
+ * Class RolesController
+ * To handle routing logic for roles route
  */
 class RolesController {
-
 /**
  * Method getRoles to obtain all roles
  * @param {Object} request - request Object
@@ -19,24 +18,25 @@ class RolesController {
   }
 
 /**
-   * Method createRoles to obtain all users
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {Object} response object
-   */
+ * Method createRoles to create new roles
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {Object} response object
+ */
   static createRoles(request, response) {
     model.Role.create(request.body)
       .then(newRole => response.status(201)
           .send(newRole))
       .catch(error => response.status(400)
-        .send(error.errors));
+        .send(error.errors[0].message));
   }
-  /**
-   * Method getRole to obtain all users
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {Object} response object
-   */
+
+/**
+ * Method getRole to obtain a role
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {Object} response object
+ */
   static getRole(request, response) {
     model.Role.findById(request.params.id)
       .then((role) => {
@@ -48,12 +48,13 @@ class RolesController {
           .send(role);
       });
   }
-  /**
-   * Method updateUser
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   */
+
+/**
+ * Method updateRole to update role details
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ */
   static updateRole(request, response) {
     model.Role.findById(request.params.id)
       .then((role) => {
@@ -68,12 +69,13 @@ class RolesController {
           });
       });
   }
-  /**
-   * Method deleteRole
-   * @param {Object} request - request Object
-   * @param {Object} response - request Object
-   * @return {Object} response object
-   */
+
+/**
+ * Method deleteRole to delete a role
+ * @param {Object} request - request Object
+ * @param {Object} response - request Object
+ * @return {Object} response object
+ */
   static deleteRole(request, response) {
     model.Role.findById(request.params.id)
       .then((role) => {

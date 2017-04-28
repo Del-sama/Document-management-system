@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT
     },
-    UserId: {
+    userId: {
       allowNull: false,
       type: DataTypes.INTEGER
     },
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         Document.belongsTo(models.User, {
           onDelete: 'CASCADE',
           foreignKey: {
-            name: 'UserId',
+            name: 'userId',
             allowNull: false
           }
         });

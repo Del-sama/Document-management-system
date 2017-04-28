@@ -1,27 +1,27 @@
 const model = require('../models');
 
-
 /**
  * Class DocumentsController
  * To handle routing logic for documents route
  */
 class DocumentsController {
-  /**
-   * static
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} response object
-   * @memberOf DocumentsController
-   */
+/**
+ * Method createDocuments to create new documents
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} response object
+ * @memberOf DocumentsController
+ */
   static createDocuments(request, response) {
     return model.Document.create(request.body)
       .then(newDocument => response.status(201)
           .send(newDocument))
       .catch(error => response.status(500)
-          .send(error));
+          .send(error.message));
   }
+
 /**
- * static getDocuments
+ * Method getDocuments to obtain all documents
  * @param {object} request - request object
  * @param {object} response - response object
  * @returns {object} - response object
@@ -35,18 +35,21 @@ class DocumentsController {
     const query = {
       where: {
         $or: [
-          { UserId: request.decoded.UserId },
+          { userId: request.decoded.userId },
           { access: 'public' },
             {
               $and: [
               { access: 'role' },
-              { '$User.RoleId$': request.decoded.RoleId }
+              { '$User.roleId$': request.decoded.roleId }
               ]
             }
         ]
       },
       include: [{
-        model: model.User
+        model: model.User,
+        attributes: [
+            'userName', 'roleId'
+          ]
       }],
       limit: request.query.limit || null,
       offset: request.query.offset || null,
@@ -59,7 +62,7 @@ class DocumentsController {
   }
 
   /**
-   * static
+   * Method getDocument to obtain a document
    * @param {object} request - request object
    * @param {object} response - response object
    * @returns {object} - reponse object
@@ -78,7 +81,7 @@ class DocumentsController {
           .send(document);
           break;
         case 'private':
-          if (document.UserId === request.decoded.UserId) {
+          if (document.userId === request.decoded.userId) {
             response.status(200)
               .send(document);
           } else {
@@ -87,9 +90,9 @@ class DocumentsController {
           }
           break;
         case 'role' :
-          model.User.findById(document.UserId)
+          model.User.findById(document.userId)
             .then((documentOwner) => {
-              if (documentOwner.RoleId === request.decoded.RoleId) {
+              if (documentOwner.roleId === request.decoded.roleId) {
                 return response.status(200)
                   .send(document);
               }
@@ -103,20 +106,21 @@ class DocumentsController {
         }
       });
   }
- /**
-   * static
-   * @param {object} request - request object
-   * @param {object} response - response object
-   * @returns {object} - response object
-   * @memberOf DocumentsController
-   */
+
+/**
+ * Method getUserDocuments to obtain all documents created by a particular user
+ * @param {object} request - request object
+ * @param {object} response - response object
+ * @returns {object} - response object
+ * @memberOf DocumentsController
+ */
   static getUserDocuments(request, response) {
-    model.Document.findAll({ where: { UserId: request.params.id } })
+    model.Document.findAll({ where: { userId: request.params.id } })
       .then((documents) => {
         if (!documents) {
           return response.status(404)
             .send({ message: `User with id ${request.params.id} has no documents` });
-        } else if (documents.access === 'public' || documents.UserId === request.decoded.id) {
+        } else if (documents.access === 'public' || documents.userId === request.decoded.id) {
           return response.status(200)
           .send(documents);
         }
@@ -124,12 +128,13 @@ class DocumentsController {
           .send({ message: 'You are not authoried to access these documents' });
       });
   }
+
 /**
-   * Method updateDocument
-   * @param {Object} request - request Object
-   * @param {Object} response - request Object
-   * @return {Object} response Object
-   */
+ * Method updateDocument to edit a document
+ * @param {Object} request - request Object
+ * @param {Object} response - request Object
+ * @return {Object} response Object
+ */
   static updateDocument(request, response) {
     model.Document.findById(request.params.id)
       .then((document) => {
@@ -137,7 +142,7 @@ class DocumentsController {
           return response.status(404)
           .send({ message: `No document found with id: ${request.params.id}` });
         }
-        if (document.UserId === request.decoded.UserId) {
+        if (document.userId === request.decoded.userId) {
           document.update(request.body)
             .then(updatedDocument => response.status(200)
                 .send(updatedDocument));
@@ -147,12 +152,13 @@ class DocumentsController {
         }
       });
   }
+
 /**
-   * Method deleteDocument
-   * @param {Object} request - request Object
-   * @param {Object} response - request Object
-   * @return {Object} response Object
-   */
+ * Method deleteDocument to delete a document
+ * @param {Object} request - request Object
+ * @param {Object} response - request Object
+ * @return {Object} response Object
+ */
   static deleteDocument(request, response) {
     model.Document.findById(request.params.id)
       .then((document) => {
@@ -160,7 +166,7 @@ class DocumentsController {
           return response.status(404)
           .send({ message: `No document with this id ${request.params.id}` });
         }
-        if (document.UserId === request.decoded.UserId) {
+        if (document.userId === request.decoded.userId) {
           document.destroy()
             .then(() => response.status(200)
                 .send({ message: 'Document successfully deleted' }));
@@ -170,12 +176,12 @@ class DocumentsController {
         }
       });
   }
-  /**
-   * Method searchDocuments
-   * @param {Object} request - request Object
-   * @param {Object} response - request Object
-   * @return {Object} response Object
-   */
+/**
+ * Method searchDocuments to search for documents
+ * @param {Object} request - request Object
+ * @param {Object} response - request Object
+ * @return {Object} response Object
+ */
   static searchDocuments(request, response) {
     if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
@@ -191,7 +197,7 @@ class DocumentsController {
       where: {
         $and: [{ $or: [
           { access: 'public' },
-          { UserId: request.decoded.id }
+          { userId: request.decoded.id }
         ] }],
       },
       limit: request.query.limit || null,

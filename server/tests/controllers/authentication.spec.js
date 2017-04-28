@@ -18,8 +18,8 @@ describe('User Authentication', () => {
     .then((createdRoles) => {
       adminRole = createdRoles[0];
       regularRole = createdRoles[1];
-      adminUserParams.RoleId = adminRole.id;
-      regularUserParams.RoleId = regularRole.id;
+      adminUserParams.roleId = adminRole.id;
+      regularUserParams.roleId = regularRole.id;
 
       request.post('/users')
         .send(adminUserParams)

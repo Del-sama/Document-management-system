@@ -14,7 +14,7 @@ module.exports = {
         lastName: 'Diei',
         email: 'delores.diei@gmail.com',
         password: bcrypt.hashSync('triger'),
-        RoleId: 1,
+        roleId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -25,7 +25,7 @@ module.exports = {
         lastName: 'Diei',
         email: 'ozzyoswald@gmail.com',
         password: bcrypt.hashSync('triger'),
-        RoleId: 2,
+        roleId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -40,6 +40,6 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
   */
     return queryInterface.bulkDelete('User',
-    { RoleId: [1, 2] }, { returning: true });
+    { roleId: [1, 2] }, { returning: true });
   }
 };

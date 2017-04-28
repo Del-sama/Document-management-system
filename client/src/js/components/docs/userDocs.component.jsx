@@ -6,7 +6,7 @@ let myId;
 let userName;
 const token = (window.localStorage.getItem('token'));
 if (token) {
-  myId = jwtDecode(token).UserId;
+  myId = jwtDecode(token).userId;
   userName = jwtDecode(token).userName;
 
 }
@@ -16,7 +16,7 @@ const UserDocs = (props) => {
 
     documentList = props.document.document.data
       .filter((document) => {
-        return document.UserId === myId;
+        return document.userId === myId;
       })
       .map((document) => {
         return (
