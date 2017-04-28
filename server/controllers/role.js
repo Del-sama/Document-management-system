@@ -28,7 +28,7 @@ class RolesController {
       .then(newRole => response.status(201)
           .send(newRole))
       .catch(error => response.status(400)
-        .send(error.message));
+        .send(error.errors[0].message));
   }
 
 /**

@@ -65,7 +65,7 @@ describe('Role API', () => {
           .send(newRole)
           .end((error, response) => {
             expect(response.status).to.equal(400);
-            expect(response.body[0].message).to.equal('title must be unique');
+            expect(response.text).to.equal('title must be unique');
             done();
           });
       });
@@ -76,7 +76,7 @@ describe('Role API', () => {
           .send(newRole)
           .end((error, response) => {
             expect(response.status).to.equal(400);
-            expect(response.body[0].message).to.equal('title cannot be null');
+            expect(response.text).to.equal('title cannot be null');
             done();
           });
       });
