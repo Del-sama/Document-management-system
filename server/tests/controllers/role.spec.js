@@ -15,7 +15,7 @@ describe('Role API', () => {
   before((done) => {
     model.Role.create(adminRoleParam)
       .then((adminRole) => {
-        userParam.RoleId = adminRole.id;
+        userParam.roleId = adminRole.id;
         request.post('/users')
           .send(userParam)
           .end((error, response) => {
@@ -81,6 +81,7 @@ describe('Role API', () => {
           });
       });
     });
+
     describe('GET: (/roles)', () => {
       it('should not return roles where no token is provided', (done) => {
         request.get('/roles')
@@ -103,6 +104,7 @@ describe('Role API', () => {
           });
       });
     });
+
     describe('GET: (/roles/:id) - GET ROLE', () => {
       it('should not return the role when supplied invalid id', (done) => {
         request.get('/roles/999999')
@@ -121,6 +123,7 @@ describe('Role API', () => {
           });
       });
     });
+
     describe('DELETE: (/roles/:id) - DELETE ROLE', () => {
       it('should not perform delete action if wrong id is supplied', (done) => {
         request.delete('/roles/999999')
@@ -147,7 +150,7 @@ describe('Role API two', () => {
   before((done) => {
     model.Role.create(adminRoleParam)
       .then((adminRole) => {
-        userParam.RoleId = adminRole.id;
+        userParam.roleId = adminRole.id;
         request.post('/users')
           .send(userParam)
           .end((error, response) => {

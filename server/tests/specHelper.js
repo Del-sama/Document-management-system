@@ -64,7 +64,7 @@ module.exports = {
       documentsParams.push({
         title: faker.lorem.sentence(7),
         content: faker.lorem.paragraph(),
-        UserId: 1
+        userId: 1
       });
     }
 

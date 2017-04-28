@@ -17,8 +17,8 @@ describe('User API', () => {
   before(() => model.Role.bulkCreate([roleParams, roleParams2], {
     returning: true })
       .then((createdRoles) => {
-        userParams.RoleId = createdRoles[0].id;
-        userParams2.RoleId = createdRoles[1].id;
+        userParams.roleId = createdRoles[0].id;
+        userParams2.roleId = createdRoles[1].id;
       }));
 
   afterEach(() => model.User.destroy({ where: {} }));
@@ -41,7 +41,6 @@ describe('User API', () => {
             });
         });
     });
-
     it('should not create another user with same user name', (done) => {
       request.post('/users')
         .send(userParams)
@@ -58,6 +57,7 @@ describe('User API', () => {
           done();
         });
     });
+
     describe('GET: (/users/:id) - GET A USER', () => {
       it('should not return a user id is invalid', (done) => {
         request.get('/users/9999')
@@ -74,6 +74,7 @@ describe('User API', () => {
         });
       });
     });
+
     describe('PUT: (/users/:id) - UPDATE', () => {
       it('should not perform update if supplied id is invalid', (done) => {
         request.get('/users/9999')
@@ -85,7 +86,6 @@ describe('User API', () => {
           firstName: 'Delores',
           lastName: 'Diei'
         };
-
         request.put(`/users/${user1.id}`)
           .set({ Authorization: token1 })
           .send(fieldsToUpdate)
@@ -132,6 +132,7 @@ describe('User API', () => {
         });
       });
     });
+
     describe('POST: (/users/login) - LOGIN', () => {
       it('should not login when supplied invalid email or password', (done) => {
         request.post('/users/login')
@@ -156,6 +157,7 @@ describe('User API', () => {
           });
       });
     });
+
     describe('POST: (/users/logout) - LOGOUT', () => {
       it('should logout a user', (done) => {
         request.post('/users/logout')

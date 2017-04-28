@@ -5,7 +5,7 @@ const helper = require('../specHelper.js');
 const userParams = helper.testUser;
 const roleParams = helper.testRole;
 
-const requiredFields = ['userName', 'firstName', 'lastName', 'email', 'password', 'RoleId'];
+const requiredFields = ['userName', 'firstName', 'lastName', 'email', 'password', 'roleId'];
 const uniqueFields = ['userName', 'email'];
 
 describe('User Model', () => {
@@ -14,7 +14,7 @@ describe('User Model', () => {
     before((done) => {
       model.Role.create(roleParams)
         .then((createdRole) => {
-          userParams.RoleId = createdRole.id;
+          userParams.roleId = createdRole.id;
           return model.User.create(userParams);
         })
         .then((createdUser) => {
@@ -46,7 +46,6 @@ describe('User Model', () => {
           expect(foundUser.Role.title).to.equal(roleParams.title);
         });
     });
-
     it('should be able to update a user', (done) => {
       model.User.findById(user.id)
         .then((foundUser) => {
@@ -59,12 +58,12 @@ describe('User Model', () => {
     });
   });
 
-  describe('How User model does Validation', () => {
+  describe('Attributes Validation', () => {
     let user;
     beforeEach((done) => {
       model.Role.create(roleParams)
         .then((role) => {
-          userParams.RoleId = role.id;
+          userParams.roleId = role.id;
           user = model.User.build(userParams);
           done();
         });
@@ -89,7 +88,7 @@ describe('User Model', () => {
         it(`requires ${field} field to be Unique`, () => {
           user.save()
             .then((firstUser) => {
-              userParams.RoleId = firstUser.RoleId;
+              userParams.roleId = firstUser.roleId;
               return model.User.build(userParams).save();
             })
             .catch((error) => {
