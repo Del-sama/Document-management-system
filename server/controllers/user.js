@@ -192,7 +192,7 @@ class UsersController {
       where: { userName: { $like: `%${queryString}%`} },
       limit: request.query.limit || null,
       offset: request.query.offset || null,
-      order: [['UserId', 'ASC']]
+      order: [['id', 'ASC']]
     };
     model.User.findAll(query)
       .then((users) => {

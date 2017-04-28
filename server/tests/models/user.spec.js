@@ -101,11 +101,8 @@ describe('User Model', () => {
 
     describe('Mail Validation', () => {
       it('requires user mail to be authentic', () => {
-        user.email = 'oredavids yahoo';
+        user.email = 'delores yahoo';
         return user.save()
-          .then((unsavedUser) => {
-            expect(unsavedUser).to.exist;
-          })
           .catch((error) => {
             expect(/isEmail failed/.test(error.message)).to.be.true;
           });

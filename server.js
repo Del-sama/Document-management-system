@@ -10,6 +10,7 @@ const rolesRoute = require('./server/routes/role');
 const indexRoute = require('./server/routes/index');
 const swaggerRoute = require('./server/routes/swagger');
 const documentRoute = require('./server/routes/document');
+const searchRoute = require('./server/routes/search');
 const logger = require('morgan');
 
 const app = express();
@@ -37,6 +38,7 @@ app.use(usersRoute());
 app.use(rolesRoute());
 app.use(documentRoute());
 app.use(swaggerRoute());
+app.use(searchRoute());
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 app.get('/app/*', (req, res) => {

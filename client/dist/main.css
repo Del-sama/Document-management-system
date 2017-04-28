@@ -168,3 +168,7 @@ nav {
 
 .side-nav {
   padding-top: 60px; }
+
+.input-field label:not(.label-icon).active {
+  -webkit-transform: translateY(-40%);
+  transform: translateY(-40%); }

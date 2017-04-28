@@ -1,6 +1,3 @@
-dist: trusty
-sudo: required
-
 language: node_js
 node_js: "stable"
 
@@ -10,9 +7,8 @@ node_js:
 services:
   - postgresql
 
-before_script:
+before_install:
   - psql -c 'create database dms_test;' -U postgres
-  - NODE_ENV=travis npm run migrate-test
 
 after_success:
-- npm run coveralls
+  - npm run coveralls

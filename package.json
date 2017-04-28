@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
-    "sass": "./node_modules/.bin/node-sass ./client/src/scss/main.scss client/dist/main.css",
-    "build": "./node_modules/.bin/webpack && npm run sass",
-    "startzz": "npm run build && node server.js",
-    "serve": "npm run build && nodemon server.js",
+    "test": "istanbul cover _mocha server/tests/**/*.spec.js",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "build": "./node_modules/.bin/webpack",
     "start": "node server.js",
-    "migrate-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
-    "postinstall": "npm run build && npm run db-setup",
-    "db-setup": "sequelize db:migrate && sequelize db:seed:undo:all && sequelize db:seed:all"
+    "db-setup": "sequelize db:migrate && sequelize db:seed:undo:all && sequelize db:seed:all",
+    "serve": "npm run build && nodemon server.js",
+    "dev-test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
+    "migrate-dev-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -54,8 +53,6 @@
     "react-router-dom": "^4.0.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^3.30.2",
-    "sequelize-cli": "^2.6.0",
     "style-loader": "^0.16.1",
     "swagger-jsdoc": "^1.9.2",
     "sweetalert-react": "^0.4.9",
@@ -65,28 +62,20 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "node-sass": "^4.5.2",
     "babel-preset-es2015": "^6.24.0"
   },
   "devDependencies": {
-    "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
+    "coveralls": "^2.13.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb-base": "^11.1.2",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "istanbul": "^0.4.5",
-    "jasmine-core": "^2.5.2",
     "mocha": "^3.2.0",
-    "node-sass": "^4.5.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "sequelize": "^3.30.2",
     "sequelize-cli": "^2.6.0",
     "supertest": "^3.0.0",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^1.4.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-dev-server": "^1.4.1"
   }
 }

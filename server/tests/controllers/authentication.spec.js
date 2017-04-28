@@ -12,26 +12,28 @@ const regularRoleParams = helper.testRole2;
 describe('User Authentication', () => {
   let adminToken, adminRole, regularRole, regularToken;
   before((done) => {
-    model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
-      returning: true })
-      .then((createdRoles) => {
-        adminRole = createdRoles[0];
-        regularRole = createdRoles[1];
-        adminUserParams.RoleId = adminRole.id;
-        regularUserParams.RoleId = regularRole.id;
+    model.sequelize.sync({ force: true}).then(() => {
+      model.Role.bulkCreate([adminRoleParams, regularRoleParams], {
+    returning: true })
+    .then((createdRoles) => {
+      adminRole = createdRoles[0];
+      regularRole = createdRoles[1];
+      adminUserParams.RoleId = adminRole.id;
+      regularUserParams.RoleId = regularRole.id;
 
-        request.post('/users')
-          .send(adminUserParams)
-          .end((error, response) => {
-            adminToken = response.body.token;
-            request.post('/users')
-              .send(regularUserParams)
-              .end((err, res) => {
-                regularToken = res.body.token;
-                done();
-              });
-          });
-      });
+      request.post('/users')
+        .send(adminUserParams)
+        .end((error, response) => {
+          adminToken = response.body.token;
+          request.post('/users')
+            .send(regularUserParams)
+            .end((err, res) => {
+              regularToken = res.body.token;
+              done();
+            });
+        });
+    });
+    }).catch(console.log);
   });
   after(() => {
     return model.sequelize.sync({ force: true });

@@ -89,7 +89,7 @@ router.route('/documents/:id')
     /** @swagger
       *  /documents/:id:
       *   get:
-      *     description: Returns {limit} documents from the the {offset}
+      *     description: Returns a document
       *     tags:
       *       - Get single document
       *     produces:
@@ -142,7 +142,7 @@ router.route('/documents/:id')
   .put(auth.verifyToken, documentsController.updateDocument)
     /**
      * @swagger
-     * /documents/:id:
+     * /documents/1:
      *    delete:
      *      description: Deletes the document with the id of 1
      *      tags:
