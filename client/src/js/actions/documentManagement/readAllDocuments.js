@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import * as actionTypes from '../actionTypes';
 
 const documentReadSuccess = function (documents) {
   return {
-    type: 'VIEW_ALL_DOCUMENTS_SUCCESS',
+    type: actionTypes.VIEW_ALL_DOCUMENTS_SUCCESS,
     documents
   }
 }

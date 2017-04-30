@@ -1,23 +1,26 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
+import * as actionTypes from '../actionTypes';
 
-export default (token) => {
+const userGetSuccess = (users) => {
+  return {
+    type: actionTypes.GET_USER_SUCCESS,
+    users
+  };
+};
+
+export const viewUsers = (userId) => {
   return (dispatch) => {
-    return axios.get('/users', {
+    const token = window.localStorage.getItem('token');
+    axios.get('/users', {
       headers: {
         Authorization: token
       }
     })
-      .then((response) => {
-        dispatch({
-          type: 'VIEW_ALL_USERS',
-          users: response.data.users,
-        });
-      }).catch((err) => {
-        dispatch({
-          type: 'USER_RETRIEVAL_FAILED',
-          status: 'failed',
-          error: err.message
-        });
-      });
+    .then((users) => {
+      dispatch(userGetSuccess(users));
+    })
+    .catch((err) => {
+    });
   };
 };

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import * as actionTypes from '../actionTypes';
 
 export default (details, documentid) => {
   return (dispatch) => {
@@ -16,7 +17,7 @@ export default (details, documentid) => {
       browserHistory.push('/');
     }).catch((err) => {
       dispatch({
-        type: 'DOCUMENT_UPDATE_FAILED',
+        type: actionTypes.DOCUMENT_UPDATE_FAILED,
         status: 'failed',
         error: err.message
       });

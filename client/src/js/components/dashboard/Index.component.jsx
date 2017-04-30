@@ -7,6 +7,8 @@ import AdminDashboard from './admin.component';
 import UserDashboard from './user.component';
 import { bindActionCreators } from 'redux';
 import * as AllDocActions from '../../actions/documentManagement/readAllDocuments';
+import * as UserActions from '../../actions/userManagement/getAllUsers.js';
+import * as RoleActions from '../../actions/roleManagement/getRoles.js';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,8 +22,11 @@ class Dashboard extends Component {
 
   componentWillMount() {
     const userId = this.state.authUser.userId || null
-    this.props.actions.viewAllDocuments(userId)
+    this.props.actionsDoc.viewAllDocuments(userId);
+    this.props.actionsUser.viewUsers(userId);
+    this.props.actionsRole.viewRoles(userId);
   }
+
   componentDidMount() {
     $('.modal').modal({
       dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -37,24 +42,39 @@ class Dashboard extends Component {
       // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
-
   render() {
     const roleId = this.state.authUser.roleId || null
-    return (roleId === this.state.AdminRoleId) ?
-      <AdminDashboard documents={this.props.documents} /> :
+    /*return (roleId === this.state.AdminRoleId) ?
+      <div>
+        <AdminDashboard documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
+      </div> :
+      <div>
+        <UserDashboard documents={this.props.documents} />
+      </div>*/
+    if(roleId === this.state.AdminRoleId) {
+      return (
+        <AdminDashboard documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
+      )
+    }
+    return (
       <UserDashboard documents={this.props.documents} />
+    )
   }
 }
 
 const mapStoreToProps = (state) => {
   return {
-    documents: state.documentReducer
+    documents: state.documentReducer,
+    users: state.userReducer,
+    roles: state.roleReducer
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(AllDocActions, dispatch)
+    actionsDoc: bindActionCreators(AllDocActions, dispatch),
+    actionsUser: bindActionCreators(UserActions, dispatch),
+    actionsRole: bindActionCreators(RoleActions, dispatch)
   }
 }
 

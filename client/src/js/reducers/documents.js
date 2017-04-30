@@ -6,11 +6,11 @@ export default (state = {}, action) => {
       return { ...state, createStatus: action.status, documents: action.documents };
     case actionTypes.DOCUMENT_CREATE_FAILED:
       return { ...state, status: action.status };
-    case 'ALL_DOCUMENTS':
+    case actionTypes.ALL_DOCUMENTS:
       return { ...state, documents: action.documents };
       case actionTypes.VIEW_ALL_DOCUMENTS_SUCCESS:
       return { ...state, document: action.documents };
-    case 'DOCUMENT_DELETED':
+    case actionTypes.DOCUMENT_DELETED:
       return { ...state,
         documents: state.documents.filter((document) => {
           return document.id !== action.documentid;
