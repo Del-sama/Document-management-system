@@ -16,7 +16,7 @@ export default (details) => {
           document,
           status: 'success'
         });
-        browserHistory.push('/');
+        browserHistory.push('/app/dashboard');
       }).catch((err) => {
         dispatch({
           type: actionTypes.DOCUMENT_CREATE_FAILED,
