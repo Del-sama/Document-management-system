@@ -20,8 +20,8 @@ $logo-color: #FFD04A;
   padding: 2% 3%;
 }
 .signupForm {
-  margin: 2% 25%;
-  width: 50%;
+  margin: auto;
+  width: 80%;
   height: 80%;
   box-shadow: $box-shadow;
   padding: 2% 3%;
@@ -30,6 +30,7 @@ $logo-color: #FFD04A;
   text-align: center;
   color: #212121;
 }
+
 .auth-button {
   margin: 2%;
   width: 95%;
@@ -38,16 +39,12 @@ $logo-color: #FFD04A;
 
 }
 .auth-button:hover {
-  background-color: #52BE80;
+  background-color: $logo-color;
 }
 .auth-header a{
   color: #212121;
   font-family: $header-font;
 }
-
-// $: 'Sanchez', serif;
-// $: 'Pacifico', cursive;
-// $: 'Tillana', cursive;
 .myContainer {
   margin: 0 18px;
 }
@@ -59,7 +56,8 @@ $logo-color: #FFD04A;
   width: 100%;
 }
 .mainContainer .bg {
-  background-image: url("https://www.google.com/drive/static/images/home/intro-1024.jpg");
+  background-image:
+  url("https://www.google.com/drive/static/images/home/intro-1024.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -67,6 +65,7 @@ $logo-color: #FFD04A;
   height: 100vh;
   z-index: -1;
 }
+
 .bodyInnards {
   position: absolute;
   top: 50%;
@@ -75,9 +74,13 @@ $logo-color: #FFD04A;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-.bodyInnards i {
+.bodyInnards i,
+#createDoc i,
+#createUser i
+{
   font-size: 6rem;
-  color: #2C4849;
+  color: $logo-color;
+  margin: 0;
 }
 nav ul a {
   color: $text-color;
@@ -103,9 +106,10 @@ text-transform: $upperCase;
   font-size: 6rem;
   color: $logo-color;
 }
+
 .searchBox {
-    left: 35%;
-    width: 45%;
+    right: 0;
+    width: 40%;
     display: -webkit-inline-box;
     position: absolute;
     height: inherit;
@@ -117,11 +121,13 @@ text-transform: $upperCase;
     z-index: 11;
 
 }
+
 .searchBox input {
   border: 0px solid;
   width: 100%;
   color: $text-color-two;
 }
+
 .searchBox i {
   padding-right: 10%;
   color: $text-color-two;
@@ -134,6 +140,7 @@ text-transform: $upperCase;
   color: $text-color-two;
   background-color: $background-color;
 }
+
 .dropdown{
   border-left: 2px solid $text-color-two;
   display: inline-block;
@@ -162,13 +169,14 @@ text-transform: $upperCase;
   background-color: $nav-color;
   box-shadow: $box-shadow
 }
+
 .tabContent{
-  max-height: 100vh;
+  max-height: 73vh;
+  overflow: scroll;
   background-color: $background-color;
   padding: .9rem !important;
   color: $text-color-two;
   opacity: 0.9;
-  overflow: scroll;
 }
 .tabs .tab a {
   color: $text-color-two;
@@ -185,14 +193,46 @@ background-color: $primary-color;
 }
 .modal {
   color: $text-color-two;
+  width: 80%;
 }
 .inline {
+  margin-right: 5px;
   display: inline-block;
 }
 .side-nav {
   padding-top: 60px;
 }
+
+.input-field label:not(.label-icon) {
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 50%
+}
 .input-field label:not(.label-icon).active {
-  -webkit-transform: translateY(-40%);
-  transform: translateY(-40%);
+  -webkit-transform: translateY(-90%);
+  transform: translateY(-90%);
+}
+.createDoc{
+  padding: 2px 9px 2px 2px;
+  width: 100%;
+  letter-spacing: normal;
+  background-color: $background-color;
+  border: 1px solid $text-color-two;
+  border-radius: 8px;
+  color: $text-color-two;
+  border-radius: 1px;
+}
+.mce-tinymce * {
+  height: 100% !important;
+  line-height: 100% !important;
+}
+@media only screen and (min-width: 601px) {
+  .mce-tinymce * {
+    height: 100% !important;
+    line-height: 100% !important;
+  }
+}
+.nav .input-field input {
+  border-bottom: 1px solid;
+  width: 97%;
 }

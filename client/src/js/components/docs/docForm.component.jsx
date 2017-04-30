@@ -42,7 +42,7 @@ export class CreateDocument extends Component {
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.status, 'nextProps');
       if (nextProps.status === 'success') {
-        browserHistory.push('/dashboard');
+        browserHistory.push('/app/dashboard');
       }
       if(nextProps.document){
         this.setState({
