@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import Navbar from '../nav.component';
 import Searchbar from '../searchbar.component';
-import UserDocs from '../docs/userDocs.component';
-import PrivateDocs from '../docs/privateDocs.component';
-import PublicDocs from '../docs/publicDocs.component';
-import RoleDocs from '../docs/roleDocs.component';
 import AllDocs from '../docs/allDocs.component';
-import CreateDocument from '../docs/docForm.component'
 import EditDocument from '../../actions/documentManagement/editDocument';
 import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
