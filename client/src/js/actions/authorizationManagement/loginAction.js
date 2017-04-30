@@ -18,7 +18,7 @@ export default (loginCredentials) => {
       }).catch((error) => {
         dispatch({
           type: actionTypes.LOGIN_ERROR,
-          message: error.response.data.error
+          message: error.response.data.message
         });
       });
   };
