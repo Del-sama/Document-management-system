@@ -23,3 +23,4 @@ export const viewUsers = (userId) => {
     .catch((err) => {
     });
   };
+};
