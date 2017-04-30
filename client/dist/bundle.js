@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ce89790457a147d8c10b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9b9e19cb2b90120018ab"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -19623,7 +19623,7 @@
 	    }).catch(function (error) {
 	      dispatch({
 	        type: actionTypes.LOGIN_ERROR,
-	        message: error.response.data.error
+	        message: error.response.data.message
 	      });
 	    });
 	  };
@@ -19694,10 +19694,10 @@
 	        type: actionTypes.LOGIN_SUCCESFUL,
 	        user: user
 	      });
-	    }).catch(function (err) {
+	    }).catch(function (error) {
 	      dispatch({
 	        type: actionTypes.SIGNUP_FAILED,
-	        message: err.response.data.error
+	        message: error.response.data.message
 	      });
 	    });
 	  };
@@ -20087,13 +20087,8 @@
 	};
 	var rolesList = [];
 	var RoleView = function RoleView(props) {
-	  console.log('-=-=-=-=-=-=-', props);
 	  if (props.roles.roles !== undefined) {
-	    rolesList = props.roles.roles.data.roles;
-	    if (rolesList === undefined) {
-	      rolesList = props.roles.roles.data.roles;
-	    }
-	    console.log('-=-=-=-=-=-=-', rolesList);
+	    rolesList = props.roles.roles.data;
 	  }
 	  return _react2.default.createElement(
 	    'div',
@@ -20200,13 +20195,12 @@
 	};
 	var usersList = [];
 	var UserDocs = function UserDocs(props) {
+	  console.log('a2303023][;\;\[]]', props);
 
 	  if (props.users.users !== undefined) {
-	    usersList = props.users.users.data.users;
-	    if (usersList === undefined) {
-	      usersList = props.users.users.data.users;
-	    }
+	    usersList = props.users.users.data;
 	  }
+	  console.log('first=-=-=-', usersList);
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -22032,7 +22026,8 @@
 	      lastName: '',
 	      userName: '',
 	      email: '',
-	      password: ''
+	      password: '',
+	      confirmPassword: ''
 	    };
 	    _this.onChange = _this.onChange.bind(_this);
 	    _this.onSubmit = _this.onSubmit.bind(_this);
@@ -22067,7 +22062,10 @@
 	    key: 'onSubmit',
 	    value: function onSubmit(e) {
 	      e.preventDefault();
-	      this.props.Signup(this.state);
+	      if (this.state.password === this.state.confirmPassword) {
+	        this.props.Signup(this.state);
+	      }
+	      this.state.error;
 	    }
 	  }, {
 	    key: 'render',
@@ -22207,6 +22205,27 @@
 	                  'label',
 	                  { htmlFor: 'password' },
 	                  'Password'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-field col s12' },
+	                _react2.default.createElement('input', {
+	                  value: this.state.confirmPassword,
+	                  onChange: this.onChange,
+	                  name: 'confirmPassword',
+	                  id: 'confirmPassword',
+	                  type: 'password',
+	                  className: 'validate',
+	                  required: true }),
+	                _react2.default.createElement(
+	                  'label',
+	                  { htmlFor: 'confirmPassword' },
+	                  'Confirm Password'
 	                )
 	              )
 	            ),

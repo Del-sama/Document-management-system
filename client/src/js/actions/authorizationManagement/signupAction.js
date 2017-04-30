@@ -14,10 +14,10 @@ export default (userData) => {
           type: actionTypes.LOGIN_SUCCESFUL,
           user
         });
-      }).catch((err) => {
+      }).catch((error) => {
         dispatch({
           type: actionTypes.SIGNUP_FAILED,
-          message: err.response.data.error
+          message: error.response.data.message
         });
       });
   };

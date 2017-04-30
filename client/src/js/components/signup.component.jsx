@@ -17,7 +17,8 @@ import axios from 'axios';
       lastName: '',
       userName: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     }
     this.onChange=this.onChange.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
@@ -47,7 +48,11 @@ import axios from 'axios';
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.Signup(this.state);
+    if(this.state.password === this.state.confirmPassword){
+      this.props.Signup(this.state);
+    }else {
+      Materialize.toast('Passwords don\'t match!', 3000)
+    }
   }
 
   render() {
@@ -132,6 +137,19 @@ import axios from 'axios';
                  className="validate"
                 required />
                 <label  htmlFor="password">Password</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                value={this.state.confirmPassword}
+                onChange={this.onChange}
+                name="confirmPassword"
+                id="confirmPassword"
+                type="password"
+                 className="validate"
+                required />
+                <label  htmlFor="confirmPassword">Confirm Password</label>
               </div>
             </div>
             <button className="btn waves-effect waves-light center auth-button" type="submit" name="action">Sign Up
