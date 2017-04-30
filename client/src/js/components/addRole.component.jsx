@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import CreateDocument from './docs/docForm.component'
+import CreateDocument from './docs/createDocForm.component.jsx'
 
 class AddRole extends Component {
   constructor() {
@@ -18,17 +18,17 @@ class AddRole extends Component {
       //   alert("Ready");
       //   console.log(modal, trigger);
       // },
-      complete: function () { alert('Closed'); } // Callback for Modal close
+      // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
   render() {
     return (
       <div className="inline">
-        <Link data-target="modal" id="createDoc" className="waves-effect waves-light btn-large">
+        <Link data-target="modalRole" id="createDoc" className="waves-effect waves-light btn-large createDoc">
           <i className="material-icons left">add_circle_outline</i>
           Add Role
           </Link>
-        <div id="modal" className="modal modal-fixed-footer">
+        <div id="modalRole" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4>Create a Role</h4>
             <CreateDocument />
