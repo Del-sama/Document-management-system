@@ -16,8 +16,8 @@ export const viewAllDocuments = (userId) => {
       headers: {
         'authorization': token
       }
-    }).then(documents => {
-      dispatch(documentReadSuccess(documents));
+    }).then(response => {
+      dispatch(documentReadSuccess(response.data));
     }).catch((err) => {
       });
   };

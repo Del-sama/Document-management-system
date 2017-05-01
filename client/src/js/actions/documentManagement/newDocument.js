@@ -10,10 +10,10 @@ export default (details) => {
         Authorization: token
       }
     })
-      .then(() => {
-        dispatch({
+      .then((response) => {
+;        dispatch({
           type: actionTypes.DOCUMENT_CREATED,
-          document,
+          document: response.data,
           status: 'success'
         });
         browserHistory.push('/app/dashboard');

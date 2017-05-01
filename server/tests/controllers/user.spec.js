@@ -134,11 +134,11 @@ describe('User API', () => {
     });
 
     describe('POST: (/users/login) - LOGIN', () => {
-      it('should not login when supplied invalid email or password', (done) => {
+      it('should not login when supplied invalid username or password', (done) => {
         request.post('/users/login')
           .send({
-            email: 'delores@gmail.com',
-            password: 'bikermice'
+            userName: 'userName',
+            password: 'password'
           })
           .end((error, response) => {
             expect(response.status).to.equal(401);

@@ -14,7 +14,6 @@ export default (token, userId) => {
           user: response.data
         });
       }).catch((err) => {
-          console.log(err);
           dispatch({
             type: actionTypes.USER_RETRIEVAL_FAILED,
             status: 'failed',

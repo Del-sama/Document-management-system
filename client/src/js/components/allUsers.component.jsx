@@ -21,7 +21,6 @@ const UserDocs = (props) => {
   if (props.users.users !== undefined) {
     usersList = props.users.users.data;
   }
-  console.log('first=-=-=-', usersList);
   return (
     <div>
       <table className="bordered  responsive">

@@ -12,9 +12,9 @@ if (token) {
 }
 const UserDocs = (props) => {
   let documentList;
-  if (props.document.document !== undefined) {
+  if (props.documents !== undefined) {
 
-    documentList = props.document.document.data
+    documentList = props.documents
       .filter((document) => {
         return document.userId === myId;
       })

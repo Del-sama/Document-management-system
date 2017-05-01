@@ -4,8 +4,8 @@ import { browserHistory, Link } from 'react-router';
 
 const PrivateDocs = (props) => {
   let documentList;
-  if (props.document.document !== undefined) {
-    documentList = props.document.document.data
+  if (props.documents !== undefined) {
+    documentList = props.documents
     .filter((document) => {
       return document.access === 'private';
     })

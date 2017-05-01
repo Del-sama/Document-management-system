@@ -22,13 +22,11 @@ class ViewUser extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
     const token = window.localStorage.getItem('token');
     if (token) {
-      console.log('I am here', this.props);
       this.setState({ userId: jwtDecode(token).userId });
       this.props.viewUser(token, jwtDecode(token).userId);
     }
@@ -43,7 +41,6 @@ class ViewUser extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="row dashboardContainer col s12">
         <Navbar />
@@ -69,7 +66,7 @@ class ViewUser extends Component {
               </div>
               <div className="row">
                   <label htmlFor="password">Password: </label>
-                  <span>******** {this.state.userId}</span>
+                  <span>********</span>
               </div>
               <div className="row">
                 <label htmlFor="role">Role: </label>
@@ -78,7 +75,7 @@ class ViewUser extends Component {
               <div className="row">
                   <Link
                     to="/app/profile/edit"
-                    className="btn updateUser"
+                    className="btn"
                   >Edit Profile</Link>
                 </div>
             </form>
