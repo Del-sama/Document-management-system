@@ -5,7 +5,8 @@ import Login from './login.component';
 import Signup from './signup.component';
 import NotFound from './notfound.component';
 import Dashboard from './dashboard/Index.component';
-import viewUser from './viewUser.component';
+import ViewUser from './viewUser.component';
+import EditUser from './editUser.component';
 
 class App extends Component {
   /**
@@ -20,7 +21,8 @@ class App extends Component {
           <Route path='/app/login' component={Login} />
           <Route  path='/app/signup' component={Signup} />
           <Route  path='/app/dashboard' component={Dashboard} />
-          <Route  path='/app/profile' component={viewUser} />
+          <Route  path='/app/profile' component={ViewUser} />
+          <Route  path='/app/profile/edit' component={EditUser} />
           <Route  path='/*' component={NotFound} />
       </Router>
     );

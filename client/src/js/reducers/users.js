@@ -6,8 +6,13 @@ export default (state = {}, action) => {
     case actionTypes.GET_USER_SUCCESS:
       return { ...state, users: action.users };
     case actionTypes.VIEW_USER:
-      console.log(action);
       return { ...state, user: action.user };
+    case actionTypes.USER_UPDATED:
+      const userToUpdate = state.users.find(user => userId === action.userId);
+      const userIndex = state.users.indexOf(userToUpdate);
+      const newUsers = state.users.slice();
+      newUsers[userIndex] = Object.assign({}, newUsers[userIndex], action.user);
+      return { ...state, users: newUsers };
     default:
       return state;
   }
