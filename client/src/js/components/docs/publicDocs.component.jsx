@@ -12,8 +12,8 @@ if (token) {
 
 const PublicDocs = (props) => {
   let documentList;
-  if (props.document.document !== undefined) {
-    documentList = props.document.document.data
+  if (props.documents !== undefined) {
+    documentList = props.documents
     .filter((document) => {
       return (document.userId === myId) && (document.access === 'public');
     })

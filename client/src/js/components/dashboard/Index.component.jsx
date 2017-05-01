@@ -64,7 +64,7 @@ class Dashboard extends Component {
 
 const mapStoreToProps = (state) => {
   return {
-    documents: state.documentReducer,
+    documents: state.documentReducer.documents,
     users: state.userReducer,
     roles: state.roleReducer
   };

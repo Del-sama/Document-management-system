@@ -128,11 +128,12 @@ class UsersController {
  * @returns {object} - response object
  */
   static deleteUser(request, response) {
-    model.Role.findById(request.decoded.roleId).then((Role) => {
-      if (request.decoded.userId !== request.params.id && Role.title.toLowerCase() !== 'admin') {
-        return response.status(403).send({ message: 'User is unauthorized for this request' });
-      }
-      model.User.findById(request.params.id)
+    model.Role.findById(request.decoded.roleId)
+      .then((Role) => {
+        if ((request.decoded.userId !== parseInt(request.params.id, 10)) &&Role.title.toLowerCase() !== 'admin') {
+          return response.status(403).send({ message: 'User is unauthorized for this request' });
+        }
+        model.User.findById(request.params.id)
           .then((user) => {
             if (!user) {
               return response.status(404)
@@ -142,7 +143,7 @@ class UsersController {
               .then(() => response.status(200)
                 .send({ message: 'User was successfully deleted' }));
           });
-    });
+      });
   }
 
 /**
@@ -153,22 +154,23 @@ class UsersController {
  * @memberOf UsersController
  */
   static login(request, response) {
-    model.User.findOne({ where: { userName: request.body.userName } })
-      .then((user) => {
-        if (user && user.validPassword(request.body.password)) {
-          const payload = {
-            userId: user.id,
-            roleId: user.roleId,
-            userName: user.userName
-          };
-          const token = jwt.sign(payload, secret, { expiresIn: '2 days' });
-          return response.status(200)
-            .send({ token, expiresIn: '2 days' });
-        }
-        return response.status(401)
-          .send({ message: 'Login Failed' });
-      })
-  }
+    // if (request.body.userName && request.body.password) {
+      model.User.findOne({ where: { userName: request.body.userName } })
+        .then((user) => {
+          if (user && user.validPassword(request.body.password)) {
+            const payload = {
+              userId: user.id,
+              roleId: user.roleId,
+              userName: user.userName
+            };
+            const token = jwt.sign(payload, secret, { expiresIn: '2 days' });
+            return response.status(200)
+              .send({ token, expiresIn: '2 days' });
+          }
+          return response.status(401)
+            .send({ message: 'Login Failed' });
+        })
+    }
 
 /**
  * Method logout to logout logged in users

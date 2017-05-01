@@ -31,7 +31,6 @@ import axios from 'axios';
   // }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps, 'nextProps');
     if (nextProps.error === 'unique violation') {
       this.setState({
         error: 'User already exists'

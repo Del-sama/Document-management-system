@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import Navbar from './nav.component';
 import viewUserAction from '../actions/userManagement/viewUser.js';
 import editUserAction from '../actions/userManagement/editUser.js';
+import deleteUserAction from '../actions/userManagement/deleteUser.js';
 
 class EditUser extends Component {
   constructor(props) {
@@ -43,6 +44,12 @@ class EditUser extends Component {
   updateUser(event) {
     const userId = jwtDecode(this.state.token).userId;
     this.props.updateUser(this.state.token, this.state, userId);
+  }
+
+  deleteUser(event) {
+    const userId = jwtDecode(this.state.token).userId;
+    this.props.deleteUser(userId);
+    Materialize.toast('User deleted!', 3000)
   }
 
   render() {
@@ -88,8 +95,15 @@ class EditUser extends Component {
                 <button
                   type="submit"
                   className="updateUser btn"
-                  onClick={this.updateUser}
+                  onClick={() => this.updateUser()}
                 >Save</button>
+              </div>
+              <div className="row">
+                <button
+                  type="submit"
+                  className=" btn"
+                  onClick={() => this.deleteUser()}
+                >Delete profile</button>
               </div>
             </form>
             <div />
@@ -116,8 +130,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     viewUser: (usertoken, userId) => dispatch(viewUserAction(usertoken, userId)),
     updateUser: (usertoken, userDetails, userId) =>
-    dispatch(editUserAction(usertoken, userDetails, userId))
+    dispatch(editUserAction(usertoken, userDetails, userId)),
+    deleteUser: (userId) => dispatch(deleteUserAction(userId))
   };
+
 };
 
 export default connect(mapStoreToProps, mapDispatchToProps)(EditUser);

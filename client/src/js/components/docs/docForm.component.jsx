@@ -40,7 +40,6 @@ export class CreateDocument extends Component {
     }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.status, 'nextProps');
       if (nextProps.status === 'success') {
         browserHistory.push('/app/dashboard');
       }
@@ -61,7 +60,6 @@ export class CreateDocument extends Component {
   onSubmit(event) {
     event.preventDefault();
     this.props.CreateDocument(this.state);
-    console.log(this.state);
   }
 
   render() {
@@ -125,7 +123,8 @@ export class CreateDocument extends Component {
 
 const mapStoreToProps = (state) => {
   return {
-    status: state.documentReducer.createStatus
+    status: state.documentReducer.createStatus,
+    documents: state.documentReducer.documents
   };
 };
 

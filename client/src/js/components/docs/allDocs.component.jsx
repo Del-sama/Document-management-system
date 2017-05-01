@@ -5,8 +5,8 @@ import jwtDecode from 'jwt-decode';
 
 const AllDocs = (props) => {
   let documentList;
-  if (props.document.document !== undefined) {
-    documentList = props.document.document.data.map((document) => {
+  if (props.documents !== undefined) {
+    documentList = props.documents.map((document) => {
       return (
         <SingleDocument document={document} key={document.id} />
       )

@@ -34,7 +34,7 @@ class AdminDashboard extends Component {
             </div>
 
             <div id="test1" className="tabContent col s12">
-              <AllDocs document={this.props.documents} />
+              <AllDocs documents={this.props.documents} />
             </div>
             <div id="test2" className="tabContent col s12">
               <Users users={this.props.users} />

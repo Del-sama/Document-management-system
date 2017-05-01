@@ -1,7 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 
 export default (state = {}, action) => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.GET_USER_SUCCESS:
       return { ...state, users: action.users };
@@ -13,6 +12,11 @@ export default (state = {}, action) => {
       const newUsers = state.users.slice();
       newUsers[userIndex] = Object.assign({}, newUsers[userIndex], action.user);
       return { ...state, users: newUsers };
+    case actionTypes.USER_DELETED:
+      return { ...state,
+        documents: state.users.filter((user) => {
+          return userId !== action.userId;
+        })};
     default:
       return state;
   }
