@@ -75,14 +75,12 @@ class ViewUser extends Component {
                 <label htmlFor="role">Role: </label>
                 <span className="userRole">{this.state.role}</span>
               </div>
-              {/*{this.state.id === this.state.pageId ?
-                <div className="row">
+              <div className="row">
                   <Link
-                    to="/edit-profile"
+                    to="/app/profile/edit"
                     className="btn updateUser"
-                  >Edit</Link>
+                  >Edit Profile</Link>
                 </div>
-               : <span />}*/}
             </form>
             <div />
           </div>

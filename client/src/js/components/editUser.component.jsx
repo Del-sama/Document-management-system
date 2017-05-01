@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import React, { Component, PropTypes } from 'react';
-import Header from './Header.jsx';
-import Sidebar from './Sidebar.jsx';
+import Navbar from './nav.component';
 import viewUserAction from '../actions/userManagement/viewUser.js';
 import editUserAction from '../actions/userManagement/editUser.js';
 
@@ -11,9 +10,9 @@ class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      first_name: '',
-      last_name: '',
+      userName: '',
+      firstName: '',
+      lastName: '',
       password: '',
       role: '',
       token: localStorage.getItem('token')
@@ -28,8 +27,8 @@ class EditUser extends Component {
     }
     const token = window.localStorage.getItem('token');
     if (token) {
-      this.setState({ userid: jwtDecode(token).user.id });
-      this.props.viewUser(token, jwtDecode(token).user.id);
+      this.setState({ userId: jwtDecode(token).userId });
+      this.props.viewUser(token, jwtDecode(token).userId);
     }
   }
 
@@ -42,41 +41,40 @@ class EditUser extends Component {
   }
 
   updateUser(event) {
-    const userId = jwtDecode(this.state.token).user.id;
+    const userId = jwtDecode(this.state.token).userId;
     this.props.updateUser(this.state.token, this.state, userId);
   }
 
   render() {
     return (
       <div className="row dashboardContainer col s12">
-        <Header />
-        <Sidebar />
+        <Navbar />
         <div className="col s12 workspace ">
           <div className="row workspace-header"><h4>Profile</h4></div>
           <div className="doc_list z-depth-4 panel doc_content">
             <form className="userProfile">
-              <label htmlFor="username">Username: </label>
+              <label htmlFor="userName">Username: </label>
               <input
                 type="text"
-                name="username"
+                name="userName"
                 id="username"
-                value={this.state.username}
+                value={this.state.userName}
                 onChange={this.handleChange}
               />
-              <label htmlFor="first_name">First Name: </label>
+              <label htmlFor="firstName">First Name: </label>
               <input
                 type="text"
-                name="first_name"
+                name="firstName"
                 id="first_name"
-                value={this.state.first_name}
+                value={this.state.firstName}
                 onChange={this.handleChange}
               />
-              <label htmlFor="last_name">Last Name: </label>
+              <label htmlFor="lastName">Last Name: </label>
               <input
                 type="text"
-                name="last_name"
+                name="lastName"
                 id="last_name"
-                value={this.state.last_name}
+                value={this.state.lastName}
                 onChange={this.handleChange}
               />
               <label htmlFor="password">Password: </label>
@@ -110,13 +108,13 @@ EditUser.propTypes = {
 
 const mapStoreToProps = (state, ownProps) => {
   return {
-    user: state.viewUserReducer.user
+    user: state.userReducer.user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    viewUser: (usertoken, userid) => dispatch(viewUserAction(usertoken, userid)),
+    viewUser: (usertoken, userId) => dispatch(viewUserAction(usertoken, userId)),
     updateUser: (usertoken, userDetails, userId) =>
     dispatch(editUserAction(usertoken, userDetails, userId))
   };
