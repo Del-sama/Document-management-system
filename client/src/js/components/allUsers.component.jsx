@@ -18,8 +18,6 @@ const SingleUsers = (users, index) => {
 }
 let usersList = [];
 const UserDocs = (props) => {
-  console.log('a2303023][;\;\[]]', props)
-
   if (props.users.users !== undefined) {
     usersList = props.users.users.data;
   }
