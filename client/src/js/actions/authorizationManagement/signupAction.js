@@ -11,14 +11,15 @@ export default (userData) => {
         window.localStorage.setItem('token', response.data.token);
         const user = jwtDecode(response.data.token);
          dispatch({
-          type: actionTypes.LOGIN_SUCCESFUL,
+          type: actionTypes.LOGIN_SUCCESSFUL,
           user
-        });
-      }).catch((error) => {
+        })
+      })
+      .catch((error) => {
         dispatch({
           type: actionTypes.SIGNUP_FAILED,
           message: error.response.data.message
-        });
+        })
       });
   };
 };
