@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d754f001353b226911c1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7249989ab748ea52879a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -1479,6 +1479,38 @@
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var base64_url_decode = __webpack_require__(240);
+
+	function InvalidTokenError(message) {
+	  this.message = message;
+	}
+
+	InvalidTokenError.prototype = new Error();
+	InvalidTokenError.prototype.name = 'InvalidTokenError';
+
+	module.exports = function (token,options) {
+	  if (typeof token !== 'string') {
+	    throw new InvalidTokenError('Invalid token specified');
+	  }
+
+	  options = options || {};
+	  var pos = options.header === true ? 0 : 1;
+	  try {
+	    return JSON.parse(base64_url_decode(token.split('.')[pos]));
+	  } catch (e) {
+	    throw new InvalidTokenError('Invalid token specified: ' + e.message);
+	  }
+	};
+
+	module.exports.InvalidTokenError = InvalidTokenError;
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -1512,38 +1544,6 @@
 	var USER_DELETION_FAILED = exports.USER_DELETION_FAILED = 'USER_DELETION_FAILED';
 	var ROLE_CREATED = exports.ROLE_CREATED = 'ROLE_CREATED';
 	var ROLE_CREATE_FAILED = exports.ROLE_CREATE_FAILED = 'ROLE_CREATE_FAILED';
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var base64_url_decode = __webpack_require__(240);
-
-	function InvalidTokenError(message) {
-	  this.message = message;
-	}
-
-	InvalidTokenError.prototype = new Error();
-	InvalidTokenError.prototype.name = 'InvalidTokenError';
-
-	module.exports = function (token,options) {
-	  if (typeof token !== 'string') {
-	    throw new InvalidTokenError('Invalid token specified');
-	  }
-
-	  options = options || {};
-	  var pos = options.header === true ? 0 : 1;
-	  try {
-	    return JSON.parse(base64_url_decode(token.split('.')[pos]));
-	  } catch (e) {
-	    throw new InvalidTokenError('Invalid token specified: ' + e.message);
-	  }
-	};
-
-	module.exports.InvalidTokenError = InvalidTokenError;
-
 
 /***/ }),
 /* 13 */
@@ -2673,7 +2673,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -7193,7 +7193,7 @@
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -7244,6 +7244,10 @@
 
 	var _createDocument2 = _interopRequireDefault(_createDocument);
 
+	var _jwtDecode = __webpack_require__(11);
+
+	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
+
 	var _adddoc = __webpack_require__(188);
 
 	var _adddoc2 = _interopRequireDefault(_adddoc);
@@ -7272,7 +7276,7 @@
 	    _this.state = {
 	      selectValue: 'users',
 	      AdminRoleId: 1,
-	      authUser: jwtDecode(token) || {}
+	      authUser: (0, _jwtDecode2.default)(token) || {}
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    return _this;
@@ -10969,7 +10973,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -11018,7 +11022,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -11063,7 +11067,7 @@
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -11116,7 +11120,7 @@
 
 	var _reactMaterialize = __webpack_require__(85);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -11265,7 +11269,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -11498,7 +11502,7 @@
 
 	var _reactRedux = __webpack_require__(14);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -19835,11 +19839,11 @@
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -19878,7 +19882,7 @@
 	  value: true
 	});
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -19908,11 +19912,11 @@
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -19958,7 +19962,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -20005,7 +20009,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -20052,7 +20056,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -20097,7 +20101,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -20141,7 +20145,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
@@ -20188,7 +20192,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -20293,7 +20297,7 @@
 	              null,
 	              'Create a Role'
 	            ),
-	            _react2.default.createElement(CreateRole, null)
+	            _react2.default.createElement(_createRoleFormComponent2.default, null)
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -20438,7 +20442,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -20593,7 +20597,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -20821,13 +20825,13 @@
 
 	var _viewUser2 = _interopRequireDefault(_viewUser);
 
-	var _editUser = __webpack_require__(203);
+	var _editUser = __webpack_require__(202);
 
 	var _editUser2 = _interopRequireDefault(_editUser);
 
-	var _editRole = __webpack_require__(202);
+	var _editUsersRole = __webpack_require__(203);
 
-	var _editRole2 = _interopRequireDefault(_editRole);
+	var _editUsersRole2 = _interopRequireDefault(_editUsersRole);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20864,7 +20868,7 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: '/app/dashboard', component: _Index2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/app/profile', component: _viewUser2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/app/profile/edit', component: _editUser2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/app/user/role-edit', component: _editRole2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/app/user/role-edit', component: _editUsersRole2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/*', component: _notfound2.default })
 	      );
 	    }
@@ -21258,7 +21262,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -21371,7 +21375,7 @@
 	}(_react.Component);
 
 	CreateRole.PropTypes = {
-	  role: PropTypes.object.isRequired
+	  role: _react.PropTypes.object.isRequired
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -21402,7 +21406,7 @@
 
 	var _reactRedux = __webpack_require__(14);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -22113,7 +22117,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -22267,7 +22271,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -22422,7 +22426,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -22576,190 +22580,7 @@
 
 	var _reactRouter = __webpack_require__(5);
 
-	var _jwtDecode = __webpack_require__(12);
-
-	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _nav = __webpack_require__(22);
-
-	var _nav2 = _interopRequireDefault(_nav);
-
-	var _viewUser = __webpack_require__(58);
-
-	var _viewUser2 = _interopRequireDefault(_viewUser);
-
-	var _editUser = __webpack_require__(100);
-
-	var _editUser2 = _interopRequireDefault(_editUser);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var EditRole = function (_Component) {
-	  _inherits(EditRole, _Component);
-
-	  function EditRole(props) {
-	    _classCallCheck(this, EditRole);
-
-	    var _this = _possibleConstructorReturn(this, (EditRole.__proto__ || Object.getPrototypeOf(EditRole)).call(this, props));
-
-	    _this.state = {
-	      roleId: '',
-	      title: ''
-	    };
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.updateUser = _this.updateUser.bind(_this);
-	    return _this;
-	  }
-
-	  // componentWillMount() {
-	  //   if (!window.localStorage.getItem('token')) {
-	  //     browserHistory.push('/');
-	  //   }
-	  //   const token = window.localStorage.getItem('token');
-	  //   if (token) {
-	  //     this.setState({ userId: jwtDecode(token).userId });
-	  //     this.props.viewUser(token, jwtDecode(token).userId);
-	  //   }
-	  // }
-
-	  _createClass(EditRole, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      this.setState(nextProps.user);
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      this.setState(_defineProperty({}, event.target.name, event.target.value));
-	    }
-	  }, {
-	    key: 'updateUser',
-	    value: function updateUser(event) {
-	      // const userId = jwtDecode(this.state.token).userId;
-	      this.props.updateUser(this.state, userId);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'row dashboardContainer col s12' },
-	        _react2.default.createElement(_nav2.default, null),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col s12 workspace ' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row workspace-header' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'Edit Role'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'doc_list z-depth-4 panel doc_content' },
-	            _react2.default.createElement(
-	              'form',
-	              { className: 'userProfile' },
-	              _react2.default.createElement(
-	                'label',
-	                { htmlFor: 'role' },
-	                'Role Title: '
-	              ),
-	              _react2.default.createElement('input', {
-	                type: 'text',
-	                name: 'title',
-	                id: 'title',
-	                value: this.state.title,
-	                onChange: this.handleChange
-	              }),
-	              _react2.default.createElement(
-	                'label',
-	                { htmlFor: 'roleId' },
-	                'RoleId: '
-	              ),
-	              _react2.default.createElement('input', {
-	                type: 'number',
-	                name: 'roleId',
-	                id: 'roleId',
-	                value: this.state.roleId,
-	                onChange: this.handleChange
-	              }),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'row' },
-	                _react2.default.createElement(
-	                  'button',
-	                  {
-	                    type: 'submit',
-	                    className: 'updateUser btn',
-	                    onClick: function onClick() {
-	                      return _this2.updateUser();
-	                    }
-	                  },
-	                  'Save'
-	                )
-	              )
-	            ),
-	            _react2.default.createElement('div', null)
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return EditRole;
-	}(_react.Component);
-
-	var mapStoreToProps = function mapStoreToProps(state, ownProps) {
-	  return {
-	    user: state.userReducer.user
-	  };
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    updateUser: function updateUser(usertoken, userDetails, userId) {
-	      return dispatch((0, _editUser2.default)(userDetails, userId));
-	    }
-	  };
-	};
-
-	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(EditRole);
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _reactRedux = __webpack_require__(14);
-
-	var _reactRouter = __webpack_require__(5);
-
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -22970,6 +22791,176 @@
 	};
 
 	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(EditUser);
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _reactRedux = __webpack_require__(14);
+
+	var _reactRouter = __webpack_require__(5);
+
+	var _jwtDecode = __webpack_require__(11);
+
+	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _nav = __webpack_require__(22);
+
+	var _nav2 = _interopRequireDefault(_nav);
+
+	var _viewUser = __webpack_require__(58);
+
+	var _viewUser2 = _interopRequireDefault(_viewUser);
+
+	var _editUser = __webpack_require__(100);
+
+	var _editUser2 = _interopRequireDefault(_editUser);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var EditUsersRole = function (_Component) {
+	  _inherits(EditUsersRole, _Component);
+
+	  function EditUsersRole(props) {
+	    _classCallCheck(this, EditUsersRole);
+
+	    var _this = _possibleConstructorReturn(this, (EditUsersRole.__proto__ || Object.getPrototypeOf(EditUsersRole)).call(this, props));
+
+	    _this.state = {
+	      roleId: ''
+	    };
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.updateUser = _this.updateUser.bind(_this);
+	    return _this;
+	  }
+
+	  // componentWillMount() {
+	  //   if (!window.localStorage.getItem('token')) {
+	  //     browserHistory.push('/');
+	  //   }
+	  //   const token = window.localStorage.getItem('token');
+	  //   if (token) {
+	  //     this.setState({ userId: jwtDecode(token).userId });
+	  //     this.props.viewUser(token, jwtDecode(token).userId);
+	  //   }
+	  // }
+
+	  _createClass(EditUsersRole, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.setState(nextProps.user);
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.setState(_defineProperty({}, event.target.name, event.target.value));
+	    }
+	  }, {
+	    key: 'updateUser',
+	    value: function updateUser(event) {
+	      // const userId = jwtDecode(this.state.token).userId;
+	      this.props.updateUser(this.state, userId);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row dashboardContainer col s12' },
+	        _react2.default.createElement(_nav2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col s12 workspace ' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row workspace-header' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Edit Role'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'doc_list z-depth-4 panel doc_content' },
+	            _react2.default.createElement(
+	              'form',
+	              { className: 'userProfile' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'roleId' },
+	                'RoleId: '
+	              ),
+	              _react2.default.createElement('input', {
+	                type: 'number',
+	                name: 'roleId',
+	                id: 'roleId',
+	                value: this.state.roleId,
+	                onChange: this.handleChange
+	              }),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                  'button',
+	                  {
+	                    type: 'submit',
+	                    className: 'updateUser btn',
+	                    onClick: function onClick() {
+	                      return _this2.updateUser();
+	                    }
+	                  },
+	                  'Save'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement('div', null)
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return EditUsersRole;
+	}(_react.Component);
+
+	var mapStoreToProps = function mapStoreToProps(state, ownProps) {
+	  return {
+	    user: state.userReducer.user
+	  };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    updateUser: function updateUser(usertoken, userDetails, userId) {
+	      return dispatch((0, _editUser2.default)(userDetails, userId));
+	    }
+	  };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(EditUsersRole);
 
 /***/ }),
 /* 204 */
@@ -23445,7 +23436,7 @@
 
 	var _redux = __webpack_require__(47);
 
-	var _jwtDecode = __webpack_require__(12);
+	var _jwtDecode = __webpack_require__(11);
 
 	var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
@@ -23715,7 +23706,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -23825,7 +23816,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -23883,7 +23874,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _actionTypes = __webpack_require__(11);
+	var _actionTypes = __webpack_require__(12);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
