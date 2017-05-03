@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import CreateDocument from './docs/createDocForm.component.jsx'
+import CreateRole from './createRoleForm.component.jsx'
 
 class AddRole extends Component {
   constructor() {
@@ -31,7 +31,7 @@ class AddRole extends Component {
         <div id="modalRole" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4>Create a Role</h4>
-            <CreateDocument />
+            <CreateRole />
           </div>
           <div className="modal-footer">
             <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>

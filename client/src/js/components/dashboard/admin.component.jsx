@@ -7,16 +7,34 @@ import AllDocs from '../docs/allDocs.component';
 import Users from '../allUsers.component';
 import Roles from '../allRoles.component';
 
+import deleteUserAction from '../../actions/userManagement/deleteUser';
+
 
 class AdminDashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      documents: props.documents || [],
+      users: props.users || [],
+      roles: props.roles || [],
+    };
+  }
+
+  componentWillReceiveProps(nextProps){
+    const keys = ['users', 'documents', 'roles'];
+    keys.forEach(key=>{
+      if(nextProps[key]){
+        this.setState({
+          [key]: nextProps[key]
+        });
+      }
+    });
   }
 
   componentDidMount() {
     $('ul.tabs').tabs();
   }
+
   render() {
     return (
       <div>
@@ -34,13 +52,13 @@ class AdminDashboard extends Component {
             </div>
 
             <div id="test1" className="tabContent col s12">
-              <AllDocs documents={this.props.documents} />
+              <AllDocs documents={this.state.documents} />
             </div>
             <div id="test2" className="tabContent col s12">
-              <Users users={this.props.users} />
+              <Users users={this.state.users} deleteUser={this.props.deleteUser}/>
             </div>
             <div id="test3" className="tabContent col s12">
-              <Roles roles={this.props.roles} />
+              <Roles roles={this.state.roles} />
             </div>
           </div>
         </div>
@@ -49,5 +67,14 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    viewUser: (usertoken, userId) => dispatch(viewUserAction(usertoken, userId)),
+    updateUser: (userDetails, userId) =>
+    dispatch(editUserAction(usertoken, userDetails, userId)),
+    deleteUser: (userId) => dispatch(deleteUserAction(userId))
+  };
+}
+
+export default connect(null,mapDispatchToProps)(AdminDashboard);
 

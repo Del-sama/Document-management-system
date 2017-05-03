@@ -111,7 +111,6 @@ class UsersController {
           return response.status(404)
           .send({ message: `No user with id: ${request.params.id}` });
         }
-
         user.update(request.body)
           .then((updatedUser) => {
             updatedUser = formatUser(updatedUser);
