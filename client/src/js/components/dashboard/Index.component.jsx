@@ -17,6 +17,9 @@ class Dashboard extends Component {
     this.state = {
       AdminRoleId: 1,
       authUser: jwtDecode(token) || {},
+      documents: props.documents || [],
+      roles: props.roles || [],
+      users: props.user || []
     }
   }
 
@@ -25,6 +28,17 @@ class Dashboard extends Component {
     this.props.actionsDoc.viewAllDocuments(userId);
     this.props.actionsUser.viewUsers(userId);
     this.props.actionsRole.viewRoles(userId);
+  }
+
+  componentWillReceiveProps(nextProps){
+    const keys = ['users', 'documents', 'roles'];
+    keys.forEach(key=>{
+      if(nextProps[key]){
+        this.setState({
+          [key]: nextProps[key]
+        });
+      }
+    });
   }
 
   componentDidMount() {
@@ -53,11 +67,11 @@ class Dashboard extends Component {
       </div>*/
     if(roleId === this.state.AdminRoleId) {
       return (
-        <AdminDashboard documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
+        <AdminDashboard documents={this.state.documents} users={this.state.users} roles={this.state.roles}/>
       )
     }
     return (
-      <UserDashboard documents={this.props.documents} />
+      <UserDashboard documents={this.state.documents} />
     )
   }
 }
@@ -65,8 +79,8 @@ class Dashboard extends Component {
 const mapStoreToProps = (state) => {
   return {
     documents: state.documentReducer.documents,
-    users: state.userReducer,
-    roles: state.roleReducer
+    users: state.userReducer.users,
+    roles: state.roleReducer.roles
   };
 };
 

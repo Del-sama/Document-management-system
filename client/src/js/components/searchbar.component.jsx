@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import CreateDocument from './createDocument';
+import jwtDecode from 'jwt-decode';
 import AddDoc from './adddoc.component';
+import AddRole from './addRole.component.jsx';
 
-class Searchbar extends Component {
-  constructor() {
-    super();
+
+  class Searchbar extends Component {
+  constructor(props) {
+    super(props);
+    const token = window.localStorage.getItem('token');
     this.state = {
-      selectValue: 'users'
+      selectValue: 'users',
+      AdminRoleId: 1,
+      authUser: jwtDecode(token) || {},
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -28,13 +34,33 @@ class Searchbar extends Component {
     });
   }
 
-  render() {
+ render() {
+    const roleId = this.state.authUser.roleId || null
     var message = 'You selected ' + this.state.selectValue;
-    return (
+    return (roleId === this.state.AdminRoleId) ?
+      <nav id="nav">
+        <div className="nav-wrapper">
+          <AddDoc />
+          <AddRole />
+          <div className="searchBox">
+            <i className="material-icons">search</i>
+            <input type="text" id="searchInput" placeholder="....SEARCH"></input>
+            <div className="dropdown">
+              <select value={this.state.selectValue}
+                onChange={this.handleChange}>
+                <option value="users">USERS</option>
+                <option value="documents">DOCUMENTS</option>
+              </select>
+            </div>
+
+          </div>
+
+        </div>
+      </nav> :
       <nav id="nav">
         <div className="nav-wrapper">
 
-         <AddDoc />
+          <AddDoc />
 
           <div className="searchBox">
             <i className="material-icons">search</i>
@@ -53,7 +79,6 @@ class Searchbar extends Component {
 
         </div>
       </nav>
-    );
   }
 }
 export default Searchbar;

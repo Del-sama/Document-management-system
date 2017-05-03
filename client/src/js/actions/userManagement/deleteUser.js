@@ -13,9 +13,9 @@ export default (userId) => {
     .then(() => {
       dispatch({
         type: actionTypes.USER_DELETED,
-        status: 'success'
+        status: 'success',
+        deletedUserId: userId
       });
-      browserHistory.push('/');
     }).catch((err) => {
       dispatch({
         type: actionTypes.USER_DELETION_FAILED,

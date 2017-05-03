@@ -10,18 +10,12 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['react']
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.jsx$/,
         loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['react']
-        }
+        exclude: /node_modules/
       },
         {
         test: /\.(png|jpg|jpeg)$/,
@@ -47,6 +41,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    // new webpack.NoErrorsPlugin()
   ]
 };

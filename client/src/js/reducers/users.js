@@ -14,8 +14,8 @@ export default (state = {}, action) => {
       return { ...state, users: newUsers };
     case actionTypes.USER_DELETED:
       return { ...state,
-        documents: state.users.filter((user) => {
-          return userId !== action.userId;
+        users: state.users.filter((user) => {
+          return user.id !== action.deletedUserId;
         })};
     default:
       return state;

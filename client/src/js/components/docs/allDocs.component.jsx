@@ -3,33 +3,44 @@ import { browserHistory, Link } from 'react-router';
 import { Row, Col, Input, Button } from 'react-materialize';
 import jwtDecode from 'jwt-decode';
 
-const AllDocs = (props) => {
-  let documentList;
-  if (props.documents !== undefined) {
-    documentList = props.documents.map((document) => {
-      return (
-        <SingleDocument document={document} key={document.id} />
-      )
-    })
+export class AllDocs extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      documents: props.documents || []
+    };
   }
-  return (
-    <div>
-      <table className="bordered">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Access</th>
-            <th>Content</th>
-            <th>Published date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {documentList}
-        </tbody>
-      </table>
-    </div>
-  )
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.documents){
+      this.setState({
+        documents: nextProps.documents
+      });
+    }
+  }
+
+  render(){
+    return (
+      <div>
+        <table className="bordered">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Access</th>
+              <th>Content</th>
+              <th>Published date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.documents.map(document =>
+              <SingleDocument document={document} key={document.id} />
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
 }
 
 

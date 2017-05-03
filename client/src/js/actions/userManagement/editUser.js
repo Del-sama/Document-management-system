@@ -1,7 +1,8 @@
 import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 
-export default (token, userData, userId) => {
+export default (userData, userId) => {
+  const token = window.localStorage.getItem('token');
   return (dispatch) => {
     return axios.put(`/users/${userId}`, userData, {
       headers: {

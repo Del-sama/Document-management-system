@@ -1,45 +1,68 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
+import deleteUserAction from '../actions/userManagement/deleteUser.js';
 
-const SingleUsers = (users, index) => {
+const SingleUserComponent = ({user, deleteUser}) => {
   return (
-    <tr className="hoverable" key={index}>
-      <td>{users.firstName}</td>
-      <td>{users.lastName}</td>
-      <td>{users.email}</td>
-      <td>{users.roleId}</td>
-      <td>{(users.createdAt).slice(0, 10)}</td>
-      <td>{(users.updatedAt).slice(0, 10)}</td>
-      {/*<td><a className="modal-trigger green-text" href="#modal1" onClick={() => { props.setEditusers(users); }}><i className="material-icons">edit</i></a></td>
-      <td><a className="red-text" href="#" onClick={() => { props.setDeleteusers(users.id); }} > <i className="material-icons">delete</i></a></td>*/}
+      <tr className="hoverable">
+        <td>{user.firstName}</td>
+        <td>{user.lastName}</td>
+        <td>{user.email}</td>
+        <td>{user.roleId}</td>
+        <td>{user.createdAt.slice(0, 10)}</td>
+        <td>{user.updatedAt.slice(0, 10)}</td>
+        <td><Link to='/app/user/role-edit'><a className="green-text"><i className="material-icons">edit</i></a></Link></td>
+        <td><a className="red-text" href="#" onClick={() => deleteUser(user.id)} > <i className="material-icons">delete</i></a></td>
     </tr >
   );
 }
-let usersList = [];
-const UserDocs = (props) => {
-  if (props.users.users !== undefined) {
-    usersList = props.users.users.data;
+
+export default class allUsers extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      users: []
+    }
+    this.deleteUser = this.deleteUser.bind(this);
   }
-  return (
-    <div>
-      <table className="bordered  responsive">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role ID</th>
-            <th>Created date</th>
-            <th>Updated date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usersList.map(SingleUsers)}
-        </tbody>
-      </table>
-    </div>
-  )
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.users){
+      this.setState({
+        users: nextProps.users
+      });
+    }
+  }
+
+  deleteUser(userId){
+    // const userId = jwtDecode(this.state.token).userId;
+    this.props.deleteUser(userId);
+    Materialize.toast('User deleted!', 3000);
+  }
+  render(){
+    return (
+      <div>
+        <table className="bordered  responsive">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Role ID</th>
+              <th>Created date</th>
+              <th>Updated date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.users.map(user =>
+              <SingleUserComponent user={user} key={user.id} deleteUser={this.deleteUser}/>
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  };
 }
 
-export default UserDocs;

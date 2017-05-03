@@ -17,8 +17,8 @@ export const viewUsers = (userId) => {
         Authorization: token
       }
     })
-    .then((users) => {
-      dispatch(userGetSuccess(users));
+    .then((response) => {
+      dispatch(userGetSuccess(response.data));
     })
     .catch((err) => {
     });
