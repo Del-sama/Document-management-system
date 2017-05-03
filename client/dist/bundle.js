@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7249989ab748ea52879a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ccd2a718380e58fd39f7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20638,7 +20638,7 @@
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      user.roleId
+	      user.roleId === 1 ? admin : regular
 	    ),
 	    _react2.default.createElement(
 	      'td',

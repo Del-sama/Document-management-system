@@ -4,13 +4,25 @@ import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import deleteUserAction from '../actions/userManagement/deleteUser.js';
 
-const SingleUserComponent = ({user, deleteUser}) => {
+const SingleUserComponent = ({user, deleteUser, props, change}) => {
   return (
       <tr className="hoverable">
         <td>{user.firstName}</td>
         <td>{user.lastName}</td>
         <td>{user.email}</td>
-        <td>{user.roleId}</td>
+        <td>
+          {
+            (user.roleId !== 1) ?
+              <select style={{ display: 'block' }} onChange={(e) => change(e, user.id)}>
+                {
+                  [...props.roles].reverse().map(role => <option value={role.id} key={role.id}>{role.title}</option>)
+                }
+              </select>
+              :
+              ''
+          }
+
+        </td>
         <td>{user.createdAt.slice(0, 10)}</td>
         <td>{user.updatedAt.slice(0, 10)}</td>
         <td><Link to='/app/user/role-edit'><a className="green-text"><i className="material-icons">edit</i></a></Link></td>
@@ -23,21 +35,29 @@ export default class allUsers extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users: []
+      change: 1,
+      users: [],
+      roles: []
     }
+    this.change = this.change.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.users){
       this.setState({
-        users: nextProps.users
+        users: nextProps.users,
+        roles: nextProps.roles
       });
     }
   }
 
+  change(e, id) {
+    this.setState({ change: e.target.value });
+    this.props.updateUser({ roleId: e.target.value }, id);
+  }
+
   deleteUser(userId){
-    // const userId = jwtDecode(this.state.token).userId;
     this.props.deleteUser(userId);
     Materialize.toast('User deleted!', 3000);
   }
@@ -57,7 +77,7 @@ export default class allUsers extends Component {
           </thead>
           <tbody>
             {this.state.users.map(user =>
-              <SingleUserComponent user={user} key={user.id} deleteUser={this.deleteUser}/>
+              <SingleUserComponent user={user} key={user.id} deleteUser={this.deleteUser} props={this.props} change={this.change}/>
             )}
           </tbody>
         </table>

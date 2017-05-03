@@ -55,7 +55,7 @@ class AdminDashboard extends Component {
               <AllDocs documents={this.state.documents} />
             </div>
             <div id="test2" className="tabContent col s12">
-              <Users users={this.state.users} deleteUser={this.props.deleteUser}/>
+              <Users updateUser={this.props.updateUser} users={this.state.users} roles={this.state.roles} deleteUser={this.props.deleteUser}/>
             </div>
             <div id="test3" className="tabContent col s12">
               <Roles roles={this.state.roles} />
@@ -70,8 +70,6 @@ class AdminDashboard extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     viewUser: (usertoken, userId) => dispatch(viewUserAction(usertoken, userId)),
-    updateUser: (userDetails, userId) =>
-    dispatch(editUserAction(usertoken, userDetails, userId)),
     deleteUser: (userId) => dispatch(deleteUserAction(userId))
   };
 }
