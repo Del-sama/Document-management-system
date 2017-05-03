@@ -7,7 +7,7 @@ import NotFound from './notfound.component';
 import Dashboard from './dashboard/Index.component';
 import ViewUser from './viewUser.component';
 import EditUser from './editUser.component';
-import EditRole from './editRole.component';
+import EditUsersRole from './editUsersRole.component';
 
 class App extends Component {
   /**
@@ -24,7 +24,7 @@ class App extends Component {
           <Route  path='/app/dashboard' component={Dashboard} />
           <Route  path='/app/profile' component={ViewUser} />
           <Route  path='/app/profile/edit' component={EditUser} />
-          <Route  path='/app/user/role-edit' component={EditRole} />
+          <Route  path='/app/user/role-edit' component={EditUsersRole} />
           <Route  path='/*' component={NotFound} />
       </Router>
     );

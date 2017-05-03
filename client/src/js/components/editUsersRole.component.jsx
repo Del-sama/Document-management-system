@@ -6,12 +6,11 @@ import Navbar from './nav.component';
 import viewUserAction from '../actions/userManagement/viewUser.js';
 import editUserAction from '../actions/userManagement/editUser.js';
 
-class EditRole extends Component {
+class EditUsersRole extends Component {
   constructor(props) {
     super(props);
     this.state = {
       roleId: '',
-      title: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -49,14 +48,6 @@ class EditRole extends Component {
           <div className="row workspace-header"><h4>Edit Role</h4></div>
           <div className="doc_list z-depth-4 panel doc_content">
             <form className="userProfile">
-              <label htmlFor="role">Role Title: </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
               <label htmlFor="roleId">RoleId: </label>
               <input
                 type="number"
@@ -97,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
 
 };
 
-export default connect(mapStoreToProps, mapDispatchToProps)(EditRole);
+export default connect(mapStoreToProps, mapDispatchToProps)(EditUsersRole);

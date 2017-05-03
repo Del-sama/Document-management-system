@@ -9,11 +9,13 @@ import { bindActionCreators } from 'redux';
 import * as AllDocActions from '../../actions/documentManagement/readAllDocuments';
 import * as UserActions from '../../actions/userManagement/getAllUsers.js';
 import * as RoleActions from '../../actions/roleManagement/getRoles.js';
+import editUserActions from '../../actions/userManagement/editUser';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
     const token = window.localStorage.getItem('token');
+    this.updateUser = this.updateUser.bind(this);
     this.state = {
       AdminRoleId: 1,
       authUser: jwtDecode(token) || {},
@@ -56,6 +58,11 @@ class Dashboard extends Component {
       // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
+
+  updateUser(values, id) {
+    this.props.actionEditUser(values, id);
+  }
+
   render() {
     const roleId = this.state.authUser.roleId || null
     /*return (roleId === this.state.AdminRoleId) ?
@@ -67,7 +74,7 @@ class Dashboard extends Component {
       </div>*/
     if(roleId === this.state.AdminRoleId) {
       return (
-        <AdminDashboard documents={this.state.documents} users={this.state.users} roles={this.state.roles}/>
+        <AdminDashboard updateUser={this.updateUser} documents={this.state.documents} users={this.state.users} roles={this.state.roles}/>
       )
     }
     return (
@@ -88,7 +95,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     actionsDoc: bindActionCreators(AllDocActions, dispatch),
     actionsUser: bindActionCreators(UserActions, dispatch),
-    actionsRole: bindActionCreators(RoleActions, dispatch)
+    actionsRole: bindActionCreators(RoleActions, dispatch),
+    actionEditUser: bindActionCreators(editUserActions, dispatch)
   }
 }
 
