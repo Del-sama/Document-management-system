@@ -89,6 +89,12 @@ Document management system is an application used to track, manage and store doc
 
 ## Contributing to the project
 
+* Fork this repository to your account.
+* Clone this repository: git clone https://github.com/andela-ddiei/Document-Management-System.git
+* Create a feature branch: git checkout -b new-branch
+* Commit your changes: git commit -m "commit message"
+* Push to the remote branch: git push origin new-branch
+* Create a pull request.
 
 ## Troubleshooting and FAQ
 
