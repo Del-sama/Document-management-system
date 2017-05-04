@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Navbar from './nav.component';
+import SearchBar from './searchbar.component'
 import viewUserAction from '../actions/userManagement/viewUser.js';
 
 
@@ -42,10 +43,11 @@ class ViewUser extends Component {
 
   render() {
     return (
-      <div className="row dashboardContainer col s12">
+      <div className="row  col s12">
         <Navbar />
-        <div className="col s12 workspace ">
-          <div className="row workspace-header"><h4>Profile</h4></div>
+        <SearchBar />
+        <div className="col s12 ">
+          <div className="row "><h4>Profile</h4></div>
           <div className="doc_list z-depth-4 panel doc_content">
             <form className="userProfile" autoComplete="off">
               <div className="row">

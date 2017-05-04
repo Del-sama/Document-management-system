@@ -25,7 +25,6 @@ const SingleUserComponent = ({user, deleteUser, props, change}) => {
         </td>
         <td>{user.createdAt.slice(0, 10)}</td>
         <td>{user.updatedAt.slice(0, 10)}</td>
-        <td><Link to='/app/user/role-edit'><a className="green-text"><i className="material-icons">edit</i></a></Link></td>
         <td><a className="red-text" href="#" onClick={() => deleteUser(user.id)} > <i className="material-icons">delete</i></a></td>
     </tr >
   );

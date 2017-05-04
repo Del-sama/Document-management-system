@@ -7,7 +7,6 @@ export default (state = {}, action) => {
     case actionTypes.VIEW_USER:
       return { ...state, user: action.user };
     case actionTypes.USER_UPDATED:
-    console.log(action.user);
       return Object.assign({}, state, {
         users: [...state.users].map((user) =>
           (user.id === action.user.id) ?

@@ -9,7 +9,6 @@ const SingleRole = ({role}) => {
       <td>{role.title}</td>
       <td>{role.createdAt.slice(0, 10)}</td>
       <td>{role.updatedAt.slice(0, 10)}</td>
-      <td><a className="red-text" href="#" onClick={() => { props.setDeleteroles(roles.id); }} > <i className="material-icons">delete</i></a></td>
     </tr >
   );
 }

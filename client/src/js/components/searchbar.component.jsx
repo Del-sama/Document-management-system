@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import CreateDocument from './createDocument';
 import jwtDecode from 'jwt-decode';
 import AddDoc from './adddoc.component';
 import AddRole from './addRole.component.jsx';
