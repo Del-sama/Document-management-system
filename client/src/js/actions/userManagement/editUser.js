@@ -11,7 +11,6 @@ export default (userData, userId) => {
       }
     })
       .then((res) => {
-        console.log(res, userData);
         dispatch({
           type: actionTypes.USER_UPDATED,
           user: Object.assign({}, userData, {

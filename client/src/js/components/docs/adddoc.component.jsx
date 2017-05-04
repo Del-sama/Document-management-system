@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import CreateDocument from './docs/docForm.component'
+import CreateDocument from './docForm.component'
 
 class AddDoc extends Component {
   constructor() {
