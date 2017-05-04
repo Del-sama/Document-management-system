@@ -6,9 +6,7 @@ import Searchbar from '../searchbar.component';
 import AllDocs from '../docs/allDocs.component';
 import Users from '../allUsers.component';
 import Roles from '../allRoles.component';
-
 import deleteUserAction from '../../actions/userManagement/deleteUser';
-
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -39,7 +37,7 @@ class AdminDashboard extends Component {
     return (
       <div>
         <div className="mainContainer">
-          <div className="bg"></div>
+        <div className="bg"></div>
           <Navbar />
           <Searchbar />
           <div className="row">

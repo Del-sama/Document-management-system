@@ -3,7 +3,6 @@ import * as actionTypes from '../actionTypes';
 
 export default (userData, userId) => {
   const token = window.localStorage.getItem('token');
-  console.log('editing this user');
   return (dispatch) => {
     return axios.put(`/users/${userId}`, userData, {
       headers: {
@@ -18,7 +17,6 @@ export default (userData, userId) => {
           })
         });
       }).catch((err) => {
-        console.log(err);
         dispatch({
           type: actionTypes.USER_UPDATE_FAILED,
           status: 'failed',
