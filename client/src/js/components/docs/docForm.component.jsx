@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import newDocument from '../../actions/documentManagement/newDocument';
+import TinyMCE from 'react-tinymce';
 
 const ResponseMessage = (props) => {
   if (props.status === 'success') {
@@ -36,6 +37,7 @@ export class CreateDocument extends Component {
         userId: this.state.id
       };
       this.onChange = this.onChange.bind(this);
+      this.contentOnChange = this.contentOnChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -57,6 +59,12 @@ export class CreateDocument extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  contentOnChange(event) {
+    this.setState({
+      content: event.target.getContent()
+    });
+  }
+
   onSubmit(event) {
     event.preventDefault();
     this.props.CreateDocument(this.state);
@@ -76,25 +84,24 @@ export class CreateDocument extends Component {
                 name="title"
                 id="title"
                 type="text"
-                 className="validate"
+                 className="validate title"
                 required />
                 <label  htmlFor="title">Title</label>
               </div>
             </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <textarea
-                value={this.state.content}
-                onChange={this.onChange}
-                name="content"
-                id="content"
-                type="password"
-                className="validate materialize-textarea"
-                required>
-                </textarea>
-                <label htmlFor="password">Content</label>
+            <div className='row'>
+                <div className='input-field col s12' id="content">
+                  <TinyMCE
+                    content="<p>Content</p>"
+                    name='content'
+                    config={{
+                      plugins: 'autolink link image lists print preview',
+                      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
+                    }}
+                    onChange={this.contentOnChange}
+                  />
+                </div>
               </div>
-            </div>
               <div className="col m3 s12">
                 <select
                   name="access"
@@ -109,7 +116,7 @@ export class CreateDocument extends Component {
                   <option value='role'>Role</option>
                 </select>
               </div>
-            <button className="btn waves-effect waves-light center auth-button" type="submit" name="action">Save
+            <button className="btn waves-effect waves-light center auth-button" id="save" type="submit" name="action">Save
               <i className="material-icons right"></i>
             </button>
             <ResponseMessage status={this.props.status} />

@@ -75,7 +75,7 @@ router.route('/roles')
       *          schema:
       *            type: array
       *            items:
-      *              $ref: '#/definitions/Roles'
+      *              $ref: '#/definitions/Role'
       */
   .get(auth.verifyToken, auth.adminAccess, rolesController.getRoles);
 

@@ -59,6 +59,9 @@ const auth = require('../middleware/authentication');
  *   Login:
  *    allOf:
  *      - $ref: '#/definitions/NewLogin'
+ *   Logout:
+ *    allOf:
+ *      - $ref: '#/definitions/User'
  *
  */
 router.route('/users')
@@ -272,7 +275,7 @@ router.route('/users/logout')
    *         required: true
    *         type: string
    *         schema:
-   *           $ref: '#/definitions/NewLogout'
+   *           $ref: '#/definitions/Logout'
    *     responses:
    *       200:
    *         description: users

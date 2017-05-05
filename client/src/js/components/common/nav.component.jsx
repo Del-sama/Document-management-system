@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import logoutAction from '../actions/authorizationManagement/logoutAction';
+import logoutAction from '../../actions/authorizationManagement/logoutAction';
 
 
 class Navbar extends Component {
@@ -34,11 +34,11 @@ class Navbar extends Component {
               <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li className="upperCase"><Link to="/app/profile"><i className="material-icons left">perm_identity</i>{this.state.userName}</Link></li>
-                <li><Link onClick={this.logout}><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
+                <li><Link onClick={this.logout} className="signout-btn"><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
               </ul>
               <ul className="side-nav" id="mobile">
                 <li className="upperCase"><Link to="/app/profile"><i className="material-icons left">perm_identity</i>{this.state.userName}</Link></li>
-                <li><Link onClick={this.logout}><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
+                <li><Link onClick={this.logout} className="signout-btn"><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
               </ul>
             </div>
           </nav>
@@ -50,13 +50,13 @@ class Navbar extends Component {
           <Link to="/app/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
           <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
           <ul className="right hide-on-med-and-down">
-            <li><Link to="/app/login"><i className="material-icons left">lock_open  </i>LOGIN   </Link></li>
-            <li><Link to="/app/signup"><i className="material-icons left">vpn_key    </i>SIGNUP  </Link></li>
+            <li><Link to="/app/login" className="login-btn"><i className="material-icons left" id="login">lock_open  </i>LOGIN   </Link></li>
+            <li><Link to="/app/signup" className="signup-btn"><i className="material-icons left" id="signup">vpn_key    </i>SIGNUP  </Link></li>
           </ul>
           <ul className="side-nav" id="mobile">
             <li></li>
-            <li><Link to="/app/login"><i className="material-icons left">lock_open  </i>LOGIN </Link></li>
-            <li><Link to="/app/signup"><i className="material-icons left">vpn_key    </i>SIGNUP </Link></li>
+            <li><Link to="/app/login" className="login-btn"><i className="material-icons left">lock_open  </i>LOGIN </Link></li>
+            <li><Link to="/app/signup" className="signup-btn"><i className="material-icons left">vpn_key    </i>SIGNUP </Link></li>
           </ul>
         </div>
       </nav>

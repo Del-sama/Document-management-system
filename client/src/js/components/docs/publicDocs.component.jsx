@@ -50,7 +50,7 @@ const SingleDocument = (props) => {
     <tr className="hoverable">
       <td>{ document.title }</td>
       <td>{ document.access }</td>
-      <td className="truncate">{ document.content }</td>
+      <td className="truncate"><a href="#modalView" dangerouslySetInnerHTML={{ __html: document.content}} onClick={() => { props.setViewDocument(document); }} /></td>
       <td>{ (document.createdAt).slice(0, 10) }</td>
       <td>{(document.updatedAt).slice(0, 10)}</td>
       <td><a className="modal-trigger green-text" href="#modal1" onClick={()=>{ props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>

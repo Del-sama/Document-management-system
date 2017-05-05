@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
-import React, { Component, PropTypes } from 'react';
-import Navbar from './nav.component';
-import viewUserAction from '../actions/userManagement/viewUser.js';
-import editUserAction from '../actions/userManagement/editUser.js';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import Navbar from '../common/nav.component';
+import viewUserAction from '../../actions/userManagement/viewUser.js';
+import editUserAction from '../../actions/userManagement/editUser.js';
 
 class EditUsersRole extends Component {
   constructor(props) {

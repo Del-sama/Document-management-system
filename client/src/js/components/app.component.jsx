@@ -5,9 +5,9 @@ import Login from './login.component';
 import Signup from './signup.component';
 import NotFound from './notfound.component';
 import Dashboard from './dashboard/Index.component';
-import ViewUser from './viewUser.component';
-import EditUser from './editUser.component';
-import EditUsersRole from './editUsersRole.component';
+import ViewUser from './users/viewUser.component';
+import EditUser from './users/editUser.component';
+import EditUsersRole from './users/editUsersRole.component';
 
 class App extends Component {
   /**

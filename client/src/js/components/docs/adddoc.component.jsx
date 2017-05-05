@@ -18,7 +18,7 @@ class AddDoc extends Component {
       //   alert("Ready");
       //   console.log(modal, trigger);
       // },
-      complete: function () { alert('Closed'); } // Callback for Modal close
+      // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
   render() {
@@ -29,12 +29,12 @@ class AddDoc extends Component {
           Add Documents
           </Link>
         <div id="modal" className="modal modal-fixed-footer">
-          <div className="modal-content">
-            <h4>Create a Document</h4>
+          <div className="modal-content" id="createDocModal">
+            <h4 id="eh4">Create a Document</h4>
             <CreateDocument />
           </div>
           <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+            <a href="#!" id="done" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
           </div>
         </div>
       </div>

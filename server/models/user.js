@@ -57,8 +57,8 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     hooks: {
-      beforeCreate: (newUser) => {
-        newUser.generateHash();
+      beforeCreate: (user) => {
+        user.generateHash();
       }
     },
     freezeTableName: true

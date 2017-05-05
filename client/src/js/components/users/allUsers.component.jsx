@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
-import deleteUserAction from '../actions/userManagement/deleteUser.js';
+import deleteUserAction from '../../actions/userManagement/deleteUser.js';
 
 const SingleUserComponent = ({user, deleteUser, props, change}) => {
   return (

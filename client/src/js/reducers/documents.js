@@ -16,6 +16,10 @@ export default (state = {}, action) => {
           return document.id !== action.documentid;
         })
       };
+    case actionTypes.SEARCH_DOCS_COMPLETE:
+      return { ...state, search: action.documents, status: action.status };
+    case actionTypes.SEARCH_DOCS_FAILED:
+      return { ...state, status: action.status };
     default:
       return state;
   }

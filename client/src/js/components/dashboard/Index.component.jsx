@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
-import Navbar from '../nav.component';
-import Searchbar from '../searchbar.component';
+import Navbar from '../common/nav.component';
+import Searchbar from '../common/searchbar.component';
 import AdminDashboard from './admin.component';
 import UserDashboard from './user.component';
 import { bindActionCreators } from 'redux';
 import * as AllDocActions from '../../actions/documentManagement/readAllDocuments';
+import * as docActions from '../../actions/documentManagement/readDocument.js';
 import * as UserActions from '../../actions/userManagement/getAllUsers.js';
 import * as RoleActions from '../../actions/roleManagement/getRoles.js';
 import editUserActions from '../../actions/userManagement/editUser';
@@ -30,6 +31,7 @@ class Dashboard extends Component {
     this.props.actionsDoc.viewAllDocuments(userId);
     this.props.actionsUser.viewUsers(userId);
     this.props.actionsRole.viewRoles(userId);
+    this.props.singleActionsDoc.viewUserDocuments(userId);
   }
 
   componentWillReceiveProps(nextProps){
@@ -43,21 +45,21 @@ class Dashboard extends Component {
     });
   }
 
-  componentDidMount() {
-    $('.modal').modal({
-      dismissible: false, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      inDuration: 300, // Transition in duration
-      outDuration: 200, // Transition out duration
-      startingTop: '4%', // Starting top style attribute
-      endingTop: '10%', // Ending top style attribute
-      // ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-      //   alert("Ready");
-      //   console.log(modal, trigger);
-      // },
-      // complete: function () { alert('Closed'); } // Callback for Modal close
-    });
-  }
+  // componentDidMount() {
+  //   $('.modal').modal({
+  //     dismissible: false, // Modal can be dismissed by clicking outside of the modal
+  //     opacity: .5, // Opacity of modal background
+  //     inDuration: 300, // Transition in duration
+  //     outDuration: 200, // Transition out duration
+  //     startingTop: '4%', // Starting top style attribute
+  //     endingTop: '10%', // Ending top style attribute
+  //     // ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+  //     //   alert("Ready");
+  //     //   console.log(modal, trigger);
+  //     // },
+  //     // complete: function () { alert('Closed'); } // Callback for Modal close
+  //   });
+  // }
 
   updateUser(values, id) {
     this.props.actionEditUser(values, id);
@@ -86,6 +88,7 @@ const mapStoreToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actionsDoc: bindActionCreators(AllDocActions, dispatch),
+    singleActionsDoc: bindActionCreators(docActions, dispatch),
     actionsUser: bindActionCreators(UserActions, dispatch),
     actionsRole: bindActionCreators(RoleActions, dispatch),
     actionEditUser: bindActionCreators(editUserActions, dispatch)

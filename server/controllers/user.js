@@ -47,8 +47,10 @@ class UsersController {
       limit: request.query.limit || null,
       offset: request.query.offset || null,
       order: [['createdAt', 'DESC']]
-    }).then(users => response.status(200)
-        .send(users));
+    }).then(users => {
+      return response.status(200)
+        .send(users)
+      });
   }
 
 /**
@@ -65,15 +67,15 @@ class UsersController {
          .send({ message: `${request.body.userName} is already in use` });
        }
        model.User.create(request.body)
-          .then((newUser) => {
+          .then((user) => {
             const token = jwt.sign({
-              userId: newUser.id,
-              roleId: newUser.roleId,
-              userName: newUser.userName
+              userId: user.id,
+              roleId: user.roleId,
+              userName: user.userName
             }, secret, { expiresIn: '2 days' });
-            newUser = formatUser(newUser);
+            user = formatUser(user);
             return response.status(201)
-            .send({ newUser, token, expiresIn: '2 days' });
+            .send({ user, token, expiresIn: '2 days' });
           })
           .catch(error => response.status(400)
             .send(error.message));
@@ -193,10 +195,10 @@ class UsersController {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
     }
-    const queryString = request.query.queryString;
+    const q = request.query.q;
 
     const query = {
-      where: { userName: { $like: `%${queryString}%`} },
+      where: { userName: { $like: `%${q}%`} },
       limit: request.query.limit || null,
       offset: request.query.offset || null,
       order: [['id', 'ASC']]

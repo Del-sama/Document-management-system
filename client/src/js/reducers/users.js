@@ -16,6 +16,10 @@ export default (state = {}, action) => {
         users: state.users.filter((user) => {
           return user.id !== action.deletedUserId;
         })};
+    case actionTypes.SEARCH_USER_COMPLETE:
+      return { ...state, search: action.users, status: action.status };
+    case actionTypes.SEARCH_USER_FAILED:
+      return { ...state, status: action.status };
     default:
       return state;
   }

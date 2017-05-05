@@ -37,25 +37,25 @@ describe('DOCUMENT API', () => {
         request.post('/users')
           .send(adminUserParams)
           .end((error, response) => {
-            adminUser = response.body.newUser;
+            adminUser = response.body.user;
             publicToken = response.body.token;
 
             request.post('/users')
               .send(regularUserParams)
               .end((err, res) => {
-                privateUser = res.body.newUser;
+                privateUser = res.body.user;
                 privateToken = res.body.token;
 
                 request.post('/users')
                   .send(regularUserParams2)
                   .end((err, res) => {
-                    privateUser2 = res.body.newUser;
+                    privateUser2 = res.body.user;
                     privateToken2 = res.body.token;
 
                     request.post('/users')
                       .send(regularUserParams3)
                       .end((err, res) => {
-                        publicUser = res.body.newUser;
+                        publicUser = res.body.user;
                         publicToken2 = res.body.token;
                         done();
                       });
@@ -351,7 +351,7 @@ describe('DOCUMENT API', () => {
         const query = documentsCollection[10].content.substr(5, 13);
         const matcher = new RegExp(query);
 
-        request.get(`/search/documents?queryString=${query}`)
+        request.get(`/search/documents?q=${query}`)
           .set({ Authorization: publicToken })
           .end((error, response) => {
             expect(response.status).to.equal(200);
