@@ -36,8 +36,8 @@ module.exports = {
       .url('http://localhost:5050/app/dashboard#!')
       .refresh()
 
-      // .waitForElementVisible('table#document-list')
-      // .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Issa Title')
+      .waitForElementVisible('table#document-list')
+      .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Issa Title')
       .end();
   },
   'Edit Document': function (browser) {
