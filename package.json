@@ -14,7 +14,7 @@
     "serve": "npm run build && nodemon server.js",
     "dev-test": "NODE_ENV=test istanbul cover _mocha server/tests/**/*.spec.js",
     "migrate-dev-test": "NODE_ENV=test ./node_modules/.bin/sequelize db:migrate",
-    "postinstall": "npm i sequelize -g"
+    "postinstall": "npm i sequelize -g && npm run build && npm run db-setup"
   },
   "repository": {
     "type": "git",

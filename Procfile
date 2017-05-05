@@ -1,1 +1,1 @@
-web: npm run build && npm run db-setup && npm start
+web: npm start
