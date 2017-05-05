@@ -187,7 +187,7 @@ class DocumentsController {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
     }
-    const queryString = request.query.queryString;
+    const q = request.query.q;
     const role = Math.abs(request.query.role, 10);
     const publishedDate = request.query.publishedDate;
     const order = /^ASC$/i.test(publishedDate)
@@ -205,10 +205,10 @@ class DocumentsController {
       order: [['createdAt', order]]
     };
 
-    if (queryString) {
+    if (q) {
       query.where.$and.push({ $or: [
-        { title: { $like: `%${queryString}%` } },
-        { content: { $like: `%${queryString}%` } }
+        { title: { $like: `%${q}%` } },
+        { content: { $like: `%${q}%` } }
       ] });
     }
 

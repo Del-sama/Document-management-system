@@ -30,12 +30,12 @@ describe('User API', () => {
       request.post('/users')
         .send(userParams)
         .end((error, response) => {
-          user1 = response.body.newUser;
+          user1 = response.body.user;
           token1 = response.body.token;
           request.post('/users')
             .send(userParams2)
             .end((err, res) => {
-              user2 = res.body.newUser;
+              user2 = res.body.user;
               token2 = res.body.token;
               done();
             });
