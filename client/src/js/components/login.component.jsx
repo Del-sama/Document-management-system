@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory, Link } from 'react-router';
 import loginAction from '../actions/authorizationManagement/loginAction';
-import Navbar from './nav.component';
+import Navbar from './common/nav.component';
 
 
 class Login extends Component {
@@ -26,8 +26,8 @@ class Login extends Component {
     this.setState({ [e.target.name] : e.target.value });
   }
 
-   componentWillMount() {
-    this.redirectIfLoggedIn();
+  componentWillMount() {
+  this.redirectIfLoggedIn();
   }
 
   componentWillReceiveProps(nextProps) {
