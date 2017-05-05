@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import Navbar from '../nav.component';
-import Searchbar from '../searchbar.component';
+import Navbar from '../common/nav.component';
+import Searchbar from '../common/searchbar.component';
 import UserDocs from '../docs/userDocs.component';
 import PrivateDocs from '../docs/privateDocs.component';
 import PublicDocs from '../docs/publicDocs.component';
 import RoleDocs from '../docs/roleDocs.component';
 import AllDocs from '../docs/allDocs.component';
-import CreateDocument from '../docs/docForm.component'
+import CreateDocument from '../docs/docForm.component';
 import EditDocument from '../../actions/documentManagement/editDocument';
 import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
@@ -18,7 +18,16 @@ class UserDashboard extends Component {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
     this.setDeleteDocument = this.setDeleteDocument.bind(this);
+    this.setViewDocument = this.setViewDocument.bind(this);
     this.state = {};
+  }
+
+  setViewDocument(document) {
+    this.setState({
+      viewTitle: document.title,
+      viewDocument: document.content,
+      documentId: document.id
+    });
   }
 
   setEditDocument(document){
@@ -26,10 +35,13 @@ class UserDashboard extends Component {
       editDocument: document,
       documentId: document.id
     });
+    browserHistory.push('/app/dashboard');
   }
 
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
+    browserHistory.push('/app/dashboard');
+    Materialize.toast('Document deleted', 3000)
   }
 
   componentDidMount() {
@@ -39,6 +51,20 @@ class UserDashboard extends Component {
 
     return (
       <div>
+
+        <div id="modalView" className="modal modal-fixed-footer">
+          <div className="modal-content">
+            <h4 className="center">View Document</h4>
+            <h5>Title</h5>
+            <div>{ this.state.viewTitle }</div>
+            <h5>Content</h5>
+            <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
+          </div>
+          <div className="modal-footer">
+            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+          </div>
+        </div>
+
         <div id="modal1" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4>Edit Document</h4>
@@ -61,7 +87,7 @@ class UserDashboard extends Component {
                 <li className="tab "><Link to="#test1">Private Docs</Link></li>
                 <li className="tab "><Link to="#test2">Public Docs</Link></li>
                 <li className="tab "><Link to="#test4">Role Docs</Link></li>
-                <li className="tab "><Link to="#test5">Other Docs</Link></li>
+                <li className="tab "><Link to="#test5">All Docs</Link></li>
               </ul>
             </div>
             <div id="test3" className="tabContent col s12">
@@ -77,7 +103,7 @@ class UserDashboard extends Component {
               <RoleDocs documents={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test5" className="tabContent col s12">
-            <AllDocs documents={this.props.documents} />
+            <AllDocs documents={this.props.documents} setViewDocument={this.setViewDocument} />
           </div>
           </div>
           <div></div>
@@ -91,7 +117,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     EditDocument: (documentDetails, documentId) => dispatch(EditDocument(documentDetails, documentId)),
     DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId))
-
   };
 };
 

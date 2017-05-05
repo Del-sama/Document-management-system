@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './nav.component';
+import Navbar from './common/nav.component';
 import Body from './body.component';
 
 class Index extends Component {
@@ -13,7 +13,7 @@ class Index extends Component {
       <div>
         <div className="mainContainer">
           <div className="bg"></div>
-        <Navbar isLoginActive="active" isSignupActive="" />
+        <Navbar />
         <Body />
         </div>
       </div>
