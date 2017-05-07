@@ -32,6 +32,7 @@ class AdminDashboard extends Component {
 
   handleSearchBarView(view) {
     this.setState({ searchBarView: view });
+    $('ul.tabs').tabs('select_tab', 'searchTab');
   }
 
   setViewDocument(document) {
@@ -54,6 +55,7 @@ class AdminDashboard extends Component {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
     Materialize.toast('Document deleted', 3000)
+    window.location.reload();
   }
 
 
@@ -127,7 +129,7 @@ class AdminDashboard extends Component {
               <Roles roles={this.state.roles} />
             </div>
             <div id="searchTab" className="tabContent col s12">
-              <Search document={this.props.documents} setViewDocument={this.setViewDocument} users={this.props.users} view= {this.state.searchBarView} />
+              <Search searchDocuments={this.props.searchDocuments} setViewDocument={this.setViewDocument} searchUsers={this.props.searchUsers} view= {this.state.searchBarView} />
             </div>
           </div>
         </div>
