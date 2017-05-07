@@ -3,14 +3,12 @@ import jwtDecode from 'jwt-decode';
 
 
 const Search = (props) => {
-  console.log(props, 'opropssdfad');
   const SingleDocument = (document, index) => {
     return (
       <tr className="hoverable" key={index} >
         <td>{document.title}</td>
         <td>{document.access}</td>
         <td className="truncate"><a href="#modalView" dangerouslySetInnerHTML={{ __html: document.content}} onClick={() => { props.setViewDocument(document); }} /></td>
-        <td>{`${document.User.lastName} ${document.User.firstName}`}</td>
         <td>{(document.createdAt).slice(0, 10)}</td>
         <td>{(document.updatedAt).slice(0, 10)}</td>
       </tr >
@@ -29,20 +27,14 @@ const Search = (props) => {
   const token = window.localStorage.getItem('token');
   let searchList = [];
   if (props.view === true) {
-    if (props.document.search !== undefined) {
-      let docs = props.document.search.data.document;
-      if (docs === undefined) {
-        docs = props.document.search.data.documents;
-      }
-      searchList = docs;
+    if (props.searchDocuments !== undefined) {
+      let docs = props.searchDocuments.data;
+      searchList = props.searchDocuments.data;
     }
   } else if (props.view === false){
-    if (props.users.search !== undefined) {
-      let user = props.users.search.data.user;
-      if (user === undefined) {
-        user = props.users.search.data.users;
-      }
-      searchList = user;
+    if (props.searchUsers !== undefined) {
+      let user = props.searchUsers.data;
+      searchList = props.searchUsers.data;
     }
   }
   return (props.view === true) ?
