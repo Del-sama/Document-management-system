@@ -6,7 +6,6 @@ export const loginSuccessful = user => ({ type: actionTypes.LOGIN_SUCCESFUL, use
 
 export default (userData) => {
   return (dispatch) => {
-    console.log("user data========>", userData)
     return axios.post('/users', userData)
       .then((response) => {
         window.localStorage.setItem('token', response.data.token);
@@ -17,7 +16,6 @@ export default (userData) => {
         })
       })
       .catch((error) => {
-        console.log("error========>", error)
         dispatch({
           type: actionTypes.SIGNUP_FAILED,
           message: error.response.data.message
