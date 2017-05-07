@@ -69,10 +69,10 @@ class Dashboard extends Component {
     const roleId = this.state.authUser.roleId || null
     return (roleId === this.state.AdminRoleId) ?
       <div>
-        <AdminDashboard documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
+        <AdminDashboard searchUsers={this.props.searchUsers} searchDocuments={this.props.searchDocuments} documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
       </div> :
       <div>
-        <UserDashboard documents={this.props.documents} />
+        <UserDashboard documents={this.props.documents} searchUsers={this.props.searchUsers} searchDocuments={this.props.searchDocuments}/>
       </div>
   }
 }
@@ -80,6 +80,8 @@ class Dashboard extends Component {
 const mapStoreToProps = (state) => {
   return {
     documents: state.documentReducer.documents,
+    searchDocuments: state.documentReducer.search,
+    searchUsers: state.userReducer.search,
     users: state.userReducer.users,
     roles: state.roleReducer.roles
   };
