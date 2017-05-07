@@ -216,7 +216,9 @@ class DocumentsController {
       query.include = [{
         model: model.User,
         as: 'User',
-        attributes: [],
+        attributes: [
+          'userName', 'roleId'
+        ],
         include: [{
           model: model.Role,
           attributes: [],
