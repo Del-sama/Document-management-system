@@ -69,7 +69,7 @@ export default class allUsers extends Component {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
-              <th>Role ID</th>
+              <th>Role</th>
               <th>Created date</th>
               <th>Updated date</th>
             </tr>
