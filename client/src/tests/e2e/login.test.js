@@ -1,23 +1,23 @@
-// const config = require('../../../../nightwatch.conf.js');
+const config = require('../../../../nightwatch.conf.js');
 
-// module.exports = {
-//   'Login Page': function (browser) {
-//     browser
-//       .url('http://localhost:5050/app/')
-//       .waitForElementVisible('body')
-//       .assert.title('Document Management System')
-//       .click('a.login-btn')
-//       .setValue('input[type=text]', 'kez')
-//       .setValue('input[type=password]', 'kez')
-//       .click('button[type="submit"]')
-//       .waitForElementVisible('div.center')
-//       .assert.containsText('div.center', 'Login Successful')
-//       .saveScreenshot('screenshots/loginPage.png')
-//       .pause(1500)
-//       .assert.urlEquals('http://localhost:5050/app/dashboard')
-//       .click('a.signout-btn')
-//       .pause(1000)
-//       .assert.urlEquals('http://localhost:5050/app/')
-//       .end();
-//   }
-// };
+module.exports = {
+  'Login Page': function (browser) {
+    browser
+      .url('http://localhost:5050/app/')
+      .waitForElementVisible('body')
+      .assert.title('Document Management System')
+      .click('a.login-btn')
+      .setValue('input[type=text]', 'kez')
+      .setValue('input[type=password]', 'kez')
+      .click('button[type="submit"]')
+      .waitForElementVisible('div.center')
+      .assert.containsText('div.center', 'Login Successful')
+      .saveScreenshot('screenshots/loginPage.png')
+      .pause(1500)
+      .assert.urlEquals('http://localhost:5050/app/dashboard')
+      .click('a.signout-btn')
+      .pause(1000)
+      .assert.urlEquals('http://localhost:5050/app/')
+      .end();
+  }
+};
