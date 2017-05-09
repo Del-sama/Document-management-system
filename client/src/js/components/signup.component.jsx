@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import signupAction from '../actions/authorizationManagement/signupAction';
 import axios from 'axios';
 
-  class Signup extends Component {
+  export class Signup extends Component {
   /**
    * renders the Nav component
    * @returns {void}
@@ -24,12 +24,6 @@ import axios from 'axios';
     this.onSubmit=this.onSubmit.bind(this);
   }
 
-  // componentWillMount() {
-  //   if (window.localStorage.getItem('token')) {
-  //     browserHistory.push('/app/dashboard');
-  //   }
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.error === 'unique violation') {
       this.setState({
@@ -48,7 +42,7 @@ import axios from 'axios';
   onSubmit(e) {
     e.preventDefault();
     if(this.state.password === this.state.confirmPassword){
-      this.props.Signup(this.state);
+      this.props.signup(this.state);
     }else {
       Materialize.toast('Passwords don\'t match!', 3000)
     }
@@ -175,7 +169,7 @@ const mapStoreToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    Signup: userData => dispatch(signupAction(userData))
+    signup: userData => dispatch(signupAction(userData))
   };
 };
 

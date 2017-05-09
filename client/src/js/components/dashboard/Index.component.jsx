@@ -12,7 +12,7 @@ import * as UserActions from '../../actions/userManagement/getAllUsers.js';
 import * as RoleActions from '../../actions/roleManagement/getRoles.js';
 import editUserActions from '../../actions/userManagement/editUser';
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
   constructor(props) {
     super(props)
     const token = window.localStorage.getItem('token');
@@ -45,22 +45,6 @@ class Dashboard extends Component {
     });
   }
 
-  // componentDidMount() {
-  //   $('.modal').modal({
-  //     dismissible: false, // Modal can be dismissed by clicking outside of the modal
-  //     opacity: .5, // Opacity of modal background
-  //     inDuration: 300, // Transition in duration
-  //     outDuration: 200, // Transition out duration
-  //     startingTop: '4%', // Starting top style attribute
-  //     endingTop: '10%', // Ending top style attribute
-  //     // ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-  //     //   alert("Ready");
-  //     //   console.log(modal, trigger);
-  //     // },
-  //     // complete: function () { alert('Closed'); } // Callback for Modal close
-  //   });
-  // }
-
   updateUser(values, id) {
     this.props.actionEditUser(values, id);
   }
@@ -69,10 +53,10 @@ class Dashboard extends Component {
     const roleId = this.state.authUser.roleId || null
     return (roleId === this.state.AdminRoleId) ?
       <div>
-        <AdminDashboard searchUsers={this.props.searchUsers} searchDocuments={this.props.searchDocuments} documents={this.props.documents} users={this.props.users} roles={this.props.roles}/>
+        <AdminDashboard {...this.props} updateUser={this.updateUser} />
       </div> :
       <div>
-        <UserDashboard documents={this.props.documents} searchUsers={this.props.searchUsers} searchDocuments={this.props.searchDocuments}/>
+        <UserDashboard {...this.props} />
       </div>
   }
 }

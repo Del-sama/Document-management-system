@@ -7,7 +7,7 @@ import searchUsers from '../../actions/userManagement/searchUsers.js';
 import searchDocs from '../../actions/documentManagement/searchDocs.js';
 
 
-  class Searchbar extends Component {
+export class Searchbar extends Component {
   constructor(props) {
     super(props);
     const token = window.localStorage.getItem('token');

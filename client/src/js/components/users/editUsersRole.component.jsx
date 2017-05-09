@@ -7,7 +7,7 @@ import Navbar from '../common/nav.component';
 import viewUserAction from '../../actions/userManagement/viewUser.js';
 import editUserAction from '../../actions/userManagement/editUser.js';
 
-class EditUsersRole extends Component {
+export class EditUsersRole extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,17 +16,6 @@ class EditUsersRole extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
-
-  // componentWillMount() {
-  //   if (!window.localStorage.getItem('token')) {
-  //     browserHistory.push('/');
-  //   }
-  //   const token = window.localStorage.getItem('token');
-  //   if (token) {
-  //     this.setState({ userId: jwtDecode(token).userId });
-  //     this.props.viewUser(token, jwtDecode(token).userId);
-  //   }
-  // }
 
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.user);
@@ -37,8 +26,7 @@ class EditUsersRole extends Component {
   }
 
   updateUser(event) {
-    // const userId = jwtDecode(this.state.token).userId;
-    this.props.updateUser(this.state, userId);
+    this.props.updateUser(this.state);
   }
 
   render() {
@@ -61,7 +49,7 @@ class EditUsersRole extends Component {
                 <button
                   type="submit"
                   className="updateUser btn"
-                  onClick={() => this.updateUser()}
+                  onClick={this.updateUser}
                 >Save</button>
               </div>
             </form>

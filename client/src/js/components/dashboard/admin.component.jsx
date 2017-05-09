@@ -108,10 +108,10 @@ class AdminDashboard extends Component {
           <div className="row">
             <div className="tabRow">
               <ul className="tabs tabs-fixed-width">
-                <li className="tab"><Link to="#test1" className="active">All Docs</Link></li>
-                <li className="tab"><Link to="#test2">My Docs</Link></li>
-                <li className="tab"><Link to="#test3">Users</Link></li>
-                <li className="tab"><Link to="#test4">Roles</Link></li>
+                <li className="tab"><Link to="#test1" className="active allDocs-btn">All Docs</Link></li>
+                <li className="tab"><Link to="#test2" className="myDocs-btn">My Docs</Link></li>
+                <li className="tab"><Link to="#test3" className="allUsers-btn">Users</Link></li>
+                <li className="tab"><Link to="#test4" className="allRoles-btn">Roles</Link></li>
                 <li className="tab"><Link to="#searchTab">Search</Link></li>
               </ul>
             </div>

@@ -5,7 +5,7 @@ import { browserHistory, Link } from 'react-router';
 import logoutAction from '../../actions/authorizationManagement/logoutAction';
 
 
-class Navbar extends Component {
+export class Navbar extends Component {
 
   constructor(props) {
     super(props);

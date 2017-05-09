@@ -40,7 +40,7 @@ const Search = (props) => {
   return (props.view === true) ?
 
     <div>
-      <table className="bordered responsive">
+      <table id="documentSearch" className="bordered responsive">
         <thead>
           <tr>
             <th>Title</th>
@@ -56,7 +56,7 @@ const Search = (props) => {
       </table>
     </div> :
     <div>
-      <table className="bordered responsive">
+      <table id="userSearch" className="bordered responsive">
         <thead>
           <tr>
             <th>First Name</th>

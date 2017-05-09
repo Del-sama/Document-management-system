@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import deleteUserAction from '../../actions/userManagement/deleteUser.js';
+import EditUserRole from './editUsersRole.component';
 
 const SingleUserComponent = ({user, deleteUser, props, change}) => {
   return (
@@ -13,7 +14,7 @@ const SingleUserComponent = ({user, deleteUser, props, change}) => {
         <td>
           {
             (user.roleId !== 1) ?
-              <select style={{ display: 'block' }} onChange={(e) => change(e, user.id)}>
+              <select style={{ display: 'block' }} onChange={(e) => change(e, user.id)} id="selectRole">
                 {
                   [...props.roles].reverse().map(role => <option value={role.id} key={role.id}>{role.title}</option>)
                 }
@@ -63,7 +64,7 @@ export default class allUsers extends Component {
   render(){
     return (
       <div>
-        <table className="bordered  responsive">
+        <table className="bordered  responsive" id="allUsersTable">
           <thead>
             <tr>
               <th>First Name</th>

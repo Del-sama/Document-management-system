@@ -114,7 +114,6 @@ export class CreateDocument extends Component {
                   onChange={this.onChange}
                   value={this.state.value}
                   className="browser-default"
-                  required
                 >
                   <option value="" disabled selected >Select Access Type</option>
                   <option value='public'>Public</option>
