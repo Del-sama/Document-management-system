@@ -67,8 +67,8 @@ $background-color: #F2F2F2;
     position: absolute;
     height: inherit;
     padding: 0 20px;
-    border-radius: 8px;
-    background-color: $background-color;
+    border-radius: 1px;
+    background-color: #26A69A;
     border: 1px solid $text-color-two;
     opacity: 0.9;
 }
@@ -82,14 +82,15 @@ $background-color: #F2F2F2;
 .search-box input,
 .search-box i,
 .search-box select {
-  color: $text-color-two;
+  color: #fff;
 }
 .searchBox select {
   display: block;
   width: 100%;
   height: 61px;
   float: right;
-  background-color: $background-color;
+  background-color: #26A69A;
+  border: 1px solid #26A69A;
 }
 .inline {
   margin-right: 5px;
@@ -101,13 +102,11 @@ $background-color: #F2F2F2;
   right: 0;
   padding-right: 3%;
 }
-.userTopNav {
-  z-index: 30;
-  background-color: $text-color;
-}
+
 .dropdown-content {
   width: 50%;
   color: $text-color-two;
+  border-radius: none;
 }
 .dropdown-content li {
   text-align: left;
