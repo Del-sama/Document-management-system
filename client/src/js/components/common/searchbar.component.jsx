@@ -7,9 +7,8 @@ import searchUsers from '../../actions/userManagement/searchUsers.js';
 import searchDocs from '../../actions/documentManagement/searchDocs.js';
 
 
-  class Searchbar extends Component {
+export class Searchbar extends Component {
   constructor(props) {
-    console.log('asdasdasd', props);
     super(props);
     const token = window.localStorage.getItem('token');
     this.state = {
@@ -23,7 +22,6 @@ import searchDocs from '../../actions/documentManagement/searchDocs.js';
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
    handleSubmit(e){

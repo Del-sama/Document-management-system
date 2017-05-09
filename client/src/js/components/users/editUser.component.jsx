@@ -7,7 +7,7 @@ import Navbar from '../common/nav.component';
 import viewUserAction from '../../actions/userManagement/viewUser.js';
 import editUserAction from '../../actions/userManagement/editUser.js';
 
-class EditUser extends Component {
+export class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {

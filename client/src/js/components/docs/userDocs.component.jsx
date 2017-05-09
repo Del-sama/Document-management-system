@@ -26,7 +26,7 @@ const UserDocs = (props) => {
   }
   return (
     <div>
-      <table className="bordered responsive">
+      <table className="bordered responsive" id="allMyDocs">
         <thead>
           <tr>
             <th>Title</th>

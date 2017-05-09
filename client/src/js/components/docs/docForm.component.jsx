@@ -67,7 +67,12 @@ export class CreateDocument extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.CreateDocument(this.state);
+    if(this.state.content.length < 1) {
+      Materialize.toast('Please add a content', 3000);
+    } else {
+      this.props.CreateDocument(this.state);
+    }
+    window.location.reload();
   }
 
   render() {
@@ -91,8 +96,8 @@ export class CreateDocument extends Component {
             </div>
             <div className='row'>
                 <div className='input-field col s12' id="content">
-                  <TinyMCE
-                    content="<p>Content</p>"
+                   <TinyMCE
+                    content="<p>Enter a content</p>"
                     name='content'
                     config={{
                       plugins: 'autolink link image lists print preview',
@@ -116,7 +121,7 @@ export class CreateDocument extends Component {
                   <option value='role'>Role</option>
                 </select>
               </div>
-            <button className="btn waves-effect waves-light center auth-button" id="save" type="submit" name="action">Save
+            <button href="#!" className="btn waves-effect waves-light modal-action modal-close center auth-button" id="done"type="submit" name="action">Save
               <i className="material-icons right"></i>
             </button>
             <ResponseMessage status={this.props.status} />

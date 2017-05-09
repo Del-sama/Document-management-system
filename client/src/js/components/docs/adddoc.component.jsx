@@ -33,9 +33,6 @@ class AddDoc extends Component {
             <h4 id="eh4">Create a Document</h4>
             <CreateDocument />
           </div>
-          <div className="modal-footer">
-            <a href="#!" id="done" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-          </div>
         </div>
       </div>
     )

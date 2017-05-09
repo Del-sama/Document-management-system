@@ -8,11 +8,11 @@ class NotFound extends Component {
       <div className="bodyInnards">
         <div className="row">
           <h1>404</h1>
-          <p>HUH!??</p>
+          <p>You seem lost</p>
           <div>
             <p>
               <Link to="/app/">
-                Go back to home page
+                Take this route back home
               </Link>
             </p>
           </div>

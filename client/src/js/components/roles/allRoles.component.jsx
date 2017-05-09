@@ -32,7 +32,7 @@ export default class RoleView extends Component {
   render(){
     return (
       <div>
-        <table className="bordered  responsive">
+        <table className="bordered  responsive" id="allRolesTable">
           <thead>
             <tr>
               <th>ID</th>

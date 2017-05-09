@@ -490,3 +490,6 @@ table {
 .displayNone {
   display: none;
 }
+.modal.modal-fixed-footer .modal-content {
+  height: 100%;
+}

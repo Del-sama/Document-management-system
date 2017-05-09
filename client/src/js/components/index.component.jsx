@@ -13,8 +13,8 @@ class Index extends Component {
       <div>
         <div className="mainContainer">
           <div className="bg"></div>
-        <Navbar />
-        <Body />
+          <Navbar />
+          <Body />
         </div>
       </div>
     );

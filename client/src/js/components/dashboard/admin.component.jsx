@@ -32,6 +32,7 @@ class AdminDashboard extends Component {
 
   handleSearchBarView(view) {
     this.setState({ searchBarView: view });
+    $('ul.tabs').tabs('select_tab', 'searchTab');
   }
 
   setViewDocument(document) {
@@ -54,6 +55,7 @@ class AdminDashboard extends Component {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
     Materialize.toast('Document deleted', 3000)
+    window.location.reload();
   }
 
 
@@ -106,10 +108,10 @@ class AdminDashboard extends Component {
           <div className="row">
             <div className="tabRow">
               <ul className="tabs tabs-fixed-width">
-                <li className="tab"><Link to="#test1" className="active">All Docs</Link></li>
-                <li className="tab"><Link to="#test2">My Docs</Link></li>
-                <li className="tab"><Link to="#test3">Users</Link></li>
-                <li className="tab"><Link to="#test4">Roles</Link></li>
+                <li className="tab"><Link to="#test1" className="active allDocs-btn">All Docs</Link></li>
+                <li className="tab"><Link to="#test2" className="myDocs-btn">My Docs</Link></li>
+                <li className="tab"><Link to="#test3" className="allUsers-btn">Users</Link></li>
+                <li className="tab"><Link to="#test4" className="allRoles-btn">Roles</Link></li>
                 <li className="tab"><Link to="#searchTab">Search</Link></li>
               </ul>
             </div>
@@ -127,7 +129,7 @@ class AdminDashboard extends Component {
               <Roles roles={this.state.roles} />
             </div>
             <div id="searchTab" className="tabContent col s12">
-              <Search document={this.props.documents} setViewDocument={this.setViewDocument} users={this.props.users} view= {this.state.searchBarView} />
+              <Search searchDocuments={this.props.searchDocuments} setViewDocument={this.setViewDocument} searchUsers={this.props.searchUsers} view= {this.state.searchBarView} />
             </div>
           </div>
         </div>
