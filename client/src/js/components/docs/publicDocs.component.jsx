@@ -19,7 +19,7 @@ const PublicDocs = (props) => {
     })
     .map((document) => {
       return (
-        <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument} setDeleteDocument={props.setDeleteDocument} />
+        <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument} setViewDocument={() => props.setViewDocument(document)} setDeleteDocument={props.setDeleteDocument} />
       )
     })
   }

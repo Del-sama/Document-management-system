@@ -4,12 +4,20 @@ import { connect } from 'react-redux';
 import signupAction from '../actions/authorizationManagement/signupAction';
 import axios from 'axios';
 
-  export class Signup extends Component {
+
   /**
-   * renders the Nav component
-   * @returns {void}
-   * @memberOf Signup
+   *
+   *
+   * @export
+   * @class Signup - signup form
+   * @extends {Component}
    */
+  export class Signup extends Component {
+/**
+ * renders the Nav component
+ * @returns {void}
+ * @memberOf Signup
+ */
   constructor(props) {
     super(props);
     this.state = {

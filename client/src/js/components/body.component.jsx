@@ -3,6 +3,13 @@ import Login from './login.component';
 import { Row, Col, Input, Button } from 'react-materialize';
 import { browserHistory, Link } from 'react-router';
 
+
+/**
+ *
+ *
+ * @class Body the home page of the application
+ * @extends {Component}
+ */
 class Body extends Component {
   render() {
     if (window.localStorage.getItem('token')) {

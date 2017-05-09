@@ -1,272 +1,21 @@
-// $logo-color: #FFD04A;
-// $nav-color: #003366;
-// $header-font: 'Sanchez', serif;
-// $text-color: #FDFEFE;
-// $text-color-two: #000;
-// $box-shadow: 2px 2px 2px 2px rgba(0.4, 0.4, 0.4, 0.4);
-// $center-align: center;
-// $transparentNavColor: rgba(255,0,0,0.1);
-// $transparentBodyColor: rgba(0,0,0,0.5);
-// $primary-color: #4386FC;
-// $upperCase: uppercase;
-// $background-color: #F2F2F2;
-// $logo-color: #FFD04A;
-
-// .loginForm {
-//   margin: 2% 25%;
-//   width: 50%;
-//   height: 80%;
-//   box-shadow: $box-shadow;
-//   padding: 2% 3%;
-// }
-// .signupForm {
-//   margin: auto;
-//   width: 80%;
-//   height: 80%;
-//   box-shadow: $box-shadow;
-//   padding: 2% 3%;
-// }
-// .center {
-//   text-align: center;
-//   color: #212121;
-// }
-
-// .auth-button {
-//   margin: 2%;
-//   width: 95%;
-//   background-color: $nav-color;
-//   color: $text-color;
-
-// }
-// .auth-button:hover {
-//   background-color: $logo-color;
-// }
-// .auth-header a{
-//   color: #212121;
-//   font-family: $header-font;
-// }
-// .myContainer {
-//   margin: 0 18px;
-// }
-// .mainContainer {
-//   background-color: $transparentBodyColor;
-//   color: $text-color;
-//   position: absolute;
-//   height: 100%;
-//   width: 100%;
-// }
-// .mainContainer .bg {
-//   background-image:
-//   url("https://www.google.com/drive/static/images/home/intro-1024.jpg");
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   position: absolute;
-//   width: 100vw;
-//   height: 100vh;
-//   z-index: -1;
-// }
-
-// .bodyInnards {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   margin-right: -50%;
-//   transform: translate(-50%, -50%);
-//   text-align: center;
-// }
-// .bodyInnards i,
-// #createDoc i,
-// #createUser i
-// {
-//   font-size: 6rem;
-//   color: $logo-color;
-//   margin: 0;
-// }
-// nav ul a {
-//   color: $text-color;
-// }
-// nav a {
-//   color: $text-color;
-// }
-// nav {
-//   font-family: $header-font;
-//   background-color: $transparentNavColor;
-// }
-// @media only screen and (max-width: 992px) {
-//   nav .brand-logo {
-//     left: 47%;
-//   }
-// }
-// .upperCase {
-// text-transform: $upperCase;
-// }
-// .bodyInnards i,
-// #createDoc i
-// {
-//   font-size: 6rem;
-//   color: $logo-color;
-// }
-
-// .searchBox {
-//     right: 0;
-//     width: 40%;
-//     display: -webkit-inline-box;
-//     position: absolute;
-//     height: inherit;
-//     padding: 0 20px;
-//     border-radius: 8px;
-//     background-color: $background-color;
-//     border: 1px solid $text-color-two;
-//     opacity: 0.9;
-//     z-index: 11;
-
-// }
-
-// .searchBox input {
-//   border: 0px solid;
-//   width: 100%;
-//   color: $text-color-two;
-// }
-
-// .searchBox i {
-//   padding-right: 10%;
-//   color: $text-color-two;
-// }
-// .searchBox select {
-//   display: block;
-//   width: 100%;
-//   height: 61px;
-//   float: right;
-//   color: $text-color-two;
-//   background-color: $background-color;
-// }
-
-// .dropdown{
-//   border-left: 2px solid $text-color-two;
-//   display: inline-block;
-//   position: absolute;
-//   right: 0;
-//   padding-right: 3%;
-// }
-// .userTopNav {
-//   z-index: 30;
-//   background-color: $text-color;
-// }
-// .dropdown-content {
-//   width: 50%;
-//   color: $text-color-two;
-// }
-// .dropdown-content li {
-//   text-align: left;
-// }
-// .tabs {
-//   -webkit-box-shadow: 0 8px 10px -6px black;
-// 	   -moz-box-shadow: 0 8px 10px -6px black;
-// 	        box-shadow: 0 8px 10px -6px black;
-//           z-index: 9;
-// }
-// .tabRow {
-//   background-color: $nav-color;
-//   box-shadow: $box-shadow
-// }
-
-// .tabContent{
-//   max-height: 73vh;
-//   overflow: scroll;
-//   background-color: $background-color;
-//   padding: .9rem !important;
-//   color: $text-color-two;
-//   opacity: 0.9;
-// }
-// .tabs .tab a {
-//   color: $text-color-two;
-
-// }
-// .tabs .tab a:hover, .tabs .tab a.active {
-//   color: $primary-color;
-// }
-// .tabs .indicator {
-// background-color: $primary-color;
-// }
-// .dropdown-content li>a, .dropdown-content li>span {
-//   left: 0%
-// }
-// .modal {
-//   color: $text-color-two;
-//   width: 80%;
-// }
-// .inline {
-//   margin-right: 5px;
-//   display: inline-block;
-// }
-// .side-nav {
-//   padding-top: 60px;
-// }
-
-// .input-field label:not(.label-icon) {
-//   -webkit-transform: translateY(-50%);
-//   transform: translateY(-50%);
-//   height: 50%
-// }
-// .input-field label:not(.label-icon).active {
-//   -webkit-transform: translateY(-90%);
-//   transform: translateY(-90%);
-// }
-// .createDoc{
-//   padding: 2px 9px 2px 2px;
-//   width: 100%;
-//   letter-spacing: normal;
-//   background-color: $background-color;
-//   border: 1px solid $text-color-two;
-//   border-radius: 8px;
-//   color: $text-color-two;
-//   border-radius: 1px;
-// }
-// .mce-tinymce * {
-//   height: 100% !important;
-//   line-height: 100% !important;
-// }
-// @media only screen and (min-width: 601px) {
-//   .mce-tinymce * {
-//     height: 100% !important;
-//     line-height: 100% !important;
-//   }
-// }
-// .nav .input-field input {
-//   border-bottom: 1px solid;
-//   width: 97%;
-// }
-// table .th {
-//   text-align: center;
-// }
-// table {
-//   table-layout: fixed;
-// }
-// .displayNone {
-//   display: none;
-// }
-
 $nav-color: #003366;
 $header-font: 'Sanchez', serif;
 $text-color: #FDFEFE;
 $text-color-two: #000;
 $box-shadow: 2px 2px 2px 2px rgba(0.4, 0.4, 0.4, 0.4);
 $center-align: center;
-$transparentNavColor: rgba(255,0,0,0.1);
-$transparentBodyColor: rgba(0,0,0,0.5);
+$transparent-nav-color: rgba(255,0,0,0.1);
+$transparent-body-color: rgba(0,0,0,0.5);
 $primary-color: #4386FC;
 $logo-color: #FFD04A;
 $background-color: #F2F2F2;
-// $: 'Sanchez', serif;
-// $: 'Pacifico', cursive;
-// $: 'Tillana', cursive;
 
 .myContainer {
   margin: 0 18px;
 }
 
 .mainContainer {
-  background-color: $transparentBodyColor;
+  background-color: $transparent-body-color;
   color: $text-color;
   position: absolute;
   height: 100%;
@@ -291,7 +40,8 @@ $background-color: #F2F2F2;
 }
 .bodyInnards i,
 #createDoc i,
-#createUser i
+#createUser i,
+#createRole i
 {
   font-size: 6rem;
   color: $logo-color;
@@ -321,16 +71,17 @@ $background-color: #F2F2F2;
     background-color: $background-color;
     border: 1px solid $text-color-two;
     opacity: 0.9;
-    z-index: 11;
-
 }
 .searchBox input {
   border: 0px solid;
   width: 100%;
-  color: $text-color-two;
 }
 .searchBox i {
   padding-right: 10%;
+}
+.search-box input,
+.search-box i,
+.search-box select {
   color: $text-color-two;
 }
 .searchBox select {
@@ -338,7 +89,6 @@ $background-color: #F2F2F2;
   width: 100%;
   height: 61px;
   float: right;
-  color: $text-color-two;
   background-color: $background-color;
 }
 .inline {
@@ -363,15 +113,14 @@ $background-color: #F2F2F2;
   text-align: left;
 }
 
-nav ul a {
-  color: $text-color;
-}
+nav ul a,
 nav a {
   color: $text-color;
 }
+
  nav {
    font-family: $header-font;
-   background-color: $transparentNavColor;
+   background-color: $transparent-nav-color;
  }
 .side-nav {
   padding-top: 60px;
@@ -417,8 +166,6 @@ background-color: $primary-color;
 .upperCase {
 text-transform: uppercase;
 }
-
-
 
 .loginForm {
   margin: 2% 25%;
@@ -485,11 +232,24 @@ table .th {
   text-align: center;
 }
 table {
-  table-layout: fixed;
+  width: 100%;
+  max-width: 100%;
+  min-width: 300px;
+  // table-layout: fixed;
+}
+
+th, td {
+  max-width: 500px;
+  min-width: 20px;
+  min-height: 50px;
+  max-height: 100px;
 }
 .displayNone {
   display: none;
 }
 .modal.modal-fixed-footer .modal-content {
   height: 100%;
+}
+.nav-wrapper {
+  font-size: 20px;
 }

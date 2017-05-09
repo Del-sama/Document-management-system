@@ -13,7 +13,21 @@ import deleteUserAction from '../../actions/userManagement/deleteUser';
 import EditDocument from '../../actions/documentManagement/editDocument';
 import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 
+
+/**
+ *
+ *
+ * @class AdminDashboard the dashboard admin users see
+ * @extends {Component}
+ */
 class AdminDashboard extends Component {
+
+/**
+ * Creates an instance of AdminDashboard.
+ * @param {object} props
+ *
+ * @memberOf AdminDashboard
+ */
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
@@ -35,6 +49,13 @@ class AdminDashboard extends Component {
     $('ul.tabs').tabs('select_tab', 'searchTab');
   }
 
+/**
+ *
+ * setviewDocument opens full version of truncated documents
+ * @param {file} document
+ *
+ * @memberOf AdminDashboard
+ */
   setViewDocument(document) {
     this.setState({
       viewTitle: document.title,
@@ -43,6 +64,13 @@ class AdminDashboard extends Component {
     });
   }
 
+/**
+ *
+ * setEditDocument edits created documents
+ * @param {file} document
+ *
+ * @memberOf AdminDashboard
+ */
   setEditDocument(document){
     this.setState({
       editDocument: document,
@@ -51,6 +79,13 @@ class AdminDashboard extends Component {
     browserHistory.push('/app/dashboard');
   }
 
+/**
+ *
+ * setDeleteDocument deletes documents
+ * @param {number} documentId
+ *
+ * @memberOf AdminDashboard
+ */
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
@@ -59,6 +94,13 @@ class AdminDashboard extends Component {
   }
 
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf AdminDashboard
+ */
   componentWillReceiveProps(nextProps){
     const keys = ['users', 'documents', 'roles'];
     keys.forEach(key=>{
@@ -70,6 +112,11 @@ class AdminDashboard extends Component {
     });
   }
 
+/**
+ *componentDidMount called once render has been executed
+ *
+ * @memberOf AdminDashboard
+ */
   componentDidMount() {
     $('ul.tabs').tabs();
   }
@@ -87,7 +134,7 @@ class AdminDashboard extends Component {
             <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
           </div>
           <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+            <a href="" className="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
           </div>
         </div>
 
@@ -95,9 +142,6 @@ class AdminDashboard extends Component {
           <div className="modal-content">
             <h4>Edit Document</h4>
             <CreateDocument document={this.state.editDocument || null} documentId={this.state.documentId || null}  onEdit={this.props.EditDocument}/>
-          </div>
-          <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
           </div>
         </div>
 

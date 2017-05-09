@@ -4,9 +4,21 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import logoutAction from '../../actions/authorizationManagement/logoutAction';
 
-
+/**
+ *
+ *
+ * @export
+ * @class Navbar the navbar of the application
+ * @extends {Component}
+ */
 export class Navbar extends Component {
 
+/**
+ * Creates an instance of Navbar.
+ * @param {object} props
+ *
+ * @memberOf Navbar
+ */
   constructor(props) {
     super(props);
     const token = (window.localStorage.getItem('token'));

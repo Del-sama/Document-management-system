@@ -22,7 +22,24 @@ const ResponseMessage = (props) => {
     return (<span />);
   }
 };
+
+
+/**
+ *
+ *
+ * @export
+ * @class CreateDocument mounts a form that creates documents
+ * @extends {Component}
+ */
 export class CreateDocument extends Component {
+
+
+  /**
+   * Creates an instance of CreateDocument.
+   * @param {any} props
+   *
+   * @memberOf CreateDocument
+   */
   constructor(props) {
       super(props);
       const token = (window.localStorage.getItem('token'));
@@ -41,6 +58,13 @@ export class CreateDocument extends Component {
       this.onSubmit = this.onSubmit.bind(this);
     }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf AdminDashboard
+ */
   componentWillReceiveProps(nextProps) {
       if (nextProps.status === 'success') {
         browserHistory.push('/app/dashboard');
@@ -53,6 +77,7 @@ export class CreateDocument extends Component {
           status: nextProps.document.status
         });
       }
+    tinymce.activeEditor.setContent(nextProps.document.content);
     }
 
   onChange(event) {
@@ -71,8 +96,9 @@ export class CreateDocument extends Component {
       Materialize.toast('Please add a content', 3000);
     } else {
       this.props.CreateDocument(this.state);
+      Materialize.toast('Document created', 1500);
     }
-    window.location.reload();
+    // window.location.reload();
   }
 
   render() {
@@ -80,7 +106,7 @@ export class CreateDocument extends Component {
       <div>
         <div>
          <div className="row">
-          <form className="col s12" onSubmit={this.props.onEdit ? ()=> { this.props.onEdit(this.state,this.props.documentId)} : this.onSubmit}>
+          <form className="col s12" onSubmit={this.props.onEdit ? () => { this.props.onEdit(this.state,this.props.documentId)} : this.onSubmit}>
               <div className="row">
               <div className="input-field col s12">
                 <input
