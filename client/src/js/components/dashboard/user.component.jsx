@@ -22,12 +22,13 @@ import Search from '../search.component.jsx';
  */
 class UserDashboard extends Component {
 
-/**
- * Creates an instance of AdminDashboard.
- * @param {object} props
- *
- * @memberOf AdminDashboard
- */
+
+  /**
+   * Creates an instance of UserDashboard.
+   * @param {any} props
+   *
+   * @memberOf UserDashboard
+   */
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
@@ -49,7 +50,7 @@ class UserDashboard extends Component {
  * setviewDocument opens full version of truncated documents
  * @param {file} document
  *
- * @memberOf AdminDashboard
+ * @memberOf UserDashboard
  */
   setViewDocument(document) {
     this.setState({
@@ -64,7 +65,7 @@ class UserDashboard extends Component {
  * setEditDocument edits created documents
  * @param {file} document
  *
- * @memberOf AdminDashboard
+ * @memberOf UserDashboard
  */
   setEditDocument(document){
     this.setState({
@@ -79,7 +80,7 @@ class UserDashboard extends Component {
  * setDeleteDocument deletes documents
  * @param {number} documentId
  *
- * @memberOf AdminDashboard
+ * @memberOf UserDashboard
  */
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
@@ -90,7 +91,7 @@ class UserDashboard extends Component {
 /**
  *componentDidMount called once render has been executed
  *
- * @memberOf AdminDashboard
+ * @memberOf UserDashboard
  */
   componentDidMount() {
     $('ul.tabs').tabs();
