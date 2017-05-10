@@ -122,7 +122,7 @@ class UserDashboard extends Component {
         </div>
 
         <div className="mainContainer">
-          <div className="bg"></div>
+          <div className="dashboard-bg"></div>
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">

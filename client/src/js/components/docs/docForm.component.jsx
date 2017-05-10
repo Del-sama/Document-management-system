@@ -66,19 +66,21 @@ export class CreateDocument extends Component {
  * @memberOf AdminDashboard
  */
   componentWillReceiveProps(nextProps) {
-      if (nextProps.status === 'success') {
-        browserHistory.push('/app/dashboard');
-      }
-      if(nextProps.document){
-        this.setState({
-          title: nextProps.document.title,
-          content: nextProps.document.content,
-          access: nextProps.document.access,
-          status: nextProps.document.status
-        });
-      }
-    tinymce.activeEditor.setContent(nextProps.document.content);
+    if(!nextProps.document) return;
+
+    if (nextProps.status === 'success') {
+      browserHistory.push('/app/dashboard');
     }
+
+    this.setState({
+      title: nextProps.document.title,
+      content: nextProps.document.content,
+      access: nextProps.document.access,
+      status: nextProps.document.status
+    });
+
+    tinymce.activeEditor.setContent(nextProps.document.content);
+  }
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
