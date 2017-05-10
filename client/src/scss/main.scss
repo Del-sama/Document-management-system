@@ -9,6 +9,9 @@ $transparent-body-color: rgba(0,0,0,0.5);
 $primary-color: #4386FC;
 $logo-color: #FFD04A;
 $background-color: #F2F2F2;
+$gradient: linear-gradient( #454545, #222);
+
+
 
 .myContainer {
   margin: 0 18px;
@@ -62,7 +65,7 @@ $background-color: #F2F2F2;
 }
 .searchBox {
     right: 0;
-    width: 40%;
+    width: 70%;
     display: -webkit-inline-box;
     position: absolute;
     height: inherit;
@@ -119,7 +122,7 @@ nav a {
 
  nav {
    font-family: $header-font;
-   background-color: $transparent-nav-color;
+   background-color: transparent;
  }
 .side-nav {
   padding-top: 60px;
@@ -251,4 +254,12 @@ th, td {
 }
 .nav-wrapper {
   font-size: 20px;
+}
+.dashboard-bg {
+  background: $gradient;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
