@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import Navbar from './common/nav.component';
 import Body from './body.component';
 
+
+/**
+ *
+ *
+ * @class Index
+ * @extends {Component}
+ */
 class Index extends Component {
   /**
    * renders the index component

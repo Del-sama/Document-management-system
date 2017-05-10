@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 
+
+/**
+ *
+ *
+ * @export
+ * @class AllDocs displays all available documents on the admin dashboard
+ * @extends {Component}
+ */
 export class AllDocs extends Component {
+
+  /**
+   * Creates an instance of AllDocs.
+   * @param {any} props
+   *
+   * @memberOf AllDocs
+   */
   constructor(props){
     super(props);
     this.singleDocument = this.singleDocument.bind(this);
@@ -12,6 +27,13 @@ export class AllDocs extends Component {
     };
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf AdminDashboard
+ */
   componentWillReceiveProps(nextProps){
     if(nextProps.documents){
       this.setState({

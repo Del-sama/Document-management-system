@@ -13,7 +13,22 @@ import EditDocument from '../../actions/documentManagement/editDocument';
 import DeleteDocument from '../../actions/documentManagement/deleteDocuments';
 import Search from '../search.component.jsx';
 
+
+/**
+ * UserDashboard the dashboard regular users see
+ *
+ * @class UserDashboard
+ * @extends {Component}
+ */
 class UserDashboard extends Component {
+
+
+  /**
+   * Creates an instance of UserDashboard.
+   * @param {any} props
+   *
+   * @memberOf UserDashboard
+   */
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
@@ -30,6 +45,13 @@ class UserDashboard extends Component {
     $('ul.tabs').tabs('select_tab', 'searchTab');
   }
 
+/**
+ *
+ * setviewDocument opens full version of truncated documents
+ * @param {file} document
+ *
+ * @memberOf UserDashboard
+ */
   setViewDocument(document) {
     this.setState({
       viewTitle: document.title,
@@ -38,6 +60,13 @@ class UserDashboard extends Component {
     });
   }
 
+/**
+ *
+ * setEditDocument edits created documents
+ * @param {file} document
+ *
+ * @memberOf UserDashboard
+ */
   setEditDocument(document){
     this.setState({
       editDocument: document,
@@ -46,12 +75,24 @@ class UserDashboard extends Component {
     browserHistory.push('/app/dashboard');
   }
 
+/**
+ *
+ * setDeleteDocument deletes documents
+ * @param {number} documentId
+ *
+ * @memberOf UserDashboard
+ */
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
     Materialize.toast('Document deleted', 3000)
   }
 
+/**
+ *componentDidMount called once render has been executed
+ *
+ * @memberOf UserDashboard
+ */
   componentDidMount() {
     $('ul.tabs').tabs();
   }
@@ -69,7 +110,7 @@ class UserDashboard extends Component {
             <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
           </div>
           <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+            <a href="" className="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
           </div>
         </div>
 
@@ -78,13 +119,10 @@ class UserDashboard extends Component {
             <h4>Edit Document</h4>
             <CreateDocument document={this.state.editDocument || null} documentId={this.state.documentId || null}  onEdit={this.props.EditDocument}/>
           </div>
-          <div className="modal-footer">
-            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-          </div>
         </div>
 
         <div className="mainContainer">
-          <div className="bg"></div>
+          <div className="dashboard-bg"></div>
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">
@@ -103,13 +141,13 @@ class UserDashboard extends Component {
               <UserDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test1" className="tabContent col s12">
-              <PrivateDocs documents={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument} />
+              <PrivateDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument} />
             </div>
             <div id="test2" className="tabContent col s12">
-              <PublicDocs documents={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
+              <PublicDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test4" className="tabContent col s12">
-              <RoleDocs documents={this.props.documents} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
+              <RoleDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test5" className="tabContent col s12">
               <AllDocs documents={this.props.documents} setViewDocument={this.setViewDocument} />

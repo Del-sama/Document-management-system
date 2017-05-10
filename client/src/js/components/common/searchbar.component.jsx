@@ -7,7 +7,21 @@ import searchUsers from '../../actions/userManagement/searchUsers.js';
 import searchDocs from '../../actions/documentManagement/searchDocs.js';
 
 
+/**
+ *
+ *
+ * @export
+ * @class Searchbar contains the searchbar and add document components
+ * @extends {Component}
+ */
 export class Searchbar extends Component {
+
+/**
+ * Creates an instance of Searchbar.
+ * @param {object} props
+ *
+ * @memberOf Searchbar
+ */
   constructor(props) {
     super(props);
     const token = window.localStorage.getItem('token');
@@ -36,6 +50,12 @@ export class Searchbar extends Component {
 
   }
 
+/**
+ * componentDidMount called once render has been executed
+ *
+ *
+ * @memberOf Searchbar
+ */
   componentDidMount() {
     $('.dropdown-button').dropdown({
       inDuration: 300,

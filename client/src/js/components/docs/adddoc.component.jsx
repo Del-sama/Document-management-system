@@ -2,23 +2,38 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import CreateDocument from './docForm.component'
 
+
+/**
+ * AddDoc create documents modal
+ *
+ * @class AddDoc
+ * @extends {Component}
+ */
 class AddDoc extends Component {
+
+
+  /**
+   * Creates an instance of AddDoc.
+   *
+   * @memberOf AddDoc
+   */
   constructor() {
     super();
   }
+
+/**
+ *componentDidMount called once render has been executed
+ *
+ * @memberOf AdminDashboard
+ */
   componentDidMount() {
     $('.modal').modal({
-      dismissible: false, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .6, // Opacity of modal background
       inDuration: 300, // Transition in duration
       outDuration: 200, // Transition out duration
       startingTop: '4%', // Starting top style attribute
       endingTop: '10%', // Ending top style attribute
-      // ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-      //   alert("Ready");
-      //   console.log(modal, trigger);
-      // },
-      // complete: function () { alert('Closed'); } // Callback for Modal close
     });
   }
   render() {

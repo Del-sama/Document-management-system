@@ -14,7 +14,7 @@ export const viewAllDocuments = (userId) => {
     const token = window.localStorage.getItem('token');
     return axios.get('/documents', {
       headers: {
-        'authorization': token
+       Authorization: token
       }
     }).then(response => {
       dispatch(documentReadSuccess(response.data));

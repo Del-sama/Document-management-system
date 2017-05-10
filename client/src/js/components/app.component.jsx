@@ -9,6 +9,13 @@ import ViewUser from './users/viewUser.component';
 import EditUser from './users/editUser.component';
 import EditUsersRole from './users/editUsersRole.component';
 
+
+/**
+ *
+ *
+ * @class App creates different component routes
+ * @extends {Component}
+ */
 class App extends Component {
   /**
    * renders the app component

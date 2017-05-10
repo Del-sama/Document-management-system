@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 export default (state = {}, action) => {
   switch (action.type) {
     case actionTypes.DOCUMENT_CREATED:
-      return { ...state, createStatus: action.status, documents: action.document };
+      let documents = [...state.documents, action.document];
+      return Object.assign({}, state, {createStatus: action.status}, {documents});
     case actionTypes.DOCUMENT_CREATE_FAILED:
       return { ...state, status: action.status };
     case actionTypes.ALL_DOCUMENTS:

@@ -6,6 +6,13 @@ import loginAction from '../actions/authorizationManagement/loginAction';
 import Navbar from './common/nav.component';
 
 
+/**
+ *
+ *
+ * @export
+ * @class Login - login form
+ * @extends {Component}
+ */
 export class Login extends Component {
   /**
    * renders the Nav component

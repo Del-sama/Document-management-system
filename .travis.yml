@@ -11,4 +11,4 @@ before_install:
   - psql -c 'create database dms_test;' -U postgres
 
 after_success:
-  - npm run coveralls
+  - cat coverage/*lcov.info | ./node_modules/.bin/coveralls
