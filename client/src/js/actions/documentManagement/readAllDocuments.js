@@ -9,10 +9,10 @@ const documentReadSuccess = function (documents) {
   }
 }
 
-export const viewAllDocuments = (offset) => {
+export const viewAllDocuments = (userId) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');
-    return axios.get(`/documents?offset=${offset}`, {
+    return axios.get('/documents', {
       headers: {
        Authorization: token
       }
