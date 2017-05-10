@@ -90,7 +90,7 @@ class AdminDashboard extends Component {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
     Materialize.toast('Document deleted', 3000)
-    window.location.reload();
+    // window.location.reload();
   }
 
 
@@ -124,7 +124,6 @@ class AdminDashboard extends Component {
   render() {
     return (
       <div>
-
         <div id="modalView" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4 className="center">View Document</h4>
@@ -146,7 +145,7 @@ class AdminDashboard extends Component {
         </div>
 
         <div className="mainContainer">
-        <div className="bg"></div>
+        {/*<div className="bg"></div>*/}
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">
