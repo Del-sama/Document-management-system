@@ -11,7 +11,7 @@ export default (details) => {
       }
     })
       .then((response) => {
-;        dispatch({
+        dispatch({
           type: actionTypes.DOCUMENT_CREATED,
           document: response.data,
           status: 'success'
