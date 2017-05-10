@@ -9,12 +9,12 @@ const documentReadSuccess = function (documents) {
   }
 }
 
-export const viewAllDocuments = (userId) => {
+export const viewAllDocuments = (offset) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');
-    return axios.get('/documents', {
+    return axios.get(`/documents?offset=${offset}`, {
       headers: {
-        'authorization': token
+       Authorization: token
       }
     }).then(response => {
       dispatch(documentReadSuccess(response.data));
