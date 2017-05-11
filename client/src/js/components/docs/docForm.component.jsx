@@ -55,6 +55,7 @@ export class CreateDocument extends Component {
       this.onChange = this.onChange.bind(this);
       this.contentOnChange = this.contentOnChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
+      // this.closeModal = this.closeModal.bind(this);
     }
 
 /**
@@ -96,22 +97,20 @@ export class CreateDocument extends Component {
       Materialize.toast('Please add a content', 3000);
     } else {
       this.props.CreateDocument(this.state);
+      $('.modal').modal('close');
       Materialize.toast('Document created', 1500);
     }
-    // window.location.reload();
   }
-
-   closeModal(event) {
-      event.preventDefault();
-      $('.modal').modal('close');
-    }
 
   render() {
     return  (
       <div>
         <div>
          <div className="row">
-          <form className="col s12" onSubmit={this.props.onEdit ? () => { this.props.onEdit(this.state,this.props.documentId)} : this.onSubmit}>
+          <form className="col s12"
+          onSubmit={this.props.onEdit ? () =>
+          { this.props.onEdit(this.state, this.props.documentId)} :
+          this.onSubmit}>
               <div className="row">
               <div className="input-field col s12">
                 <input
@@ -128,7 +127,7 @@ export class CreateDocument extends Component {
             <div className='row'>
                 <div className='input-field col s12' id="content">
                    <TinyMCE
-                    content="<p>Enter a content</p>"
+                    content=""
                     name='content'
                     config={{
                       plugins: 'autolink link image lists print preview',
@@ -153,7 +152,7 @@ export class CreateDocument extends Component {
                   <option value='role'>Role</option>
                 </select>
               </div>
-            <button href="#!" className="btn waves-effect waves-light modal-action center auth-button" id="done"type="submit" name="action" onClick={this.closeModal}>Save
+            <button href="#!" className="btn waves-effect waves-light modal-action center auth-button" id="done"type="submit" name="action">Save
               <i className="material-icons right"></i>
             </button>
             <ResponseMessage status={this.props.status} />

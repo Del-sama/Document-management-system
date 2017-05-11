@@ -22,7 +22,7 @@ export class AllDocs extends Component {
     super(props);
     this.singleDocument = this.singleDocument.bind(this);
     this.state = {
-      documents: props.documents ? props.documents.documents || [] : [],
+      documents: props.documents ? props.documents || [] : [],
       setViewDocument: props.setViewDocument
     };
   }
@@ -37,7 +37,7 @@ export class AllDocs extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.documents){
       this.setState({
-        documents: nextProps.documents.documents
+        documents: nextProps.documents
       });
     }
   }

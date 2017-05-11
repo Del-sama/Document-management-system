@@ -26,8 +26,8 @@ const UserDocs = (props) => {
   }
   let documentList =[];
   if (props.documents !== undefined) {
-    if (props.documents.documents !== undefined) {
-      documentList = props.documents.documents
+    if (props.documents !== undefined) {
+      documentList = props.documents
         .filter((document) => {
           return document.userId === myId;
       })

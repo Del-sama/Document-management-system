@@ -14,7 +14,7 @@ const RoleDocs = (props) => {
   let documentList;
   if (props.documents !== undefined) {
 
-    documentList = props.documents.documents
+    documentList = props.documents
     .filter((document) => {
       return (document.userId === myId) && (document.access === 'role');
     })
