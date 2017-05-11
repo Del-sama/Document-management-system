@@ -45,7 +45,7 @@ export class Navbar extends Component {
               <Link to="/app/" className="brand-logo myContainer"><i className="material-icons">library_books</i>i-DocMan</Link>
               <Link to="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
-                <li className="upperCase"><Link to="/app/profile"><i className="material-icons left">perm_identity</i>{this.state.userName}</Link></li>
+                <li className="upperCase"><Link to="/app/profile" id="profile-btn"><i className="material-icons left">perm_identity</i>{this.state.userName}</Link></li>
                 <li><Link onClick={this.logout} className="signout-btn"><i className="material-icons left">lock_outline</i>Sign Out</Link></li>
               </ul>
               <ul className="side-nav" id="mobile">

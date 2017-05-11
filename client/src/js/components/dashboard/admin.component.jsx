@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import { Pagination } from 'react-materialize';
 import Navbar from '../common/nav.component';
 import Searchbar from '../common/searchbar.component';
 import AllDocs from '../docs/allDocs.component';
@@ -47,6 +48,11 @@ class AdminDashboard extends Component {
   handleSearchBarView(view) {
     this.setState({ searchBarView: view });
     $('ul.tabs').tabs('select_tab', 'searchTab');
+  }
+
+  closeModal(event) {
+    event.preventDefault();
+    $('.modal').modal('close');
   }
 
 /**
@@ -133,7 +139,7 @@ class AdminDashboard extends Component {
             <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
           </div>
           <div className="modal-footer">
-            <a href="" className="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            <a href="" className="modal-action waves-effect waves-green btn-flat " onClick={this.closeModal}>Close</a>
           </div>
         </div>
 
@@ -145,7 +151,7 @@ class AdminDashboard extends Component {
         </div>
 
         <div className="mainContainer">
-        {/*<div className="bg"></div>*/}
+        <div className="bg"></div>
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">
@@ -160,6 +166,16 @@ class AdminDashboard extends Component {
             </div>
 
             <div id="test1" className="tabContent col s12">
+              <center className="pagination-key">
+                <Pagination id="allPagination" className="pag"
+                  items={this.props.documentPages}
+                  maxButtons={8}
+                  onSelect={(page) => {
+                    const offset = (page - 1) * 10;
+                    this.props.pagination(offset);
+                  }}
+                  />
+              </center>
               <AllDocs documents={this.state.documents} setViewDocument={this.setViewDocument}/>
             </div>
             <div id="test2" className="tabContent col s12">

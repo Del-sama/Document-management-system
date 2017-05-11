@@ -2,10 +2,10 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
-export default (documentid) => {
+export default (documentId) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {
-    return axios.delete(`/documents/${documentid}`, {
+    return axios.delete(`/documents/${documentId}`, {
       headers: {
         Authorization: token
       }
@@ -13,7 +13,8 @@ export default (documentid) => {
     .then(() => {
       dispatch({
         type: actionTypes.DOCUMENT_DELETED,
-        status: 'success'
+        status: 'success',
+        documentId
       });
       browserHistory.push('/app/dashboard');
     }).catch((err) => {

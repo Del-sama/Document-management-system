@@ -28,6 +28,8 @@ class DocumentsController {
  * @memberOf DocumentsController
  */
   static getDocuments(request, response) {
+    const limit = request.query.limit || '10';
+    const offset = request.query.offset || '0';
     if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
@@ -51,15 +53,25 @@ class DocumentsController {
             'userName', 'roleId'
           ]
       }],
-      limit: request.query.limit || null,
-      offset: request.query.offset || null,
+      limit,
+      offset,
       order: [['createdAt', 'DESC']]
     };
 
-    model.Document.findAll(query)
-      .then(documents => response.status(200)
-          .send(documents));
-  }
+    model.Document.findAndCountAll(query)
+      .then((documents) => {
+        const pagination = limit && offset ? {
+          totalCount: documents.count,
+          pages: Math.ceil(documents.count / limit),
+          currentPage: Math.floor(offset / limit) + 1,
+          pageSize: documents.rows.length
+        } : null;
+        return response.status(200).send({
+          documents: documents.rows, pagination
+        });
+      })
+      .catch(error => response.status(400).send({ message: error.message }));
+    }
 
   /**
    * Method getDocument to obtain a document
@@ -207,8 +219,8 @@ class DocumentsController {
 
     if (q) {
       query.where.$and.push({ $or: [
-        { title: { $like: `%${q}%` } },
-        { content: { $like: `%${q}%` } }
+        { title: { $iLike: `%${q}%` } },
+        { content: { $iLike: `%${q}%` } }
       ] });
     }
 

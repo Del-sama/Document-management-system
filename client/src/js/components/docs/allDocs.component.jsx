@@ -22,7 +22,7 @@ export class AllDocs extends Component {
     super(props);
     this.singleDocument = this.singleDocument.bind(this);
     this.state = {
-      documents: props.documents || [],
+      documents: props.documents ? props.documents || [] : [],
       setViewDocument: props.setViewDocument
     };
   }

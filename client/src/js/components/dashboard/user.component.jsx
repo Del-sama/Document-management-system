@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import { Pagination } from 'react-materialize';
 import Navbar from '../common/nav.component';
 import Searchbar from '../common/searchbar.component';
 import UserDocs from '../docs/userDocs.component';
@@ -22,7 +23,6 @@ import Search from '../search.component.jsx';
  */
 class UserDashboard extends Component {
 
-
   /**
    * Creates an instance of UserDashboard.
    * @param {any} props
@@ -38,6 +38,12 @@ class UserDashboard extends Component {
     this.state = {
       searchBarView: 'noShow'
     };
+  }
+
+
+  closeModal(event) {
+    event.preventDefault();
+    $('.modal').modal('close');
   }
 
   handleSearchBarView(view) {
@@ -89,7 +95,7 @@ class UserDashboard extends Component {
   }
 
 /**
- *componentDidMount called once render has been executed
+ * componentDidMount called once render has been executed
  *
  * @memberOf UserDashboard
  */
@@ -97,10 +103,8 @@ class UserDashboard extends Component {
     $('ul.tabs').tabs();
   }
   render() {
-
     return (
       <div>
-
         <div id="modalView" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4 className="center">View Document</h4>
@@ -110,19 +114,21 @@ class UserDashboard extends Component {
             <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
           </div>
           <div className="modal-footer">
-            <a href="" className="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            <a href="" className="modal-action waves-effect waves-green btn-flat " onClick={this.closeModal}>Close</a>
           </div>
         </div>
 
         <div id="modal1" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4>Edit Document</h4>
-            <CreateDocument document={this.state.editDocument || null} documentId={this.state.documentId || null}  onEdit={this.props.EditDocument}/>
+            <CreateDocument document={this.state.editDocument || null}
+            documentId={this.state.documentId || null}
+            onEdit={this.props.EditDocument}/>
           </div>
         </div>
 
         <div className="mainContainer">
-          <div className="dashboard-bg"></div>
+          <div className="bg"></div>
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">
@@ -150,6 +156,16 @@ class UserDashboard extends Component {
               <RoleDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test5" className="tabContent col s12">
+              <center className="pagination-key">
+                <Pagination id="allPagination" className="pag"
+                  items={this.props.documentPages}
+                  maxButtons={8}
+                  onSelect={(page) => {
+                    const offset = (page - 1) * 10;
+                    this.props.pagination(offset);
+                  }}
+                  />
+              </center>
               <AllDocs documents={this.props.documents} setViewDocument={this.setViewDocument} />
             </div>
             <div id="searchTab" className="tabContent col s12">
@@ -166,7 +182,8 @@ class UserDashboard extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditDocument: (documentDetails, documentId) => dispatch(EditDocument(documentDetails, documentId)),
-    DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId))
+    DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId)),
+
   };
 };
 

@@ -6,7 +6,7 @@ import Searchbar from '../common/searchbar.component';
 import AdminDashboard from './admin.component';
 import UserDashboard from './user.component';
 import { bindActionCreators } from 'redux';
-import * as AllDocActions from '../../actions/documentManagement/readAllDocuments';
+import viewAllDocuments from '../../actions/documentManagement/readAllDocuments';
 import * as docActions from '../../actions/documentManagement/readDocument.js';
 import * as UserActions from '../../actions/userManagement/getAllUsers.js';
 import * as RoleActions from '../../actions/roleManagement/getRoles.js';
@@ -28,7 +28,7 @@ export class Dashboard extends Component {
 
   componentWillMount() {
     const userId = this.state.authUser.userId || null
-    this.props.actionsDoc.viewAllDocuments(userId);
+    this.props.viewAllDocuments();
     this.props.actionsUser.viewUsers(userId);
     this.props.actionsRole.viewRoles(userId);
     this.props.singleActionsDoc.viewUserDocuments(userId);
@@ -53,10 +53,10 @@ export class Dashboard extends Component {
     const roleId = this.state.authUser.roleId || null
     return (roleId === this.state.AdminRoleId) ?
       <div>
-        <AdminDashboard {...this.props} updateUser={this.updateUser} />
+        <AdminDashboard {...this.props} pagination= {this.props.viewAllDocuments} updateUser={this.updateUser} />
       </div> :
       <div>
-        <UserDashboard {...this.props} />
+        <UserDashboard {...this.props} pagination= {this.props.viewAllDocuments} />
       </div>
   }
 }
@@ -64,6 +64,7 @@ export class Dashboard extends Component {
 const mapStoreToProps = (state) => {
   return {
     documents: state.documentReducer.documents,
+    documentPages: state.documentReducer.pageCount,
     searchDocuments: state.documentReducer.search,
     searchUsers: state.userReducer.search,
     users: state.userReducer.users,
@@ -73,7 +74,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actionsDoc: bindActionCreators(AllDocActions, dispatch),
+    viewAllDocuments: bindActionCreators(viewAllDocuments, dispatch),
     singleActionsDoc: bindActionCreators(docActions, dispatch),
     actionsUser: bindActionCreators(UserActions, dispatch),
     actionsRole: bindActionCreators(RoleActions, dispatch),

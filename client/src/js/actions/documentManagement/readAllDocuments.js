@@ -2,23 +2,26 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
-const documentReadSuccess = function (documents) {
-  return {
-    type: actionTypes.VIEW_ALL_DOCUMENTS_SUCCESS,
-    documents
-  }
-}
 
-export const viewAllDocuments = (userId) => {
+const viewAllDocuments = (offset) => {
+  if(offset === undefined) {
+    offset = 0;
+  }
   return (dispatch) => {
     const token = window.localStorage.getItem('token');
-    return axios.get('/documents', {
+    return axios.get(`/documents?offset=${offset}`, {
       headers: {
        Authorization: token
       }
     }).then(response => {
-      dispatch(documentReadSuccess(response.data));
+      return dispatch({
+        type: actionTypes.VIEW_ALL_DOCUMENTS_SUCCESS,
+        documents: response.data.documents,
+        pageCount: response.data.pagination.pages
+      });
     }).catch((err) => {
       });
   };
 };
+
+export default viewAllDocuments;

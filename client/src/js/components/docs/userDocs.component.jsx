@@ -11,18 +11,27 @@ if (token) {
 
 }
 const UserDocs = (props) => {
-  let documentList;
+  const SingleDocument = (document, index) => {
+    return (
+      <tr className="hoverable" key={index}>
+        <td>{document.title}</td>
+        <td>{document.access}</td>
+        <td className="truncate"><a href="#modalView" dangerouslySetInnerHTML={{ __html: document.content}} onClick={() => { props.setViewDocument(document); }} /></td>
+        <td>{(document.createdAt).slice(0, 10)}</td>
+        <td>{(document.updatedAt).slice(0, 10)}</td>
+        <td><a className="modal-trigger green-text" id="edit-btn" href="#modal1" onClick={() => { props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>
+        <td><a className="red-text" href="#" onClick={()=>{ props.setDeleteDocument(document.id); }} > <i className="material-icons">delete</i></a></td>
+      </tr>
+    );
+  }
+  let documentList =[];
   if (props.documents !== undefined) {
-
-    documentList = props.documents
-      .filter((document) => {
-        return document.userId === myId;
+    if (props.documents !== undefined) {
+      documentList = props.documents
+        .filter((document) => {
+          return document.userId === myId;
       })
-      .map((document) => {
-        return (
-          <SingleDocument document={document} key={document.id} setEditDocument={props.setEditDocument} setViewDocument={() => props.setViewDocument(document)} setDeleteDocument={props.setDeleteDocument}/>
-        )
-      })
+    }
   }
   return (
     <div>
@@ -37,27 +46,11 @@ const UserDocs = (props) => {
           </tr>
         </thead>
         <tbody>
-          {documentList}
+          {documentList.map(SingleDocument)}
         </tbody>
       </table>
     </div>
   )
-}
-
-
-const SingleDocument = (props) => {
-  const { document } = props
-  return (
-    <tr className="hoverable">
-      <td>{document.title}</td>
-      <td>{document.access}</td>
-      <td className="truncate"><a href="#modalView" dangerouslySetInnerHTML={{ __html: document.content}} onClick={() => { props.setViewDocument(document); }} /></td>
-      <td>{(document.createdAt).slice(0, 10)}</td>
-      <td>{(document.updatedAt).slice(0, 10)}</td>
-      <td><a className="modal-trigger green-text" id="edit-btn" href="#modal1" onClick={() => { props.setEditDocument(document); }}><i className="material-icons">edit</i></a></td>
-      <td><a className="red-text" href="#" onClick={()=>{ props.setDeleteDocument(document.id); }} > <i className="material-icons">delete</i></a></td>
-    </tr>
-  );
 }
 
 export default UserDocs;
