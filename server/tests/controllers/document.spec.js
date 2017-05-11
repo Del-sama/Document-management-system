@@ -130,9 +130,9 @@ describe('DOCUMENT API', () => {
               .set({ Authorization: publicToken })
               .end((error, response) => {
                 expect(response.status).to.equal(200);
-                expect(Array.isArray(response.body)).to.be.true;
-                expect(response.body.length).to.be.greaterThan(0);
-                expect(response.body[0].title)
+                expect(Array.isArray(Object.keys(response.body))).to.be.true;
+                expect(response.body.documents.length).to.be.greaterThan(0);
+                expect(response.body.documents[0].title)
                   .to.equal(publicDocumentParams.title);
                 done();
               });
@@ -145,7 +145,7 @@ describe('DOCUMENT API', () => {
               .set({ Authorization: publicToken })
               .end((error, response) => {
                 expect(response.status).to.equal(200);
-                expect(response.body.length).to.equal(7);
+                expect(response.body.documents.length).to.equal(7);
                 done();
               });
           });
@@ -154,7 +154,7 @@ describe('DOCUMENT API', () => {
               .set({ Authorization: publicToken })
               .end((error, response) => {
                 expect(response.status).to.equal(200);
-                expect(response.body.length).to.equal(9);
+                expect(response.body.documents.length).to.equal(9);
                 done();
               });
           });
@@ -412,7 +412,7 @@ describe('DOCUMENT API', () => {
                   foundDocuments[index + 1].createdAt);
                 if (!flag) break;
               }
-              expect(flag).to.be.false;
+              expect(flag).to.be.true;
               done();
             });
         });

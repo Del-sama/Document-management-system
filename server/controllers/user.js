@@ -29,11 +29,13 @@ class UsersController {
  * @returns {Object} response object
  */
   static getUsers(request, response) {
+    const limit = request.query.limit || '10';
+    const offset = request.query.offset || '0';
     if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
     }
-    model.User.findAll({
+    model.User.findAndCountAll({
       attributes: [
         'id',
         'userName',
@@ -44,13 +46,24 @@ class UsersController {
         'createdAt',
         'updatedAt'
       ],
-      limit: request.query.limit || null,
-      offset: request.query.offset || null,
+      limit,
+      offset,
       order: [['createdAt', 'DESC']]
-    }).then(users => {
-      return response.status(200)
-        .send(users)
-      });
+    }).then((users) => {
+        const metadata = limit && offset ? {
+          totalCount: users.count,
+          pages: Math.ceil(users.count / limit),
+          currentPage: Math.floor(offset / limit) + 1,
+          pageSize: users.rows.length
+        } : null;
+        return response.status(200).send({
+          users: users.rows,
+          metadata
+        });
+        })
+        .catch(error => response.status(400).send({
+          Error: error.message
+        }));
   }
 
 /**
@@ -198,7 +211,12 @@ class UsersController {
     const q = request.query.q;
 
     const query = {
-      where: { userName: { $like: `%${q}%`} },
+      where: {
+        $or: [
+          {firstName: { $iLike: `%${q}%`}},
+          {userName: {$iLike: `%${q}%`}}
+        ]
+      },
       limit: request.query.limit || null,
       offset: request.query.offset || null,
       order: [['id', 'ASC']]
