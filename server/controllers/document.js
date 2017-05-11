@@ -28,8 +28,8 @@ class DocumentsController {
  * @memberOf DocumentsController
  */
   static getDocuments(request, response) {
-    const limit = request.query.limit || 10;
-    const offset = request.query.offset || 0;
+    const limit = request.query.limit || '10';
+    const offset = request.query.offset || '0';
     if (request.query.limit < 0 || request.query.offset < 0) {
       return response.status(400)
       .send({ message: 'Only Positive integers are permitted.' });
@@ -60,14 +60,14 @@ class DocumentsController {
 
     model.Document.findAndCountAll(query)
       .then((documents) => {
-        const metadata = limit && offset ? {
+        const pagination = limit && offset ? {
           totalCount: documents.count,
           pages: Math.ceil(documents.count / limit),
           currentPage: Math.floor(offset / limit) + 1,
           pageSize: documents.rows.length
         } : null;
         return response.status(200).send({
-          documents: documents.rows, metadata
+          documents: documents.rows, pagination
         });
       })
       .catch(error => response.status(400).send({ message: error.message }));

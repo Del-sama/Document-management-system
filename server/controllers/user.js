@@ -50,15 +50,15 @@ class UsersController {
       offset,
       order: [['createdAt', 'DESC']]
     }).then((users) => {
-        const metadata = limit && offset ? {
+        const pagination = {
           totalCount: users.count,
           pages: Math.ceil(users.count / limit),
           currentPage: Math.floor(offset / limit) + 1,
           pageSize: users.rows.length
-        } : null;
+        };
         return response.status(200).send({
           users: users.rows,
-          metadata
+          pagination
         });
         })
         .catch(error => response.status(400).send({
