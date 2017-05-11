@@ -22,7 +22,6 @@ import Search from '../search.component.jsx';
  */
 class UserDashboard extends Component {
 
-
   /**
    * Creates an instance of UserDashboard.
    * @param {any} props
@@ -38,6 +37,12 @@ class UserDashboard extends Component {
     this.state = {
       searchBarView: 'noShow'
     };
+  }
+
+
+  closeModal(event) {
+    event.preventDefault();
+    $('.modal').modal('close');
   }
 
   handleSearchBarView(view) {
@@ -110,14 +115,16 @@ class UserDashboard extends Component {
             <div dangerouslySetInnerHTML={{ __html: this.state.viewDocument}} />
           </div>
           <div className="modal-footer">
-            <a href="" className="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            <a href="" className="modal-action waves-effect waves-green btn-flat " onClick={this.closeModal}>Close</a>
           </div>
         </div>
 
         <div id="modal1" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4>Edit Document</h4>
-            <CreateDocument document={this.state.editDocument || null} documentId={this.state.documentId || null}  onEdit={this.props.EditDocument}/>
+            <CreateDocument document={this.state.editDocument || null}
+            documentId={this.state.documentId || null}
+            onEdit={this.props.EditDocument}/>
           </div>
         </div>
 
@@ -166,7 +173,7 @@ class UserDashboard extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditDocument: (documentDetails, documentId) => dispatch(EditDocument(documentDetails, documentId)),
-    DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId))
+    DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId)),
   };
 };
 
