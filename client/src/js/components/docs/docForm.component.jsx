@@ -23,7 +23,6 @@ const ResponseMessage = (props) => {
   }
 };
 
-
 /**
  *
  *
@@ -78,7 +77,6 @@ export class CreateDocument extends Component {
       access: nextProps.document.access,
       status: nextProps.document.status
     });
-
     tinymce.activeEditor.setContent(nextProps.document.content);
   }
 
@@ -102,6 +100,11 @@ export class CreateDocument extends Component {
     }
     // window.location.reload();
   }
+
+   closeModal(event) {
+      event.preventDefault();
+      $('.modal').modal('close');
+    }
 
   render() {
     return  (
@@ -142,14 +145,15 @@ export class CreateDocument extends Component {
                   onChange={this.onChange}
                   value={this.state.value}
                   className="browser-default"
+                  defaultValue=""
                 >
-                  <option value="" disabled selected >Select Access Type</option>
+                  <option value="" disabled >Select Access Type</option>
                   <option value='public'>Public</option>
                   <option value='private'>Private</option>
                   <option value='role'>Role</option>
                 </select>
               </div>
-            <button href="#!" className="btn waves-effect waves-light modal-action modal-close center auth-button" id="done"type="submit" name="action">Save
+            <button href="#!" className="btn waves-effect waves-light modal-action center auth-button" id="done"type="submit" name="action" onClick={this.closeModal}>Save
               <i className="material-icons right"></i>
             </button>
             <ResponseMessage status={this.props.status} />
