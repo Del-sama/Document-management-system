@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import { Pagination } from 'react-materialize';
 import Navbar from '../common/nav.component';
 import Searchbar from '../common/searchbar.component';
 import UserDocs from '../docs/userDocs.component';
@@ -94,7 +95,7 @@ class UserDashboard extends Component {
   }
 
 /**
- *componentDidMount called once render has been executed
+ * componentDidMount called once render has been executed
  *
  * @memberOf UserDashboard
  */
@@ -102,10 +103,8 @@ class UserDashboard extends Component {
     $('ul.tabs').tabs();
   }
   render() {
-
     return (
       <div>
-
         <div id="modalView" className="modal modal-fixed-footer">
           <div className="modal-content">
             <h4 className="center">View Document</h4>
@@ -129,7 +128,7 @@ class UserDashboard extends Component {
         </div>
 
         <div className="mainContainer">
-          <div className="dashboard-bg"></div>
+          <div className="bg"></div>
           <Navbar />
           <Searchbar handleSearchBarView={this.handleSearchBarView}/>
           <div className="row">
@@ -157,6 +156,16 @@ class UserDashboard extends Component {
               <RoleDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test5" className="tabContent col s12">
+              <center className="pagination-key">
+                <Pagination id="allPagination" className="pag"
+                  items={this.props.documentPages}
+                  maxButtons={8}
+                  onSelect={(page) => {
+                    const offset = (page - 1) * 10;
+                    this.props.pagination(offset);
+                  }}
+                  />
+              </center>
               <AllDocs documents={this.props.documents} setViewDocument={this.setViewDocument} />
             </div>
             <div id="searchTab" className="tabContent col s12">
@@ -174,6 +183,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     EditDocument: (documentDetails, documentId) => dispatch(EditDocument(documentDetails, documentId)),
     DeleteDocument: (documentId) => dispatch(DeleteDocument(documentId)),
+
   };
 };
 
