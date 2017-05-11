@@ -76,9 +76,9 @@ export default class allUsers extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.users.map(user =>
+            {this.state.users.users ? this.state.users.users.map(user =>
               <SingleUserComponent user={user} key={user.id} deleteUser={this.deleteUser} props={this.props} change={this.change}/>
-            )}
+            ) : <div/>}
           </tbody>
         </table>
       </div>

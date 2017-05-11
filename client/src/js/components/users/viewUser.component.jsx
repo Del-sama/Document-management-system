@@ -73,6 +73,7 @@ class ViewUser extends Component {
                     <Link
                       to="/app/profile/edit"
                       className="btn"
+                      id="edit-profile-btn"
                     >Edit Profile</Link>
                   </div>
               </form>
