@@ -30,6 +30,7 @@ import axios from 'axios';
     }
     this.onChange=this.onChange.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
+    this.validateInput=this.validateInput.bind(this);
   }
 
 /**
@@ -61,6 +62,13 @@ import axios from 'axios';
     this.setState({ [e.target.name] : e.target.value });
   }
 
+  validateInput(password){
+    if(password.length < 6) {
+      Materialize.toast('Password should not be less than six characters!', 3000)
+    } else {
+      return true
+    }
+  }
 
 /**
  * onSubmit handles submit
@@ -71,10 +79,12 @@ import axios from 'axios';
  */
   onSubmit(e) {
     e.preventDefault();
-    if(this.state.password === this.state.confirmPassword){
-      this.props.signup(this.state);
-    }else {
-      Materialize.toast('Passwords don\'t match!', 3000)
+    if(this.validateInput(this.state.password)) {
+      if(this.state.password === this.state.confirmPassword){
+        this.props.signup(this.state);
+      }else {
+        Materialize.toast('Passwords don\'t match!', 3000)
+      }
     }
   }
 
@@ -158,7 +168,6 @@ import axios from 'axios';
                 id="password"
                 type="password"
                 className="validate"
-                pattern="[A-Za-z]{6}"
                 required />
                 <label  htmlFor="password">Password</label>
               </div>
@@ -172,7 +181,6 @@ import axios from 'axios';
                 id="confirmPassword"
                 type="password"
                 className="validate"
-                pattern="[A-Za-z]{6}"
                 required
                 />
                 <label  htmlFor="confirmPassword">Confirm Password</label>
