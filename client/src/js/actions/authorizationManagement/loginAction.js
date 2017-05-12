@@ -2,7 +2,11 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import * as actionTypes from '../actionTypes';
 
-
+/**
+ *login action - dispatches the action to login users
+ * @export
+ * @function
+ */
 export default (loginCredentials) => {
   return (dispatch) => {
     return axios.post('/users/login', loginCredentials)

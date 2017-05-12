@@ -9,6 +9,11 @@ const roleGetSuccess = (roles) => {
   };
 };
 
+/**
+ *getRoles action - dispatches the action to get roles
+ * @export
+ * @function
+ */
 export const viewRoles = (userId) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');

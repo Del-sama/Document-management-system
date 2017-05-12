@@ -4,6 +4,11 @@ import * as actionTypes from '../actionTypes';
 
 export const loginSuccessful = user => ({ type: actionTypes.LOGIN_SUCCESFUL, user });
 
+/**
+ *signup action - dispatches the action to signup users
+ * @export
+ * @function
+ */
 export default (userData) => {
   return (dispatch) => {
     return axios.post('/users', userData)

@@ -2,6 +2,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *newDocument action - dispatches the action to create new documents
+ * @export
+ * @function
+ */
 export default (details) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {

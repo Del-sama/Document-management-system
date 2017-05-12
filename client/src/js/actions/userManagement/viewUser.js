@@ -1,6 +1,11 @@
 import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *viewUser action - dispatches the action to get a single user
+ * @export
+ * @function
+ */
 export default (token, userId) => {
   return (dispatch) => {
     axios.get(`/users/${userId}`, {

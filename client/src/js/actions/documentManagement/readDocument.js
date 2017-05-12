@@ -9,6 +9,11 @@ const documentReadSuccess = function (documents) {
   }
 }
 
+/**
+ *viewDocument action - dispatches the action to get a single document
+ * @export
+ * @function
+ */
 export const viewUserDocuments = (userId) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');

@@ -2,6 +2,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *deleteDocument action - dispatches the action to delete documents
+ * @export
+ * @function
+ */
 export default (documentId) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {

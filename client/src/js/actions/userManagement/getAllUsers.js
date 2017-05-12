@@ -9,6 +9,11 @@ const userGetSuccess = (users) => {
   };
 };
 
+/**
+ *getAllUsers action - dispatches the action to get all users
+ * @export
+ * @function
+ */
 export const viewUsers = (userId) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');

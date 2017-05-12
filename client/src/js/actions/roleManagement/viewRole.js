@@ -1,6 +1,11 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
 
+/**
+ *viewRole action - dispatches the action to view roles
+ * @export
+ * @function
+ */
 export default (token, roleid) => {
   return function (dispatch) {
     return axios.get(`/roles/${roleid}`, {

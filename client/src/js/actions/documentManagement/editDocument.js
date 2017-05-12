@@ -2,6 +2,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *editDocument action - dispatches the action to edit documents
+ * @export
+ * @function
+ */
 export default (details, documentId) => {
   return (dispatch) => {
     const token=window.localStorage.getItem('token');

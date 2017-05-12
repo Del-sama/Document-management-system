@@ -2,6 +2,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *deleteUser action - dispatches the action to delete users
+ * @export
+ * @function
+ */
 export default (userId) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {

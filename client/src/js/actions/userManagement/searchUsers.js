@@ -2,6 +2,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../actionTypes';
 
+/**
+ *searchUsers action - dispatches the action to search for users
+ * @export
+ * @function
+ */
 export default (details, offset) => {
   return (dispatch) => {
     const token = window.localStorage.getItem('token');
