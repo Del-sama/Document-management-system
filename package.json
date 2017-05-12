@@ -66,6 +66,7 @@
     "react-test-renderer": "^15.5.4",
     "react-tinymce": "^0.5.1",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^4.1.1",
     "sequelize": "^3.30.2",
