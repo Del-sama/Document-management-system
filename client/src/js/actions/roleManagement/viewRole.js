@@ -7,18 +7,17 @@ export default (token, roleid) => {
       headers: {
         Authorization: token
       }
-    })
-      .then((response) => {
-        dispatch({
-          type: actionTypes.VIEW_ROLE,
-          role: response.data
-        });
-      }).catch((err) => {
-        dispatch({
-          type: actionTypes.ROLE_RETRIEVAL_FAILED,
-          status: 'failed',
-          error: err.message
-        });
+    }).then((response) => {
+      dispatch({
+        type: actionTypes.VIEW_ROLE,
+        role: response.data
       });
+    }).catch((err) => {
+      dispatch({
+        type: actionTypes.ROLE_RETRIEVAL_FAILED,
+        status: 'failed',
+        error: err.message
+      });
+    });
   };
 };

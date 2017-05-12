@@ -28,6 +28,13 @@ export class Navbar extends Component {
     }
   }
 
+
+  /**
+   * logout - logs users out
+   *
+   *
+   * @memberOf Navbar
+   */
   logout() {
     window.localStorage.removeItem('token');
     this.props.logout();

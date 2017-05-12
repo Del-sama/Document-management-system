@@ -43,7 +43,6 @@ const PublicDocs = (props) => {
   )
 }
 
-
 const SingleDocument = (props) => {
   const { document } = props
   return (

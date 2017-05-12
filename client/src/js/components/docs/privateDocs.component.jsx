@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory, Link } from 'react-router';
 
-
 const PrivateDocs = (props) => {
   let documentList;
   if (props.documents !== undefined) {

@@ -34,10 +34,27 @@ export class Searchbar extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
+  /**
+   * handles change events
+   *
+   * @param {object} e
+   *
+   * @memberOf Searchbar
+   */
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
+   /**
+    * handles submit event
+    *
+    * @param {object} e
+    *
+    * @memberOf Searchbar
+    */
    handleSubmit(e){
     e.preventDefault();
     if(this.state.database === 'documents') {

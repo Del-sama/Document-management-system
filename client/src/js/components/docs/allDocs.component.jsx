@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 
-
 /**
  *
  *
@@ -32,7 +31,7 @@ export class AllDocs extends Component {
  * componentWillReceiveProps called when props are changed and page is re-rendered
  * @param {object} nextProps
  *
- * @memberOf AdminDashboard
+ * @memberOf AllDocs
  */
   componentWillReceiveProps(nextProps){
     if(nextProps.documents){
@@ -42,6 +41,30 @@ export class AllDocs extends Component {
     }
   }
 
+
+  /**
+   * shouldComponentUpdate compares nextprops with props received
+   *
+   * @param {object} nextProps
+   * @returns
+   *
+   * @memberOf AllDocs
+   */
+  shouldComponentUpdate(nextProps) {
+    if(nextProps.documents) {
+      return true;
+    }
+  }
+
+  /**
+   *singleDocument - displays the content of the All documents table
+   *
+   * @param {Object} document
+   * @param {Object} index
+   * @returns
+   *
+   * @memberOf AllDocs
+   */
   singleDocument (document, index) {
     return (
       <tr className="hoverable" key={index}>

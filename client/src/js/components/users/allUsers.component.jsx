@@ -31,7 +31,14 @@ const SingleUserComponent = ({user, deleteUser, props, change}) => {
   );
 }
 
-export default class allUsers extends Component {
+/**
+ *AllUsers - displays all users in the admin dashboard
+ *
+ * @export
+ * @class AllUsers
+ * @extends {Component}
+ */
+export default class AllUsers extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -43,6 +50,13 @@ export default class allUsers extends Component {
     this.deleteUser = this.deleteUser.bind(this);
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf AllUsers
+ */
   componentWillReceiveProps(nextProps){
     if(nextProps.users){
       this.setState({
@@ -52,15 +66,31 @@ export default class allUsers extends Component {
     }
   }
 
+/**
+ * change handles change events
+ *
+ * @param {object} e
+ * @param {object} id
+ *
+ * @memberOf AllUsers
+ */
   change(e, id) {
     this.setState({ change: e.target.value });
     this.props.updateUser({ roleId: e.target.value }, id);
   }
 
+/**
+ * deleteUser deletes users
+ *
+ * @param {any} userId
+ *
+ * @memberOf AllUsers
+ */
   deleteUser(userId){
     this.props.deleteUser(userId);
-    Materialize.toast('User deleted!', 3000);
+    Materialize.toast('User deleted!', 1000, 'red');
   }
+
   render(){
     return (
       <div>
@@ -76,7 +106,7 @@ export default class allUsers extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.users.users ? this.state.users.users.map(user =>
+            {this.state.users ? this.state.users.map(user =>
               <SingleUserComponent user={user} key={user.id} deleteUser={this.deleteUser} props={this.props} change={this.change}/>
             ) : <div/>}
           </tbody>

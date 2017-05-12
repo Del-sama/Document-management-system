@@ -8,7 +8,6 @@ module.exports = {
     */
     return queryInterface.bulkInsert('User', [
       {
-        id: 1,
         userName: 'Lolita',
         firstName: 'Delores',
         lastName: 'Diei',
@@ -19,7 +18,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 2,
         userName: 'Ozzy',
         firstName: 'Ozzy',
         lastName: 'Diei',

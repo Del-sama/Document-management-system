@@ -14,13 +14,13 @@ export default (details, documentId) => {
         Authorization: token
       }
     })
-    .then(() => {
+    .then((response) => {
       dispatch({
         type: actionTypes.DOCUMENT_UPDATE,
         status: 'success',
+        document: response.data,
         documentId
       })
-      browserHistory.push('/app/dashboard');
     }).catch((err) => {
       dispatch({
         type: actionTypes.DOCUMENT_UPDATE_FAILED,

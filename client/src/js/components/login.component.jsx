@@ -5,7 +5,6 @@ import { browserHistory, Link } from 'react-router';
 import loginAction from '../actions/authorizationManagement/loginAction';
 import Navbar from './common/nav.component';
 
-
 /**
  *
  *
@@ -14,11 +13,12 @@ import Navbar from './common/nav.component';
  * @extends {Component}
  */
 export class Login extends Component {
-  /**
-   * renders the Nav component
-   * @returns {void}
-   * @memberOf Login
-   */
+
+/**
+ * renders the Nav component
+ * @returns {void}
+ * @memberOf Login
+ */
   constructor(props) {
     super(props);
     this.state = {

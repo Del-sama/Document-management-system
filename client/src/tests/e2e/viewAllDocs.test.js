@@ -16,7 +16,6 @@ module.exports = {
       .assert.urlEquals('http://localhost:5050/app/dashboard')
       .click('a.allDocs-btn')
       .waitForElementVisible('table#document-list')
-      .pause(1000)
       .end();
   }
 };

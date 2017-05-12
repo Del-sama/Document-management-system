@@ -45,11 +45,27 @@ class AdminDashboard extends Component {
     };
   }
 
+
+  /**
+   * handleSearchBarView - handles search bar view
+   *
+   * @param {object} view
+   *
+   * @memberOf AdminDashboard
+   */
   handleSearchBarView(view) {
     this.setState({ searchBarView: view });
     $('ul.tabs').tabs('select_tab', 'searchTab');
   }
 
+
+  /**
+   * close modal- closes modals
+   *
+   * @param {object} event
+   *
+   * @memberOf AdminDashboard
+   */
   closeModal(event) {
     event.preventDefault();
     $('.modal').modal('close');
@@ -95,8 +111,7 @@ class AdminDashboard extends Component {
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
     browserHistory.push('/app/dashboard');
-    Materialize.toast('Document deleted', 3000)
-    // window.location.reload();
+    Materialize.toast('Document deleted', 1000, 'red')
   }
 
 
@@ -110,7 +125,13 @@ class AdminDashboard extends Component {
   componentWillReceiveProps(nextProps){
     const keys = ['users', 'documents', 'roles'];
     keys.forEach(key=>{
-      if(nextProps[key]){
+      if(key === 'users' && nextProps[key]){
+        this.setState({
+          users: nextProps[key].users
+        }, ()=>{
+        })
+      }
+      else if(nextProps[key]){
         this.setState({
           [key]: nextProps[key]
         });

@@ -13,6 +13,13 @@ const SingleRole = ({role}) => {
   );
 }
 
+/**
+ * RoleView displays roles
+ *
+ * @export
+ * @class RoleView
+ * @extends {Component}
+ */
 export default class RoleView extends Component {
   constructor(props){
     super(props);
@@ -21,6 +28,13 @@ export default class RoleView extends Component {
     };
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf RoleView
+ */
   componentWillReceiveProps(nextProps){
     if(nextProps.roles){
       this.setState({

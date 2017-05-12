@@ -17,7 +17,6 @@ module.exports = {
       .refresh()
       .click('a.myDocs-btn')
       .waitForElementVisible('table#allMyDocs')
-      .pause(1000)
       .end();
   }
 };

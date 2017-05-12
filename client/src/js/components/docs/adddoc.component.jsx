@@ -11,7 +11,6 @@ import CreateDocument from './docForm.component'
  */
 class AddDoc extends Component {
 
-
   /**
    * Creates an instance of AddDoc.
    *
@@ -24,7 +23,7 @@ class AddDoc extends Component {
 /**
  *componentDidMount called once render has been executed
  *
- * @memberOf AdminDashboard
+ * @memberOf AddDoc
  */
   componentDidMount() {
     $('.modal').modal({
@@ -36,6 +35,7 @@ class AddDoc extends Component {
       endingTop: '10%', // Ending top style attribute
     });
   }
+
   render() {
     return (
       <div className="inline">

@@ -23,12 +23,12 @@ import Search from '../search.component.jsx';
  */
 class UserDashboard extends Component {
 
-  /**
-   * Creates an instance of UserDashboard.
-   * @param {any} props
-   *
-   * @memberOf UserDashboard
-   */
+/**
+ * Creates an instance of UserDashboard.
+ * @param {any} props
+ *
+ * @memberOf UserDashboard
+ */
   constructor(props) {
     super(props);
     this.setEditDocument = this.setEditDocument.bind(this);
@@ -36,16 +36,32 @@ class UserDashboard extends Component {
     this.setViewDocument = this.setViewDocument.bind(this);
     this.handleSearchBarView = this.handleSearchBarView.bind(this);
     this.state = {
-      searchBarView: 'noShow'
+      searchBarView: 'noShow',
+      documents: props.documents
     };
   }
 
 
+  /**
+   * close modal - closes the view documnet modal
+   *
+   * @param {any} event
+   *
+   * @memberOf UserDashboard
+   */
   closeModal(event) {
     event.preventDefault();
     $('.modal').modal('close');
   }
 
+
+  /**
+   * handleSearchBarView - handles search bar view
+   *
+   * @param {object} view
+   *
+   * @memberOf UserDashboard
+   */
   handleSearchBarView(view) {
     this.setState({ searchBarView: view });
     $('ul.tabs').tabs('select_tab', 'searchTab');
@@ -90,8 +106,22 @@ class UserDashboard extends Component {
  */
   setDeleteDocument(documentId) {
     this.props.DeleteDocument(documentId);
-    browserHistory.push('/app/dashboard');
-    Materialize.toast('Document deleted', 3000)
+    this.context.router.push('/app/dashboard');
+    Materialize.toast('Document deleted', 1000, 'red')
+  }
+
+
+  /**
+   *componentWillReceiveProps called when props are changed and page is re-rendered
+   *
+   * @param {object} nextProps
+   *
+   * @memberOf UserDashboard
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      documents: nextProps.documents
+    });
   }
 
 /**
@@ -144,6 +174,16 @@ class UserDashboard extends Component {
               </ul>
             </div>
             <div id="test3" className="tabContent col s12">
+              <center>
+                <Pagination id="allPagination" className="pag"
+                    items={this.props.documentPages}
+                    maxButtons={8}
+                    onSelect={(page) => {
+                      const offset = (page - 1) * 10;
+                      this.props.pagination(offset);
+                    }}
+                    />
+                  </center>
               <UserDocs documents={this.props.documents} setViewDocument={this.setViewDocument} setEditDocument={this.setEditDocument} setDeleteDocument={this.setDeleteDocument}/>
             </div>
             <div id="test1" className="tabContent col s12">
@@ -166,7 +206,7 @@ class UserDashboard extends Component {
                   }}
                   />
               </center>
-              <AllDocs documents={this.props.documents} setViewDocument={this.setViewDocument} />
+              <AllDocs documents={this.state.documents} setViewDocument={this.setViewDocument} />
             </div>
             <div id="searchTab" className="tabContent col s12">
               <Search searchDocuments={this.props.searchDocuments} setViewDocument={this.setViewDocument} searchUsers={this.props.searchUsers} view= {this.state.searchBarView} />
@@ -178,6 +218,10 @@ class UserDashboard extends Component {
     );
   }
 }
+
+UserDashboard.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import signupAction from '../actions/authorizationManagement/signupAction';
 import axios from 'axios';
 
-
   /**
    *
    *
@@ -13,6 +12,7 @@ import axios from 'axios';
    * @extends {Component}
    */
   export class Signup extends Component {
+
 /**
  * renders the Nav component
  * @returns {void}
@@ -32,6 +32,13 @@ import axios from 'axios';
     this.onSubmit=this.onSubmit.bind(this);
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf Signup
+ */
   componentWillReceiveProps(nextProps) {
     if (nextProps.error === 'unique violation') {
       this.setState({
@@ -43,10 +50,25 @@ import axios from 'axios';
     }
   }
 
+/**
+ * onChange handles change events
+ *
+ * @param {object} e
+ *
+ * @memberOf Signup
+ */
   onChange(e) {
     this.setState({ [e.target.name] : e.target.value });
   }
 
+
+/**
+ * onSubmit handles submit
+ *
+ * @param {object} e
+ *
+ * @memberOf Signup
+ */
   onSubmit(e) {
     e.preventDefault();
     if(this.state.password === this.state.confirmPassword){
@@ -135,7 +157,8 @@ import axios from 'axios';
                 name="password"
                 id="password"
                 type="password"
-                 className="validate"
+                className="validate"
+                pattern="[A-Za-z]{6}"
                 required />
                 <label  htmlFor="password">Password</label>
               </div>
@@ -148,8 +171,10 @@ import axios from 'axios';
                 name="confirmPassword"
                 id="confirmPassword"
                 type="password"
-                 className="validate"
-                required />
+                className="validate"
+                pattern="[A-Za-z]{6}"
+                required
+                />
                 <label  htmlFor="confirmPassword">Confirm Password</label>
               </div>
             </div>

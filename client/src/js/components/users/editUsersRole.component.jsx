@@ -7,6 +7,14 @@ import Navbar from '../common/nav.component';
 import viewUserAction from '../../actions/userManagement/viewUser.js';
 import editUserAction from '../../actions/userManagement/editUser.js';
 
+
+/**
+ * Edits users role
+ *
+ * @export
+ * @class EditUsersRole
+ * @extends {Component}
+ */
 export class EditUsersRole extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +25,35 @@ export class EditUsersRole extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf EditUserRole
+ */
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.user);
   }
 
+/**
+   * handleChange handles change events
+   *
+   * @param {object} event
+   *
+   * @memberOf EditUserRole
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+/**
+ * UpdateUser edits user details
+ *
+ * @param {object} event
+ *
+ * @memberOf EditUserRole
+ */
   updateUser(event) {
     this.props.updateUser(this.state);
   }

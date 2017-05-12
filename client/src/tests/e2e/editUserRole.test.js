@@ -16,7 +16,6 @@ module.exports = {
       .assert.urlEquals('http://localhost:5050/app/dashboard')
       .click('a.allUsers-btn')
       .waitForElementVisible('table#allUsersTable')
-      .pause(1000)
       .assert.elementPresent('select[id="selectRole"]')
       .end();
   }

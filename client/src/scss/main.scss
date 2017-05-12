@@ -65,7 +65,7 @@ $gradient: linear-gradient( #454545, #222);
 }
 .searchBox {
     right: 0;
-    width: 70%;
+    width: 50%;
     display: -webkit-inline-box;
     position: absolute;
     height: inherit;
@@ -262,4 +262,12 @@ th, td {
   width: 100vw;
   height: 100vh;
   z-index: -1;
+}
+.user-profile {
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+  width: 70%
+}
+.userProfile label {
+  color: #000;
 }

@@ -8,7 +8,7 @@ module.exports = {
       .assert.title('Document Management System')
       .click('a.login-btn')
       .setValue('input[type=text]', 'kez')
-      .setValue('input[type=password]', 'kez')
+      .setValue('input[type=password]', 'damisi')
       .click('button[type="submit"]')
       .waitForElementVisible('div.center')
       .assert.containsText('div.center', 'Login Successful')
@@ -16,7 +16,6 @@ module.exports = {
       .pause(1500)
       .assert.urlEquals('http://localhost:5050/app/dashboard')
       .click('a.signout-btn')
-      .pause(1000)
       .assert.urlEquals('http://localhost:5050/app/')
       .end();
   }

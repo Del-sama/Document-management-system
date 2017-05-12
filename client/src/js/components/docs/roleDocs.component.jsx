@@ -44,7 +44,6 @@ const RoleDocs = (props) => {
   )
 }
 
-
 const SingleDocument = (props) => {
   const { document } = props
   return (

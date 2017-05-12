@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './common/nav.component';
 import Body from './body.component';
 
-
 /**
  *
  *
@@ -10,11 +9,12 @@ import Body from './body.component';
  * @extends {Component}
  */
 class Index extends Component {
-  /**
-   * renders the index component
-   * @returns {void}
-   * @memberOf Index
-   */
+
+/**
+ * renders the index component
+ * @returns {void}
+ * @memberOf Index
+ */
   render() {
     return (
       <div>

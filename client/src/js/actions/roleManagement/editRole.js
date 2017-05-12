@@ -8,8 +8,7 @@ export default (details, token, roleid) => {
       headers: {
         Authorization: token
       }
-    })
-    .then((res) => {
+    }).then((res) => {
       browserHistory.push('/app/dashboard');
     }).catch((err) => {
       dispatch({

@@ -10,13 +10,12 @@ export default (documentId) => {
         Authorization: token
       }
     })
-    .then(() => {
+    .then((response) => {
       dispatch({
         type: actionTypes.DOCUMENT_DELETED,
         status: 'success',
         documentId
       });
-      browserHistory.push('/app/dashboard');
     }).catch((err) => {
       dispatch({
         type: actionTypes.DOCUMENT_DELETION_FAILED,

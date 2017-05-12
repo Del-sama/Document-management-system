@@ -8,7 +8,7 @@ module.exports = {
       .assert.title('Document Management System')
       .click('a.login-btn')
       .setValue('input[type=text]', 'kez')
-      .setValue('input[type=password]', 'kez')
+      .setValue('input[type=password]', 'damisi')
       .click('button[type="submit"]')
       .waitForElementVisible('div.center')
       .assert.containsText('div.center', 'Login Successful')
@@ -21,9 +21,8 @@ module.exports = {
       .click('#edit-profile-btn')
       .assert.urlEquals('http://localhost:5050/app/profile/edit')
       .setValue('input#first_name', 'y')
-      .pause(1500)
+
       .click('button.updateUser')
-      .pause(2000)
       .end();
   }
 };

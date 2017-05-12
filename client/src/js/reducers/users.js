@@ -8,14 +8,21 @@ export default (state = {}, action) => {
       return { ...state, user: action.user };
     case actionTypes.USER_UPDATED:
       return Object.assign({}, state, {
-        users: [...state.users].map((user) =>
+        users: {
+          pagination: state.users.pagination,
+          users: [...state.users.users].map((user) =>
           (user.id === action.user.id) ?
-            { ...user, roleId: action.user.roleId } : user)});
+            { ...user, roleId: action.user.roleId } : user)
+        }
+      });
     case actionTypes.USER_DELETED:
-      return { ...state,
-        users: state.users.filter((user) => {
-          return user.id !== action.deletedUserId;
-        })};
+      return Object.assign({}, state, {
+        users: {
+          pagination: state.users.pagination,
+          users: state.users.users.filter(user =>
+            user.id !== action.deletedUserId)
+        }
+      });
     case actionTypes.SEARCH_USER_COMPLETE:
       return { ...state, search: action.users, status: action.status };
     case actionTypes.SEARCH_USER_FAILED:

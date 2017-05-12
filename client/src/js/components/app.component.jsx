@@ -17,11 +17,12 @@ import EditUsersRole from './users/editUsersRole.component';
  * @extends {Component}
  */
 class App extends Component {
-  /**
-   * renders the app component
-   * @returns {void}
-   * @memberOf App
-   */
+
+/**
+ * renders the app component
+ * @returns {void}
+ * @memberOf App
+ */
   render() {
     return (
       <Router history={browserHistory}>

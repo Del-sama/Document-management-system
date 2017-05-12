@@ -7,6 +7,12 @@ import Navbar from '../common/nav.component';
 import viewUserAction from '../../actions/userManagement/viewUser.js';
 
 
+/**
+ * Views user profile
+ *
+ * @class ViewUser
+ * @extends {Component}
+ */
 class ViewUser extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +26,13 @@ class ViewUser extends Component {
     };
   }
 
+/**
+ *
+ * componentWillMount called when page is loaded
+ * @param {object} nextProps
+ *
+ * @memberOf ViewUser
+ */
   componentWillMount() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -31,10 +44,25 @@ class ViewUser extends Component {
     }
   }
 
+/**
+ *
+ * componentWillReceiveProps called when props are changed and page is re-rendered
+ * @param {object} nextProps
+ *
+ * @memberOf ViewUser
+ */
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.user);
   }
 
+
+  /**
+   * handleChange handles change events
+   *
+   * @param {any} event
+   *
+   * @memberOf ViewUser
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -45,7 +73,7 @@ class ViewUser extends Component {
         <div className="bg"></div>
         <div className="row  col s12">
           <Navbar />
-          <div className="col s12 ">
+          <div className="col s12 user-profile">
             <div className="row "><h4>Profile</h4></div>
             <div className="doc_list z-depth-4 panel doc_content">
               <form className="userProfile" autoComplete="off">
@@ -72,7 +100,7 @@ class ViewUser extends Component {
                 <div className="row">
                     <Link
                       to="/app/profile/edit"
-                      className="btn"
+                      className="btn waves-effect waves-light center"
                       id="edit-profile-btn"
                     >Edit Profile</Link>
                   </div>

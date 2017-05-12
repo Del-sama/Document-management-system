@@ -16,7 +16,6 @@ module.exports = {
       .assert.urlEquals('http://localhost:5050/app/dashboard')
       .click('a.allRoles-btn')
       .waitForElementVisible('table#allRolesTable')
-      .pause(1000)
       .end();
   }
 };

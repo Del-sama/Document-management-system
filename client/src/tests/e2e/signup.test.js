@@ -13,8 +13,8 @@ module.exports = {
       .setValue('input#password', '123456')
       .setValue('input#confirmPassword', '123456')
       .click('button[type="submit"]')
-      .pause(1500)
       .waitForElementVisible('body')
+      .pause(1500)
       .assert.urlEquals('http://localhost:5050/app/signup')
       .waitForElementVisible('body')
       .end();

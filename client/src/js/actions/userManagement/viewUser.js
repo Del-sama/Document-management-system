@@ -8,7 +8,7 @@ export default (token, userId) => {
         Authorization: token
       }
     })
-      .then((response) => {
+    .then((response) => {
         dispatch({
           type: actionTypes.VIEW_USER,
           user: response.data

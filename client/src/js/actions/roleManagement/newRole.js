@@ -9,20 +9,19 @@ export default (details) => {
       headers: {
         Authorization: token
       }
-    })
-      .then((role) => {
-        dispatch({
-          type: actionTypes.ROLE_CREATED,
-          role,
-          status: 'success'
-        });
-        browserHistory.push('/app/dasboard');
-      }).catch((err) => {
-        dispatch({
-          type: actionTypes.ROLE_CREATE_FAILED,
-          status: 'failed',
-          error: err.message
-        });
+    }).then((role) => {
+      dispatch({
+        type: actionTypes.ROLE_CREATED,
+        role,
+        status: 'success'
       });
+      browserHistory.push('/app/dasboard');
+    }).catch((err) => {
+      dispatch({
+        type: actionTypes.ROLE_CREATE_FAILED,
+        status: 'failed',
+        error: err.message
+      });
+    });
   };
 };

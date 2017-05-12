@@ -14,8 +14,19 @@ class DocumentsController {
  */
   static createDocuments(request, response) {
     return model.Document.create(request.body)
-      .then(newDocument => response.status(201)
-          .send(newDocument))
+      .then(newDocument => {
+        const document = newDocument.dataValues;
+
+        model.User.findById(document.userId)
+        .then((user) => {
+         const userData = {
+            'userName': user.dataValues.userName,
+            'roleId': user.dataValues.roleId
+          }
+          response.status(201).send(Object.assign(document, {'User': userData}))
+        });
+
+      })
       .catch(error => response.status(500)
           .send(error.message));
   }

@@ -45,12 +45,13 @@ export class Dashboard extends Component {
     });
   }
 
+
   updateUser(values, id) {
     this.props.actionEditUser(values, id);
   }
 
   render() {
-    const roleId = this.state.authUser.roleId || null
+    const roleId = this.state.authUser.roleId || null;
     return (roleId === this.state.AdminRoleId) ?
       <div>
         <AdminDashboard {...this.props} pagination= {this.props.viewAllDocuments} updateUser={this.updateUser} />

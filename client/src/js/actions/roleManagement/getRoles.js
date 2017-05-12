@@ -16,8 +16,7 @@ export const viewRoles = (userId) => {
       headers: {
         Authorization: token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       dispatch(roleGetSuccess(response.data));
     })
     .catch((err) => {

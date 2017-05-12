@@ -31,14 +31,12 @@ const ResponseMessage = (props) => {
  * @extends {Component}
  */
 export class CreateDocument extends Component {
-
-
-  /**
-   * Creates an instance of CreateDocument.
-   * @param {any} props
-   *
-   * @memberOf CreateDocument
-   */
+/**
+ * Creates an instance of CreateDocument.
+ * @param {object} props
+ *
+ * @memberOf CreateDocument
+ */
   constructor(props) {
       super(props);
       const token = (window.localStorage.getItem('token'));
@@ -55,7 +53,6 @@ export class CreateDocument extends Component {
       this.onChange = this.onChange.bind(this);
       this.contentOnChange = this.contentOnChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
-      // this.closeModal = this.closeModal.bind(this);
     }
 
 /**
@@ -63,15 +60,13 @@ export class CreateDocument extends Component {
  * componentWillReceiveProps called when props are changed and page is re-rendered
  * @param {object} nextProps
  *
- * @memberOf AdminDashboard
+ * @memberOf createDocument
  */
   componentWillReceiveProps(nextProps) {
     if(!nextProps.document) return;
-
     if (nextProps.status === 'success') {
       browserHistory.push('/app/dashboard');
     }
-
     this.setState({
       title: nextProps.document.title,
       content: nextProps.document.content,
@@ -81,24 +76,49 @@ export class CreateDocument extends Component {
     tinymce.activeEditor.setContent(nextProps.document.content);
   }
 
+  /**
+   *onchange handles change events
+   *
+   * @param {object} event
+   *
+   * @memberOf CreateDocument
+   */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   *contentOnChange handles content change in tinyMCE editor
+   *
+   * @param {object} event
+   *
+   * @memberOf CreateDocument
+   */
   contentOnChange(event) {
     this.setState({
       content: event.target.getContent()
     });
   }
 
+  /**
+   * onSubmit handles submit event
+   *
+   * @param {any} event
+   *
+   * @memberOf CreateDocument
+   */
   onSubmit(event) {
     event.preventDefault();
-    if(this.state.content.length < 1) {
-      Materialize.toast('Please add a content', 3000);
+    if (this.state.content.length < 1) {
+      Materialize.toast('Please add a content', 1000);
+    } else if (this.props.onEdit) {
+      this.props.onEdit(this.state, this.props.documentId);
+      $('.modal').modal('close');
+      Materialize.toast('Document updated', 1000, 'green');
     } else {
       this.props.CreateDocument(this.state);
       $('.modal').modal('close');
-      Materialize.toast('Document created', 1500);
+      Materialize.toast('Document created', 1000, 'green');
     }
   }
 
@@ -108,9 +128,7 @@ export class CreateDocument extends Component {
         <div>
          <div className="row">
           <form className="col s12"
-          onSubmit={this.props.onEdit ? () =>
-          { this.props.onEdit(this.state, this.props.documentId)} :
-          this.onSubmit}>
+          onSubmit={this.onSubmit}>
               <div className="row">
               <div className="input-field col s12">
                 <input
@@ -127,7 +145,7 @@ export class CreateDocument extends Component {
             <div className='row'>
                 <div className='input-field col s12' id="content">
                    <TinyMCE
-                    content=""
+                    content={this.state.content || ''}
                     name='content'
                     config={{
                       plugins: 'autolink link image lists print preview',
@@ -140,11 +158,11 @@ export class CreateDocument extends Component {
               <div className="col m3 s12">
                 <select
                   name="access"
-                  id="access"
+                  id="selectAccess"
                   onChange={this.onChange}
-                  value={this.state.value}
+                  value={this.state.access}
                   className="browser-default"
-                  defaultValue=""
+                  required
                 >
                   <option value="" disabled >Select Access Type</option>
                   <option value='public'>Public</option>
@@ -152,7 +170,7 @@ export class CreateDocument extends Component {
                   <option value='role'>Role</option>
                 </select>
               </div>
-            <button href="#!" className="btn waves-effect waves-light modal-action center auth-button" id="done"type="submit" name="action">Save
+            <button href="#!" className="btn waves-effect waves-light modal-action center auth-button" id="done"type="submit" name="action" >Save
               <i className="material-icons right"></i>
             </button>
             <ResponseMessage status={this.props.status} />
@@ -163,18 +181,15 @@ export class CreateDocument extends Component {
     )
   }
 }
-
 const mapStoreToProps = (state) => {
   return {
     status: state.documentReducer.createStatus,
     documents: state.documentReducer.documents
   };
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     CreateDocument: documentDetails => dispatch(newDocument(documentDetails)),
   };
 };
-
 export default connect(mapStoreToProps, mapDispatchToProps)(CreateDocument);
