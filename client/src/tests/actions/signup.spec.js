@@ -2,27 +2,31 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
 import nock from 'nock';
-import loginAuth from '../../js/actions/authorizationManagement/loginAction';
+import signupAuth from '../../js/actions/authorizationManagement/signupAction';
 import * as types from '../../js/actions/actionTypes';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('Login Action', () => {
-  it('creates LOGIN_SUCCESSFUL when login has been done',
+describe('Signup Action', () => {
+  it('creates LOGIN_SUCCESSFUL when signup has been done',
     () => {
-      const user = { userName: 'user', password: 'password' };
+      const user = {
+        firstName: 'firstname',
+        lastName: 'lastname',
+        userName: 'username',
+        email: 'email',
+        password: 'password'
+         };
 
       const expectedActions = [
         { type: types.LOGIN_SUCCESSFUL,
           user,
-          token: 'tokenize',
-          message: 'Login Successful'
         }];
 
-      const store = mockStore({ loginReducer: {} });
+      const store = mockStore({ signupReducer: {} });
 
-      store.dispatch(loginAuth(user))
+      store.dispatch(signupAuth(user))
         .then((res) => {
           expect(store.getActions()).toEqual(expectedActions);
         });
